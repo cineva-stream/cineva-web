@@ -2,7 +2,7 @@
   "name": "cineva-web",
   "version": "1.0.0",
   "private": true,
-  "description": "Situs resmi Cineva — aplikasi streaming & unduhan film dan serial TV modern berbasis Flutter.",
+  "description": "Situs resmi Cineva - aplikasi streaming & unduhan film dan serial TV modern berbasis Flutter.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

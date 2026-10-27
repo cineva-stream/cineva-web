@@ -1,5 +1,5 @@
 // Konten diringkas dari README.md dan RELEASE.md repositori
-// https://github.com/iamwisnu99/Cineva — ubah teks situs di file ini.
+// https://github.com/iamwisnu99/Cineva - ubah teks situs di file ini.
 
 export const REPO_URL = "https://github.com/iamwisnu99/Cineva";
 export const RELEASES_URL = "https://github.com/iamwisnu99/Cineva/releases";
@@ -9,7 +9,7 @@ export const APK_DOWNLOAD_URL = "https://github.com/iamwisnu99/Cineva/releases/d
 export const hero = {
   title: "Nonton Film & Serial TV Favorit Tanpa Batas",
   sub: "Aplikasi streaming & unduhan film dan serial TV modern berbasis Flutter untuk Android.",
-  version: "v1.0.0 — Official Public Release",
+  version: "v1.0.0 - Official Public Release",
   badges: [
     { label: "Flutter", value: "3.12+" },
     { label: "Android", value: "5.0+" },
@@ -54,7 +54,7 @@ export const screens = [
     num: "01",
     tag: "Beranda",
     title: "Beranda yang terasa seperti layanan streaming kelas dunia.",
-    desc: "Katalog film unggulan di bagian atas, serial populer, dan deretan Top 10 harian — semuanya siap diputar dalam satu sentuhan.",
+    desc: "Katalog film unggulan di bagian atas, serial populer, dan deretan Top 10 harian - semuanya siap diputar dalam satu sentuhan.",
     src: "/screens/home.webp",
     alt: "Beranda Cineva dengan film trending dan Top 10",
   },
