@@ -1,0 +1,76 @@
+# Cineva Stream
+
+> Cineva adalah aplikasi streaming dan pengunduh Film & Serial TV modern berbasis Flutter untuk Android. Menyajikan pengalaman sinematik premium: streaming P2P super cepat, subtitle bahasa Indonesia otomatis, profil lokal tanpa registrasi, tanpa iklan, dan 100% gratis.
+
+Situs Resmi: https://cineva.primadev.id
+Repositori GitHub: https://github.com/iamwisnu99/Cineva
+Rilis & Unduhan APK: https://github.com/iamwisnu99/Cineva/releases
+
+Untuk dokumentasi lengkap dan mendalam dalam satu berkas, lihat: [llms-full.txt](https://cineva.primadev.id/llms-full.txt)
+
+---
+
+## Ikhtisar Proyek
+
+* **Nama Produk**: Cineva (atau Cineva Stream)
+* **Kategori**: Media Player, Video Streaming, Entertainment Application
+* **Platform Target**: Android 5.0+ (Lollipop atau lebih baru)
+* **Arsitektur CPU**: arm64-v8a, armeabi-v7a, x86_64
+* **Ukuran APK**: ~96.9 MB (Package: `com.primadev.cineva`)
+* **Lisensi**: Open Source (MIT License)
+* **Model Monetisasi**: Bebas Biaya (100% Gratis, Nol Iklan, Tanpa Skema Berlangganan)
+
+---
+
+## Fitur Utama
+
+* **Streaming P2P Adaptif**: Memanfaatkan protokol terdistribusi BitTorrent dengan pre-buffering cepat ~7 detik serta backup pemutar web.
+* **Resolusi Fleksibel**: Dukungan otomatis 1080p Full HD, 720p, hingga 480p hemat kuota.
+* **Subtitle Cerdas Otomatis**: Integrasi OpenSubtitles dengan sinkronisasi waktu dan penerjemahan otomatis ke bahasa Indonesia atau bahasa pilihan pengguna bila subtitle belum tersedia.
+* **Pemutar Sinematik Sentuh**: Kontrol gestur sentuh untuk kecerahan (sisi kiri) dan volume (sisi kanan), ketuk ganda lompat 10 detik, kontrol kecepatan 0.5x hingga 2.0x, dan tombol Next Episode otomatis.
+* **Privasi Mutlak & Profil Offline**: Tidak memerlukan registrasi akun, email, atau nomor telepon. Data watchlist dan riwayat tontonan disimpan secara lokal terenkripsi di perangkat (Hive DB).
+* **Katalog & Filter Lengkap**: Metadata terintegrasi TMDB untuk film box office, serial TV populer, Top 10 harian, serta kategori Anime, Hollywood, Drama Korea, Bollywood, dan Film Indonesia.
+
+---
+
+## Teknologi & Arsitektur
+
+* **Framework UI**: Flutter 3.12+ (Dart 3.0+)
+* **State Management**: Flutter Riverpod
+* **Routing**: GoRouter
+* **Video Engine**: media_kit (berbasis libmpv performa tinggi dengan akselerasi perangkat keras)
+* **Penyimpanan Lokal**: Hive (Embedded NoSQL DB lokal)
+* **Jaringan & HTTP**: Dio
+* **Metadata API**: The Movie Database (TMDB) API
+* **Subtitle API**: OpenSubtitles REST API
+
+---
+
+## Cara Instalasi
+
+1. **Android Direct APK**:
+   * Unduh file `Cineva_v1.0.0.apk` dari https://github.com/iamwisnu99/Cineva/releases
+   * Buka file APK dan aktifkan izin "Install dari Sumber Tidak Dikenal" (Unknown Sources).
+   * Ketuk Instal dan buka Cineva.
+2. **Via ADB (Android Debug Bridge)**:
+   ```bash
+   adb install -r Cineva_v1.0.0.apk
+   ```
+3. **Kompilasi dari Source Code**:
+   ```bash
+   git clone https://github.com/iamwisnu99/Cineva.git
+   cd Cineva
+   cp .env.example .env # Isi API key TMDB & OpenSubtitles
+   flutter pub get
+   flutter run
+   ```
+
+---
+
+## Halaman Resmi & Dokumentasi Hukum
+
+* [Beranda Cineva](https://cineva.primadev.id/): Halaman promosi utama, fitur interaktif, unduhan APK, dan spesifikasi teknis.
+* [Dokumentasi Lengkap LLM](https://cineva.primadev.id/llms-full.txt): Versi lengkap seluruh teks situs dan dokumentasi teknis untuk AI.
+* [Syarat Penggunaan](https://cineva.primadev.id/syarat-penggunaan): Ketentuan hukum penggunaan perangkat lunak non-komersial Cineva.
+* [Kebijakan Privasi](https://cineva.primadev.id/kebijakan-privasi): Filosofi privasi tanpa akun dan arsitektur Zero Data Collection.
+* [Disclaimer & DMCA](https://cineva.primadev.id/disclaimer): Penafian hosting, kepatuhan DMCA/WIPO, dan batasan tanggung jawab hukum.
