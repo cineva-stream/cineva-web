@@ -3,7 +3,7 @@ import LegalLayout from "@/components/LegalLayout";
 import { privacyPolicy } from "@/lib/legal";
 
 export const metadata: Metadata = {
-  title: "Kebijakan Privasi — Cineva",
+  title: "Kebijakan Privasi - Cineva",
   description: "Prinsip perlindungan data pribadi dan filosofi privasi nol-pelacakan (Zero Data Collection) Cineva.",
 };
 

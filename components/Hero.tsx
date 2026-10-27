@@ -1,5 +1,5 @@
 import { Icon } from "./Icons";
-import { hero, heroPosters, REPO_URL, RELEASES_URL } from "@/lib/content";
+import { hero, heroPosters, REPO_URL, APK_DOWNLOAD_URL } from "@/lib/content";
 
 export default function Hero() {
   return (
@@ -38,7 +38,7 @@ export default function Hero() {
             <h1>{hero.title}</h1>
             <p className="hero-sub">{hero.sub}</p>
             <div className="hero-actions">
-              <a className="btn btn-primary" href="https://github.com/iamwisnu99/Cineva/releases/download/v1.0.0/Cineva_v1.0.0.apk" target="_blank" rel="noreferrer">
+              <a className="btn btn-primary" href={APK_DOWNLOAD_URL} target="_blank" rel="noreferrer">
                 <Icon name="download" size={19} />
                 Unduh APK
               </a>

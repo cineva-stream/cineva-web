@@ -3,7 +3,7 @@ import LegalLayout from "@/components/LegalLayout";
 import { termsOfUse } from "@/lib/legal";
 
 export const metadata: Metadata = {
-  title: "Syarat Penggunaan — Cineva",
+  title: "Syarat Penggunaan - Cineva",
   description: "Perjanjian hukum dan ketentuan penggunaan piranti lunak Cineva secara global.",
 };
 

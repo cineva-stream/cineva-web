@@ -8,8 +8,6 @@
   </a>
 </p>
 
-<h1 align="center">Cineva Web</h1>
-
 <p align="center">
   <strong>Situs Web & Landing Page Resmi untuk <a href="https://github.com/iamwisnu99/Cineva">Cineva</a> | Aplikasi Streaming & Unduhan Film dan Serial TV Modern</strong>
 </p>
@@ -58,7 +56,7 @@ Situs ini menghadirkan pengalaman visual imersif yang mencerminkan kualitas apli
 - 🍱 **Bento Grid Fitur Unggulan**:
   - Menampilkan arsitektur streaming P2P terdistribusi, pengunduh multi-worker berkecepatan tinggi, integrasi subtitle otomatis, dan penyimpanan lokal NoSQL.
 - 📺 **Mockup Pemutar Media Sinematik**:
-  - Menampilkan layar pemutar video format landscape lengkap dengan penanda *Skip Intro* dan status *Direct Stream*.
+  - Menampilkan layar pemutar video format landscape lengkap dengan penanda *Next Episode* dan status *Direct Stream*.
 - 📥 **Panduan Pemasangan Multi-Metode**:
   - Tab cara pasang interaktif: Unduhan langsung APK Android, *sideload* melalui ADB, serta langkah kompilasi dari *source code*.
 - 🌟 **CTA Banner Sinematik**:

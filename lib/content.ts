@@ -96,7 +96,7 @@ export const features = [
   { icon: "stream", title: "Streaming cepat", body: "Multi-server dengan buffering adaptif." },
   { icon: "download", title: "Unduhan multi-worker", body: "Jeda, lanjutkan, atau batalkan kapan saja." },
   { icon: "subtitle", title: "Subtitle otomatis", body: "Tidak ada di database? Diterjemahkan otomatis ke bahasa utamamu." },
-  { icon: "player", title: "Pemutar sinematik", body: "Gestur, kecepatan 0.5x - 2.0x, Skip Intro." },
+  { icon: "player", title: "Pemutar sinematik", body: "Gestur, kecepatan 0.5x - 2.0x, Next Episode." },
   { icon: "database", title: "Offline & privat", body: "Profil lokal, tanpa akun email atau nomor telepon." },
   { icon: "filter", title: "Konten sesuai selera", body: "Indonesia, Anime, Hollywood, Korea, Bollywood." },
 ];
