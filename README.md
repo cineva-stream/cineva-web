@@ -1,6 +1,10 @@
 <p align="center">
   <a href="https://github.com/iamwisnu99/Cineva">
-    <img src="public/Cineva_transparent.png" alt="Cineva Logo" width="130" />
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="public/logo_cineva.png" />
+      <source media="(prefers-color-scheme: light)" srcset="public/logo_cineva_light.png" />
+      <img alt="Cineva Logo" src="public/logo_cineva.png" width="240" />
+    </picture>
   </a>
 </p>
 
@@ -115,6 +119,8 @@ cineva-web/
 │   ├── posters/             # Aset poster film berkualitas tinggi (.webp)
 │   ├── screens/             # Tangkapan layar resmi antarmuka aplikasi Cineva (.webp)
 │   ├── Cineva_transparent.png # Logo resmi transparan Cineva
+│   ├── logo_cineva.png      # Logo Cineva versi gelap (Dark Mode)
+│   ├── logo_cineva_light.png # Logo Cineva versi cerah (Light Mode)
 │   ├── favicon.ico          # Favicon default browser
 │   ├── favicon.svg          # Favicon vektor modern
 │   ├── apple-touch-icon.png # Icon perangkat iOS / Apple
