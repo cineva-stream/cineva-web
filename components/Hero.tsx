@@ -1,5 +1,6 @@
 import { Icon } from "./Icons";
 import { hero, heroPosters, REPO_URL, APK_DOWNLOAD_URL } from "@/lib/content";
+import HeroDownloads from "./HeroDownloads";
 
 export default function Hero() {
   return (
@@ -47,6 +48,10 @@ export default function Hero() {
                 GitHub
               </a>
             </div>
+
+            {/* Teks Total Unduhan Realtime: Desktop rata kiri di bawah tombol Unduh APK, Mobile rata tengah */}
+            <HeroDownloads />
+
             <div className="badges">
               {hero.badges.map((b) => (
                 <span className="badge" key={b.label}>
