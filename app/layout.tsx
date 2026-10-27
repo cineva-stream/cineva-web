@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://cineva-stream.vercel.app"),
   title: "Cineva Stream",
   description:
     "Cineva adalah aplikasi streaming dan pengunduh Film serta Serial TV modern berbasis Flutter untuk Android, dengan estetika Deep Obsidian dan aksen Cinema Amber.",
