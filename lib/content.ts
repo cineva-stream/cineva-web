@@ -4,7 +4,7 @@
 export const REPO_URL = "https://github.com/iamwisnu99/Cineva";
 export const RELEASES_URL = "https://github.com/iamwisnu99/Cineva/releases";
 export const LICENSE_URL = "https://github.com/iamwisnu99/Cineva/blob/main/LICENSE";
-export const APK_DOWNLOAD_URL = "https://github.com/iamwisnu99/Cineva/releases/download/v1.0.4/Cineva_v1.0.4.apk";
+export const APK_DOWNLOAD_URL = "https://github.com/iamwisnu99/Cineva/releases/download/v1.0.5/Cineva_v1.0.5.apk";
 
 export const hero = {
   title: "Nonton Film & Serial TV Favorit Tanpa Batas",
@@ -123,7 +123,7 @@ export const install = {
       id: "apk",
       tab: "Di Android",
       steps: [
-        "Unduh Cineva_v1.0.4.apk dari Releases.",
+        "Unduh Cineva_v1.0.5.apk dari Releases.",
         "Buka file APK, izinkan Sumber Tidak Dikenal.",
         "Tekan Install, lalu buka Cineva.",
       ],
@@ -133,7 +133,7 @@ export const install = {
       id: "adb",
       tab: "Via ADB",
       steps: ["Sambungkan ponsel dengan USB Debugging, lalu jalankan:"],
-      code: "adb install -r Cineva_v1.0.4.apk",
+      code: "adb install -r Cineva_v1.0.5.apk",
     },
     {
       id: "source",
