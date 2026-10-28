@@ -4,12 +4,12 @@
 export const REPO_URL = "https://github.com/iamwisnu99/Cineva";
 export const RELEASES_URL = "https://github.com/iamwisnu99/Cineva/releases";
 export const LICENSE_URL = "https://github.com/iamwisnu99/Cineva/blob/main/LICENSE";
-export const APK_DOWNLOAD_URL = "https://github.com/iamwisnu99/Cineva/releases/download/v1.0.7/Cineva_v1.0.7.apk";
+export const APK_DOWNLOAD_URL = "https://github.com/iamwisnu99/Cineva/releases/download/v1.0.8/Cineva_v1.0.8.apk";
 
 export const hero = {
   title: "Nonton Film & Serial TV Favorit Tanpa Batas",
   sub: "Aplikasi streaming & unduhan film dan serial TV modern berbasis Flutter untuk Android.",
-  version: "v1.0.7 - Official Public Release",
+  version: "v1.0.8 - Official Public Release",
   badges: [
     { label: "Flutter", value: "3.12+" },
     { label: "Android", value: "5.0+" },
@@ -123,7 +123,7 @@ export const install = {
       id: "apk",
       tab: "Di Android",
       steps: [
-        "Unduh Cineva_v1.0.7.apk dari Releases.",
+        "Unduh Cineva_v1.0.8.apk dari Releases.",
         "Buka file APK, izinkan Sumber Tidak Dikenal.",
         "Tekan Install, lalu buka Cineva.",
       ],
@@ -133,7 +133,7 @@ export const install = {
       id: "adb",
       tab: "Via ADB",
       steps: ["Sambungkan ponsel dengan USB Debugging, lalu jalankan:"],
-      code: "adb install -r Cineva_v1.0.7.apk",
+      code: "adb install -r Cineva_v1.0.8.apk",
     },
     {
       id: "source",
@@ -150,7 +150,7 @@ flutter run`,
 };
 
 export const specs = [
-  { k: "Versi", v: "v1.0.7" },
+  { k: "Versi", v: "v1.0.8" },
   { k: "Ukuran APK", v: "~98 MB" },
   { k: "Target OS", v: "Android 5.0+" },
   { k: "CPU", v: "arm64-v8a, armeabi-v7a, x86_64" },
