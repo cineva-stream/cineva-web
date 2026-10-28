@@ -9,7 +9,7 @@ export const APK_DOWNLOAD_URL = "https://github.com/iamwisnu99/Cineva/releases/d
 export const hero = {
   title: "Nonton Film & Serial TV Favorit Tanpa Batas",
   sub: "Aplikasi streaming & unduhan film dan serial TV modern berbasis Flutter untuk Android.",
-  version: "v1.0.0 - Official Public Release",
+  version: "v1.0.4 - Official Public Release",
   badges: [
     { label: "Flutter", value: "3.12+" },
     { label: "Android", value: "5.0+" },
