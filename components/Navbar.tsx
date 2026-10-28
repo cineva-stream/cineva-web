@@ -43,49 +43,66 @@ export default function Navbar() {
     };
   }, [open]);
 
+  // Tutup menu saat menekan tombol Escape
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
   return (
-    <header className={`nav${scrolled ? " scrolled" : ""}${open ? " open" : ""}`}>
-      <div className="wrap nav-inner">
-        <a href="#" className="brand" aria-label="Cineva, ke atas" onClick={() => setOpen(false)}>
-          <img src="/icon.png" alt="" />
-          Cineva
-        </a>
+    <>
+      <header className={`nav${scrolled ? " scrolled" : ""}${open ? " open" : ""}`}>
+        <div className="wrap nav-inner">
+          <a href="#" className="brand" aria-label="Cineva, ke atas" onClick={() => setOpen(false)}>
+            <img src="/icon.png" alt="" />
+            Cineva
+          </a>
 
-        {/* Navigasi Desktop */}
-        <nav className="nav-links" aria-label="Navigasi utama">
-          {links.map((l) => (
-            <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
-              {l.label}
+          {/* Navigasi Desktop */}
+          <nav className="nav-links" aria-label="Navigasi utama">
+            {links.map((l) => (
+              <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
+                {l.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* CTA Desktop */}
+          <div className="nav-cta">
+            <a className="btn btn-ghost btn-sm" href={REPO_URL} target="_blank" rel="noreferrer">
+              <Icon name="github" size={17} />
+              GitHub
             </a>
-          ))}
-        </nav>
+            <a className="btn btn-primary btn-sm" href={APK_DOWNLOAD_URL} target="_blank" rel="noreferrer">
+              Unduh APK
+            </a>
+          </div>
 
-        {/* CTA Desktop */}
-        <div className="nav-cta">
-          <a className="btn btn-ghost btn-sm" href={REPO_URL} target="_blank" rel="noreferrer">
-            <Icon name="github" size={17} />
-            GitHub
-          </a>
-          <a className="btn btn-primary btn-sm" href={APK_DOWNLOAD_URL} target="_blank" rel="noreferrer">
-            Unduh APK
-          </a>
+          {/* Tombol Hamburger Mobile (Tanpa Background & Border) */}
+          <button
+            className="menu-btn"
+            aria-label={open ? "Tutup menu" : "Buka menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+              {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+            </svg>
+          </button>
         </div>
+      </header>
 
-        {/* Tombol Hamburger Mobile (Tanpa Background & Border) */}
-        <button
-          className="menu-btn"
-          aria-label={open ? "Tutup menu" : "Buka menu"}
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
-            {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
-          </svg>
-        </button>
-      </div>
-
-      {/* Dropdown Menu Mobile Saat Hamburger Ditekan */}
-      <div className={`nav-mobile-menu${open ? " is-open" : ""}`} aria-hidden={!open}>
+      {/* Dropdown Menu Mobile Saat Hamburger Ditekan (Terpisah dari <header> agar tidak terpengaruh backdrop-filter dan tinggi header saat scroll) */}
+      <div
+        className={`nav-mobile-menu${open ? " is-open" : ""}`}
+        aria-hidden={!open}
+        onClick={(e) => {
+          if (e.target === e.currentTarget) setOpen(false);
+        }}
+      >
         <div className="nav-mobile-content">
           <nav className="nav-mobile-links" aria-label="Navigasi menu mobile">
             {links.map((l) => (
@@ -122,6 +139,6 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-    </header>
+    </>
   );
 }
