@@ -34,7 +34,7 @@ export default function InstallTabs() {
                 <p>
                   {i === 0 ? (
                     <>
-                      Unduh <code className="inline">Cineva_v1.0.6.apk</code> dari{" "}
+                      Unduh <code className="inline">Cineva_v1.0.7.apk</code> dari{" "}
                       <a className="inline-link" href={RELEASES_URL} target="_blank" rel="noreferrer">
                         Releases
                       </a>

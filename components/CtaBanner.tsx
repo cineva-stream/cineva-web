@@ -71,7 +71,7 @@ export default function CtaBanner() {
                 <Icon name="download" size={24} />
               </div>
               <div className="cta-btn-text">
-                <span className="cta-btn-meta">v1.0.6 ~90MB</span>
+                <span className="cta-btn-meta">v1.0.7 ~98MB</span>
                 <span className="cta-btn-title">Unduh untuk Android</span>
               </div>
             </a>

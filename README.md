@@ -30,7 +30,7 @@ Repositori ini merupakan **situs web resmi dan landing page portal** yang diranc
 | :--- | :--- | :--- |
 | **Aplikasi Utama** | [iamwisnu99/Cineva](https://github.com/iamwisnu99/Cineva) | Aplikasi streaming & pengunduh Film/Serial TV berbasis Flutter untuk Android |
 | **Situs Web Portal** | [iamwisnu99/cineva-web](https://github.com/iamwisnu99/cineva-web) | Portal web modern, showcase fitur, panduan instalasi & dokumen legal |
-| **Unduh APK Rilis** | [Cineva v1.0.6 APK](https://github.com/iamwisnu99/Cineva/releases/download/v1.0.6/Cineva_v1.0.6.apk) | File instalasi resmi Android (~90 MB) |
+| **Unduh APK Rilis** | [Cineva v1.0.7 APK](https://github.com/iamwisnu99/Cineva/releases/download/v1.0.7/Cineva_v1.0.7.apk) | File instalasi resmi Android (~90 MB) |
 
 ---
 
@@ -62,7 +62,7 @@ Situs ini menghadirkan pengalaman visual imersif yang mencerminkan kualitas apli
 - 🌟 **CTA Banner Sinematik**:
   - Backdrop dinding poster dinamis dengan *cinema radial vignette*.
   - Logo transparan Cineva berukuran besar dengan aksen bayangan hangat.
-  - Tombol aksi terpadu untuk mengunduh `Cineva_v1.0.6.apk` langsung dari GitHub Releases.
+  - Tombol aksi terpadu untuk mengunduh `Cineva_v1.0.7.apk` langsung dari GitHub Releases.
 - ⚖️ **Halaman Dokumen Legalitas Lengkap (Markdown Format)**:
   - Menyediakan halaman mandiri layar penuh (*full-screen editorial layout*):
     - [Syarat Penggunaan](/syarat-penggunaan) (`/syarat-penggunaan`)
