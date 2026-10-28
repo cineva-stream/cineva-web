@@ -150,8 +150,8 @@ flutter run`,
 };
 
 export const specs = [
-  { k: "Versi", v: "1.0.0" },
-  { k: "Ukuran APK", v: "~96.9 MB" },
+  { k: "Versi", v: "v1.0.7" },
+  { k: "Ukuran APK", v: "~98 MB" },
   { k: "Target OS", v: "Android 5.0+" },
   { k: "CPU", v: "arm64-v8a, armeabi-v7a, x86_64" },
   { k: "Package", v: "com.primadev.cineva" },

@@ -132,7 +132,7 @@ const jsonLdSoftwareApp = {
   downloadUrl: "https://cineva.primadev.id/#unduh",
   installUrl: "https://github.com/iamwisnu99/Cineva/releases",
   screenshot: "https://cineva.primadev.id/screens/home.webp",
-  softwareVersion: "1.0.0",
+  softwareVersion: "v1.0.7",
   fileSize: "35MB",
   author: {
     "@type": "Person",
