@@ -49,12 +49,12 @@ Untuk dokumentasi lengkap dan mendalam dalam satu berkas, lihat: [llms-full.txt]
 ## Cara Instalasi
 
 1. **Android Direct APK**:
-   * Unduh file `Cineva_v1.0.0.apk` dari https://github.com/iamwisnu99/Cineva/releases
+   * Unduh file `Cineva_v1.0.2.apk` dari https://github.com/iamwisnu99/Cineva/releases
    * Buka file APK dan aktifkan izin "Install dari Sumber Tidak Dikenal" (Unknown Sources).
    * Ketuk Instal dan buka Cineva.
 2. **Via ADB (Android Debug Bridge)**:
    ```bash
-   adb install -r Cineva_v1.0.0.apk
+   adb install -r Cineva_v1.0.2.apk
    ```
 3. **Kompilasi dari Source Code**:
    ```bash
