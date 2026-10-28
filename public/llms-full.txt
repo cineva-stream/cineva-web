@@ -86,7 +86,7 @@ Cineva (dikenal juga sebagai Cineva Stream) adalah aplikasi pemutar media dan st
 
 ### Metode 1: Unduh APK Langsung di Ponsel Android
 1. Kunjungi tautan rilis resmi di GitHub: https://github.com/iamwisnu99/Cineva/releases
-2. Unduh berkas rilisan publik terbaru: `Cineva_v1.0.2.apk`.
+2. Unduh berkas rilisan publik terbaru: `Cineva_v1.0.3.apk`.
 3. Buka berkas APK yang telah selesai diunduh.
 4. Jika muncul peringatan keamanan sistem Android, pilih "Setelan" (Settings) dan aktifkan "Izinkan instalasi dari sumber ini" (Allow from this source).
 5. Tekan tombol "Instal", tunggu proses pemasangan selesai, lalu buka Cineva.
@@ -96,7 +96,7 @@ Cineva (dikenal juga sebagai Cineva Stream) adalah aplikasi pemutar media dan st
 2. Pastikan opsi "USB Debugging" aktif di Opsi Pengembang (Developer Options).
 3. Buka terminal atau Command Prompt pada komputer dan jalankan:
    ```bash
-   adb install -r Cineva_v1.0.2.apk
+   adb install -r Cineva_v1.0.3.apk
    ```
 
 ### Metode 3: Kompilasi Mandiri dari Kode Sumber (Build from Source)
