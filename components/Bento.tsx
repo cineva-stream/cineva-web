@@ -2,14 +2,16 @@
 
 import { useState } from "react";
 import { Icon } from "./Icons";
-import { discover, subtitleLangs, watchlistRows, posterWall, maintenance, player } from "@/lib/content";
+import { subtitleLangs, posterWall } from "@/lib/content";
+import { useLanguage } from "@/lib/LanguageContext";
 
-const row1Posters = [...posterWall, ...posterWall, ...posterWall, ...posterWall];
+const row1Posters = [...posterWall, ...posterWall];
 const shiftedWall = [...posterWall.slice(4), ...posterWall.slice(0, 4)];
-const row2Posters = [...shiftedWall, ...shiftedWall, ...shiftedWall, ...shiftedWall];
+const row2Posters = [...shiftedWall, ...shiftedWall];
 const langCodes = ["ID", "EN", "ES", "JA", "KO"];
 
 export default function Bento() {
+  const { t } = useLanguage();
   const [activeGenre, setActiveGenre] = useState(0);
   const [activeLang, setActiveLang] = useState(0);
 
@@ -19,12 +21,10 @@ export default function Bento() {
         <div className="sec-head row" data-reveal="up">
           <div>
             <h2>
-              Seluruh tontonanmu, <span className="outline">tertata rapi.</span>
+              {t.bento.title1} <span className="outline">{t.bento.title2}</span>
             </h2>
           </div>
-          <p className="sec-lead">
-            Cineva bukan sekadar katalog. Di sinilah kamu menemukan, menonton, menyimpan, dan kembali ke cerita favoritmu.
-          </p>
+          <p className="sec-lead">{t.bento.lead}</p>
         </div>
 
         <div className="bento">
@@ -47,12 +47,12 @@ export default function Bento() {
               <div className="discover-ui">
                 <div className="mini-search">
                   <Icon name="search" size={16} />
-                  <span className="mini-search-text">{discover.placeholder}</span>
+                  <span className="mini-search-text">{t.bento.discover.placeholder}</span>
                   <span className="mini-search-caret" aria-hidden="true" />
-                  <span className="mini-search-kbd">Instan</span>
+                  <span className="mini-search-kbd">{t.bento.discover.kbd}</span>
                 </div>
-                <div className="mini-chips" role="group" aria-label="Filter genre">
-                  {discover.chips.map((c, i) => (
+                <div className="mini-chips" role="group" aria-label={t.bento.discover.filterAria}>
+                  {t.bento.discover.chips.map((c, i) => (
                     <button
                       key={c}
                       type="button"
@@ -70,10 +70,10 @@ export default function Bento() {
                 <span className="tile-ico">
                   <Icon name="search" size={18} />
                 </span>
-                <span className="tile-tag">Eksplorasi &amp; Filter</span>
+                <span className="tile-tag">{t.bento.discover.tag}</span>
               </div>
-              <h3>Temukan tanpa scroll tanpa ujung.</h3>
-              <p>Tren, rating, dan genre dari Indonesia, Anime, Hollywood, Korea, sampai Bollywood. Riwayat pencarian muncul instan.</p>
+              <h3>{t.bento.discover.title}</h3>
+              <p>{t.bento.discover.desc}</p>
             </div>
           </article>
 
@@ -82,7 +82,7 @@ export default function Bento() {
             <div className="tile-art player-art">
               <div className="mini-player-stage">
                 <div className="mini-player-frame">
-                  <img src={player.src} alt={player.alt} width={1200} height={527} loading="lazy" />
+                  <img src={t.player.src} alt={t.player.alt} width={1200} height={527} loading="lazy" />
                 </div>
               </div>
             </div>
@@ -91,15 +91,15 @@ export default function Bento() {
                 <span className="tile-ico">
                   <Icon name="player" size={18} />
                 </span>
-                <span className="tile-tag">Media Kit Engine</span>
+                <span className="tile-tag">{t.bento.player.tag}</span>
               </div>
-              <h3>Pemutar yang bicara bahasamu.</h3>
-              <p>Subtitle multi-bahasa, kecepatan 0.5x - 2.0x, dan Next Episode otomatis tanpa jeda.</p>
+              <h3>{t.bento.player.title}</h3>
+              <p>{t.bento.player.desc}</p>
             </div>
           </article>
 
           {/* Unduhan - Under Maintenance */}
-          <article className="tile t-maint" aria-label="Unduhan: Under Maintenance" data-reveal="up" data-delay="1">
+          <article className="tile t-maint" aria-label={t.bento.maint.ariaLabel} data-reveal="up" data-delay="1">
             <div className="tile-art maint-art">
               <div className="maint-visual">
                 <div className="maint-ring-wrap">
@@ -114,7 +114,7 @@ export default function Bento() {
                 </div>
                 <div className="maint-status-pill">
                   <span className="status-dot-online" />
-                  <span>Streaming online berjalan normal</span>
+                  <span>{t.bento.maint.statusOnline}</span>
                 </div>
               </div>
             </div>
@@ -125,23 +125,25 @@ export default function Bento() {
                 </span>
                 <span className="maint-badge">
                   <Icon name="warning" size={13} />
-                  {maintenance.badge}
+                  {t.maintenance.badge}
                 </span>
               </div>
-              <h3>{maintenance.title}</h3>
-              <p>{maintenance.body}</p>
+              <h3>{t.maintenance.title}</h3>
+              <p>{t.maintenance.body}</p>
             </div>
           </article>
 
           {/* Watchlist */}
           <article className="tile t-watch" data-reveal="up" data-delay="2">
             <div className="tile-art list-art watch-art">
-              {watchlistRows.map((r, idx) => (
+              {t.bento.watch.rows.map((r, idx) => (
                 <div className="row-item" key={r.title} style={{ animationDelay: `${idx * 0.15}s` }}>
                   <img src={r.src} alt="" width={64} height={96} loading="lazy" />
                   <div className="row-info">
                     <b>{r.title}</b>
-                    <span>{r.meta} · Tersimpan</span>
+                    <span>
+                      {r.meta} · {t.bento.watch.savedTag}
+                    </span>
                   </div>
                   <span className="row-bookmark" aria-hidden="true">
                     <Icon name="bookmark" size={15} />
@@ -154,10 +156,10 @@ export default function Bento() {
                 <span className="tile-ico">
                   <Icon name="bookmark" size={18} />
                 </span>
-                <span className="tile-tag">Penyimpanan Lokal</span>
+                <span className="tile-tag">{t.bento.watch.tag}</span>
               </div>
-              <h3>Simpan di sini, lanjut di mana saja.</h3>
-              <p>Watchlist tersimpan di ponselmu dan tetap bisa dibuka kapan pun saat offline.</p>
+              <h3>{t.bento.watch.title}</h3>
+              <p>{t.bento.watch.desc}</p>
             </div>
           </article>
 
@@ -183,7 +185,7 @@ export default function Bento() {
                         <Icon name="check" size={14} />
                       </span>
                     ) : (
-                      <span className="lang-auto-tag">Auto</span>
+                      <span className="lang-auto-tag">{t.bento.sub.autoTag}</span>
                     )}
                   </button>
                 );
@@ -194,10 +196,10 @@ export default function Bento() {
                 <span className="tile-ico">
                   <Icon name="subtitle" size={18} />
                 </span>
-                <span className="tile-tag">OpenSubtitles + Auto Translate</span>
+                <span className="tile-tag">{t.bento.sub.tag}</span>
               </div>
-              <h3>Subtitle selalu ada.</h3>
-              <p>Tidak ada di database? Diterjemahkan otomatis ke bahasa utamamu.</p>
+              <h3>{t.bento.sub.title}</h3>
+              <p>{t.bento.sub.desc}</p>
             </div>
           </article>
 
@@ -208,38 +210,31 @@ export default function Bento() {
                 <span className="tile-ico">
                   <Icon name="user" size={18} />
                 </span>
-                <span className="tile-tag">Privasi Penuh</span>
+                <span className="tile-tag">{t.bento.profile.tag}</span>
               </div>
-              <h3>Profil lokal, tanpa akun.</h3>
-              <p>
-                Pilih avatar karakter sinema dan mulai menonton. Tidak ada registrasi, email, atau nomor telepon. Datamu
-                tinggal sepenuhnya di ponselmu.
-              </p>
+              <h3>{t.bento.profile.title}</h3>
+              <p>{t.bento.profile.desc}</p>
             </div>
             <div className="profile-art">
               <div className="profile-avatar-card">
                 <div className="profile-avatar-bar">
-                  <span className="profile-avatar-label">Pilih Avatar Karakter</span>
-                  <span className="profile-avatar-status">100% Lokal di Perangkat</span>
+                  <span className="profile-avatar-label">{t.bento.profile.avatarLabel}</span>
+                  <span className="profile-avatar-status">{t.bento.profile.avatarStatus}</span>
                 </div>
                 <img
                   src="/screens/avatars.webp"
-                  alt="Pilihan avatar sinema di profil Cineva"
+                  alt={t.bento.profile.avatarAlt}
                   width={525}
                   height={98}
                   loading="lazy"
                 />
               </div>
               <div className="mini-chips profile-chips">
-                <span>
-                  <Icon name="check" size={13} /> Tanpa email
-                </span>
-                <span>
-                  <Icon name="check" size={13} /> Tanpa nomor telepon
-                </span>
-                <span>
-                  <Icon name="check" size={13} /> Tanpa registrasi
-                </span>
+                {t.bento.profile.perks.map((perk) => (
+                  <span key={perk}>
+                    <Icon name="check" size={13} /> {perk}
+                  </span>
+                ))}
               </div>
             </div>
           </article>

@@ -1,16 +1,20 @@
+"use client";
+
 import { Icon } from "./Icons";
-import { player } from "@/lib/content";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function PlayerSection() {
+  const { t } = useLanguage();
+
   return (
     <section id="pemutar" className="sec">
       <div className="wrap player-grid">
         <div className="player-copy" data-reveal="up">
-          <h2>{player.title}</h2>
-          <p className="sec-lead">{player.lead}</p>
+          <h2>{t.player.title}</h2>
+          <p className="sec-lead">{t.player.lead}</p>
           <ul className="player-points">
-            {player.points.map((p, idx) => (
-              <li key={p.t} className="player-point-card" style={{ transitionDelay: `${idx * 60}ms` }}>
+            {t.player.points.map((p, idx) => (
+              <li key={idx} className="player-point-card" style={{ transitionDelay: `${idx * 60}ms` }}>
                 <span className="tick">
                   <Icon name="check" size={14} />
                 </span>
@@ -28,7 +32,7 @@ export default function PlayerSection() {
           <div className="landscape-device">
             <span className="landscape-cam" aria-hidden="true" />
             <div className="landscape-screen">
-              <img src={player.src} alt={player.alt} width={1200} height={527} loading="lazy" />
+              <img src={t.player.src} alt={t.player.alt} width={1200} height={527} loading="lazy" />
             </div>
           </div>
         </figure>

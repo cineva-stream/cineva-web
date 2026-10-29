@@ -2,9 +2,12 @@
 
 import { useState } from "react";
 import { Icon } from "./Icons";
-import { faq, contribute } from "@/lib/content";
+import { useLanguage } from "@/lib/LanguageContext";
+import { useStats } from "@/lib/useStats";
 
 export default function Faq() {
+  const { t } = useLanguage();
+  const { apkName } = useStats();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleItem = (index: number) => {
@@ -16,12 +19,12 @@ export default function Faq() {
       <div className="wrap faq-grid">
         <div className="faq-head">
           <h2>
-            {faq.title1}
+            {t.faq.title1}
             <br />
-            <span className="outline">{faq.title2}</span>
+            <span className="outline">{t.faq.title2}</span>
           </h2>
           <div className="faq-links">
-            {contribute.map((c) => (
+            {t.faq.contribute.map((c) => (
               <a key={c.label} href={c.href} target="_blank" rel="noreferrer" className="pill">
                 {c.label}
                 <Icon name="external" size={13} />
@@ -30,14 +33,15 @@ export default function Faq() {
           </div>
         </div>
 
-        <div className="faq-list" role="region" aria-label="Pertanyaan yang sering diajukan">
-          {faq.items.map((f, i) => {
+        <div className="faq-list" role="region" aria-label={t.faq.regionAria}>
+          {t.faq.items.map((f, i) => {
             const isOpen = openIndex === i;
             const btnId = `faq-trigger-${i}`;
             const panelId = `faq-panel-${i}`;
+            const answerText = f.a.replace("{apkName}", apkName);
 
             return (
-              <div className="faq-item" data-open={isOpen} key={f.q}>
+              <div className="faq-item" data-open={isOpen} key={i}>
                 <button
                   type="button"
                   id={btnId}
@@ -59,7 +63,7 @@ export default function Faq() {
                   className="faq-panel"
                 >
                   <div className="faq-panel-inner">
-                    <p>{f.a}</p>
+                    <p>{answerText}</p>
                   </div>
                 </div>
               </div>

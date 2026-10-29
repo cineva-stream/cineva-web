@@ -1,14 +1,18 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { screens } from "@/lib/content";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function Showcase() {
+  const { t } = useLanguage();
+  const screens = t.showcase.screens;
   const [activeIdx, setActiveIdx] = useState(0);
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const handleScroll = () => {
+    let ticking = false;
+
+    const updateActiveStep = () => {
       const viewportCenter = window.innerHeight / 2;
       let closestIdx = 0;
       let minDistance = Infinity;
@@ -22,9 +26,18 @@ export default function Showcase() {
         }
       });
       setActiveIdx((prev) => (prev !== closestIdx ? closestIdx : prev));
+      ticking = false;
     };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(updateActiveStep);
+      }
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
+    updateActiveStep();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -39,12 +52,10 @@ export default function Showcase() {
         <div className="sec-head row">
           <div>
             <h2>
-              Dari penemuan <span className="outline">sampai play.</span>
+              {t.showcase.title1} <span className="outline">{t.showcase.title2}</span>
             </h2>
           </div>
-          <p className="sec-lead">
-            Tur singkat lewat layar asli Cineva: Beranda, Pencarian, Watchlist, Subtitle, dan Profil.
-          </p>
+          <p className="sec-lead">{t.showcase.lead}</p>
         </div>
 
         <div className="tour-grid">
@@ -69,7 +80,7 @@ export default function Showcase() {
           </div>
 
           <div className="tour-stage">
-            <div className="tour-pills" role="tablist" aria-label="Pilih layar">
+            <div className="tour-pills" role="tablist" aria-label={t.showcase.selectScreenAria}>
               {screens.map((s, idx) => (
                 <button
                   key={s.num}
@@ -91,7 +102,14 @@ export default function Showcase() {
                 <div className="phone-screen-container">
                   {screens.map((s, idx) => (
                     <div key={s.src} className={`screen-layer${activeIdx === idx ? " active" : ""}`}>
-                      <img src={s.src} alt={s.alt} width={560} height={1162} loading={idx === 0 ? "eager" : "lazy"} />
+                      <img
+                        src={s.src}
+                        alt={s.alt}
+                        width={560}
+                        height={1162}
+                        decoding="async"
+                        loading={idx === 0 ? "eager" : "lazy"}
+                      />
                     </div>
                   ))}
                 </div>

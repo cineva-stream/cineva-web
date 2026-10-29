@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { heroScreens } from "@/lib/content";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function HeroPhone() {
+  const { t } = useLanguage();
+  const screens = t.heroScreens;
   const [activeIdx, setActiveIdx] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -11,12 +13,12 @@ export default function HeroPhone() {
     if (paused) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return;
-    const t = setInterval(() => setActiveIdx((i) => (i + 1) % heroScreens.length), 4200);
-    return () => clearInterval(t);
-  }, [paused]);
+    const timer = setInterval(() => setActiveIdx((i) => (i + 1) % screens.length), 4200);
+    return () => clearInterval(timer);
+  }, [paused, screens.length]);
 
   const getPositionClass = (index: number) => {
-    const total = heroScreens.length;
+    const total = screens.length;
     const diff = (index - activeIdx + total) % total;
     if (diff === 0) return "is-center";
     if (diff === 1) return "is-right";
@@ -32,7 +34,7 @@ export default function HeroPhone() {
       <div className="phone-glow" aria-hidden="true" />
 
       <div className="phone-trio">
-        {heroScreens.map((s, i) => {
+        {screens.map((s, i) => {
           const posClass = getPositionClass(i);
           const isCenter = posClass === "is-center";
           return (
@@ -42,7 +44,7 @@ export default function HeroPhone() {
               onClick={() => setActiveIdx(i)}
               role="button"
               tabIndex={0}
-              aria-label={`Tampilkan layar ${s.label}`}
+              aria-label={`${t.hero.showScreenPrefix} ${s.label}`}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
                   e.preventDefault();
@@ -69,8 +71,8 @@ export default function HeroPhone() {
         })}
       </div>
 
-      <div className="hero-dots" role="tablist" aria-label="Pilih tampilan">
-        {heroScreens.map((s, i) => (
+      <div className="hero-dots" role="tablist" aria-label={t.hero.selectViewAria}>
+        {screens.map((s, i) => (
           <button
             key={s.label}
             type="button"

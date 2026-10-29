@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "@/lib/LanguageContext";
 
-export default function CodeBlock({ code, label = "Salin" }: { code: string; label?: string }) {
+export default function CodeBlock({ code, label }: { code: string; label?: string }) {
+  const { t } = useLanguage();
   const [done, setDone] = useState(false);
 
   const copy = async () => {
@@ -18,7 +20,7 @@ export default function CodeBlock({ code, label = "Salin" }: { code: string; lab
   return (
     <div className="code">
       <button className={`copy${done ? " done" : ""}`} onClick={copy} aria-live="polite">
-        {done ? "Tersalin" : label}
+        {done ? t.install.copiedLabel : label || t.install.copyLabel}
       </button>
       <pre>
         <code>

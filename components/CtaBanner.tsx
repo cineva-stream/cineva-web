@@ -1,5 +1,9 @@
+"use client";
+
 import { Icon } from "./Icons";
-import { APK_DOWNLOAD_URL, RELEASES_URL } from "@/lib/content";
+import { RELEASES_URL } from "@/lib/content";
+import { useLanguage } from "@/lib/LanguageContext";
+import { useStats } from "@/lib/useStats";
 
 const ctaPosters = [
   "/posters/squid_game.webp",
@@ -12,16 +16,22 @@ const ctaPosters = [
   "/posters/game_of_thrones.webp",
 ];
 
-const row1 = [...ctaPosters, ...ctaPosters, ...ctaPosters, ...ctaPosters];
-const reversed = [...ctaPosters].reverse();
-const row2 = [...reversed, ...reversed, ...reversed, ...reversed];
-const shifted = [...ctaPosters.slice(3), ...ctaPosters.slice(0, 3)];
-const row3 = [...shifted, ...shifted, ...shifted, ...shifted];
+const basePosters = [...ctaPosters, ...ctaPosters];
+const row1 = [...basePosters, ...basePosters];
+const reversed = [...basePosters].reverse();
+const row2 = [...reversed, ...reversed];
+const shifted = [...basePosters.slice(3), ...basePosters.slice(0, 3)];
+const row3 = [...shifted, ...shifted];
+const shifted2 = [...basePosters.slice(5), ...basePosters.slice(0, 5)];
+const row4 = [...shifted2, ...shifted2];
 
 export default function CtaBanner() {
+  const { t } = useLanguage();
+  const { version, apkSize, apkUrl } = useStats();
+
   return (
-    <section className="cta-banner-section" aria-label="Unduh Cineva">
-      {/* Background Poster Wall with Smooth Marquee & Semi-Transparent Black Backdrop */}
+    <section className="cta-banner-section" aria-label={t.cta.sectionAria}>
+      {/* Background Poster Wall with Smooth Marquee & Deep Obsidian Vignette */}
       <div className="cta-backdrop" aria-hidden="true">
         <div className="cta-poster-grid">
           <div className="cta-poster-row">
@@ -45,8 +55,15 @@ export default function CtaBanner() {
               </div>
             ))}
           </div>
+          <div className="cta-poster-row offset">
+            {row4.map((src, i) => (
+              <div key={`r4-${i}`} className="cta-poster-item">
+                <img src={src} alt="" width={180} height={270} loading="lazy" />
+              </div>
+            ))}
+          </div>
         </div>
-        {/* Semi-Transparent Black Backdrop Overlay */}
+        {/* Deep Obsidian Top/Bottom & Radial Vignette Overlay */}
         <div className="cta-vignette-overlay" />
       </div>
 
@@ -63,19 +80,17 @@ export default function CtaBanner() {
 
           {/* Dual-styled Heading */}
           <h2 className="cta-title">
-            <span>Cerita seru berikutnya</span>
-            <span className="cta-title-outline">dimulai di sini.</span>
+            <span>{t.cta.title1}</span>
+            <span className="cta-title-outline">{t.cta.title2}</span>
           </h2>
 
           {/* Description */}
-          <p className="cta-desc">
-            Gratis, open source, dan siap menemani waktumu kapan saja.
-          </p>
+          <p className="cta-desc">{t.cta.desc}</p>
 
           {/* Action Buttons */}
           <div className="cta-actions">
             <a
-              href={APK_DOWNLOAD_URL}
+              href={apkUrl}
               className="cta-btn-primary"
               target="_blank"
               rel="noreferrer"
@@ -84,8 +99,8 @@ export default function CtaBanner() {
                 <Icon name="download" size={24} />
               </div>
               <div className="cta-btn-text">
-                <span className="cta-btn-meta">v1.0.8 ~98MB</span>
-                <span className="cta-btn-title">Unduh untuk Android</span>
+                <span className="cta-btn-meta">{`${version} ${apkSize}`}</span>
+                <span className="cta-btn-title">{t.cta.downloadBtn}</span>
               </div>
             </a>
 
@@ -95,7 +110,7 @@ export default function CtaBanner() {
               target="_blank"
               rel="noreferrer"
             >
-              <span>Semua rilis</span>
+              <span>{t.cta.allReleases}</span>
               <span className="cta-arrow">↗</span>
             </a>
           </div>

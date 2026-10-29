@@ -1,3 +1,5 @@
+import type { Locale } from "./content";
+
 export interface LegalSection {
   number: string;
   title: string;
@@ -85,7 +87,7 @@ export const termsOfUse: LegalDocument = {
   title: "Syarat Penggunaan",
   subtitle: "Perjanjian Hukum Penggunaan Piranti Lunak Cineva Secara Global",
   calloutSummary:
-    "PENTING: Aplikasi Cineva disediakan \"sebagaimana adanya\" tanpa jaminan apa pun. Seluruh film dan serial TV bukan milik Cineva. Cineva BUKAN layanan komersial dan BUKAN pengganti platform streaming berbayar resmi.",
+    'PENTING: Aplikasi Cineva disediakan "sebagaimana adanya" tanpa jaminan apa pun. Seluruh film dan serial TV bukan milik Cineva. Cineva BUKAN layanan komersial dan BUKAN pengganti platform streaming berbayar resmi.',
   sections: [
     {
       number: "1",
@@ -96,16 +98,15 @@ export const termsOfUse: LegalDocument = {
     },
     {
       number: "2",
-      title: "Lisensi Sumber Terbuka (GPL-3.0) & Penyediaan \"Sebagaimana Adanya\" (As-Is Provision)",
+      title: 'Lisensi Sumber Terbuka (GPL-3.0) & Penyediaan "Sebagaimana Adanya" (As-Is Provision)',
       body:
-        "Piranti lunak Cineva didistribusikan sebagai perangkat lunak bebas dan sumber terbuka di bawah lisensi GNU General Public License v3.0 (GPL-3.0). Aplikasi Cineva disediakan secara mutlak atas dasar \"SEBAGAIMANA ADANYA\" (\"AS IS\") dan \"SEBAGAIMANA TERSEDIA\" (\"AS AVAILABLE\"), tanpa jaminan dalam bentuk apa pun, baik tersurat maupun tersirat, termasuk namun tidak terbatas pada jaminan tersirat atas kelayakan untuk diperdagangkan (merchantability), kesesuaian untuk tujuan tertentu (fitness for a particular purpose), ketiadaan pelanggaran hak pihak ketiga, serta kebebasan dari cacat, galat, atau gangguan operasional.",
+        'Piranti lunak Cineva didistribusikan sebagai perangkat lunak bebas dan sumber terbuka di bawah lisensi GNU General Public License v3.0 (GPL-3.0). Aplikasi Cineva disediakan secara mutlak atas dasar "SEBAGAIMANA ADANYA" ("AS IS") dan "SEBAGAIMANA TERSEDIA" ("AS AVAILABLE"), tanpa jaminan dalam bentuk apa pun, baik tersurat maupun tersirat, termasuk namun tidak terbatas pada jaminan tersirat atas kelayakan untuk diperdagangkan (merchantability), kesesuaian untuk tujuan tertentu (fitness for a particular purpose), ketiadaan pelanggaran hak pihak ketiga, serta kebebasan dari cacat, galat, atau gangguan operasional.',
       bulletPoints: [],
     },
     {
       number: "3",
       title: "Kepemilikan Pihak Ketiga & Penafian Konten Media",
-      body:
-        "Pengguna mengakui dan menyepakati secara tegas bahwa:",
+      body: "Pengguna mengakui dan menyepakati secara tegas bahwa:",
       bulletPoints: [
         "Seluruh konten Film, Serial TV, Trailer, Audio, Gambar Poster, dan Subtitle BUKAN merupakan milik aplikasi Cineva maupun pengembangnya.",
         "Cineva tidak memproduksi, tidak menerbitkan, tidak mengunggah, tidak menghosting, dan tidak mengendalikan file media apa pun.",
@@ -195,3 +196,224 @@ export const disclaimerDoc: LegalDocument = {
   concludingNotice:
     "Dengan menggunakan Cineva, Anda menegaskan pemahaman Anda bahwa Cineva adalah alat pemutar piranti lunak mandiri dan membebaskan pengembang dari segala tanggung jawab atas konten yang Anda akses.",
 };
+
+export const privacyPolicyEn: LegalDocument = {
+  title: "Privacy Policy",
+  subtitle: "Global Personal Data Protection & User Privacy Principles",
+  calloutSummary:
+    "Cineva is engineered with a Zero Data Collection privacy architecture. We do not collect, sell, or transmit your personal identity data to any server.",
+  sections: [
+    {
+      number: "1",
+      title: "Account-Free & Zero-Registration Privacy Philosophy",
+      body:
+        "Cineva operates without requiring account registration, email addresses, phone numbers, or any Personally Identifiable Information (PII). Every feature of the application is accessible directly without authenticating to any centralized Cineva server. We believe access to media player software should uphold absolute user privacy worldwide.",
+      bulletPoints: [],
+    },
+    {
+      number: "2",
+      title: "Local Data Storage on the User's Device",
+      body:
+        "All configuration preferences and user interaction data are stored exclusively on your device's internal storage using an encrypted embedded database (Hive). Locally stored data includes:",
+      bulletPoints: [
+        "Movies and TV series saved to your Watchlist.",
+        "Viewing history and last playback position (resume position).",
+        "Local search keyword history.",
+        "Display preferences: app language, subtitle size and background, and playback quality preferences.",
+        "Movie and subtitle files downloaded via the Download Manager.",
+      ],
+    },
+    {
+      number: "3",
+      title: "P2P Network Characteristics & Internet Protocol (IP) Addresses",
+      body:
+        "As a media player supporting distributed protocols (Peer-to-Peer / BitTorrent):",
+      bulletPoints: [
+        "When streaming or downloading content over P2P protocols, your device's public IP address is inherently visible to other peers participating in the distribution swarm. This is a fundamental characteristic of P2P architecture worldwide, not data collection by Cineva.",
+        "Cineva keeps zero logs—we never record, monitor, or archive your IP address.",
+        "Users seeking enhanced network transmission privacy are encouraged to use a reputable encrypted third-party Virtual Private Network (VPN).",
+      ],
+    },
+    {
+      number: "4",
+      title: "Interaction with Third-Party Services & Public APIs",
+      body:
+        "To display cinematic posters, official synopses, and subtitles, Cineva communicates directly from your device with public third-party Application Programming Interfaces (APIs):",
+      bulletPoints: [
+        "The Movie Database (TMDB): Used to fetch poster metadata, titles, release years, and plot summaries.",
+        "OpenSubtitles: Used to fetch publicly available multi-language subtitle files.",
+        "Public Tracker Indexes (Torrentio / Addon Scrapers): Used to match distributed media availability.",
+        "Interactions with these third-party services are governed by their respective privacy policies and terms of service.",
+      ],
+    },
+    {
+      number: "5",
+      title: "International Privacy Regulation Alignment",
+      body:
+        "Although Cineva collects no personal data on any server, its architecture aligns with global data protection principles—including the EU General Data Protection Regulation (GDPR) and California Consumer Privacy Act (CCPA)—guaranteeing users full control to erase all local data at any time via the Settings menu.",
+      bulletPoints: [],
+    },
+    {
+      number: "6",
+      title: "Policy Document Updates",
+      body:
+        "This Privacy Policy may be updated periodically as the technical features of the application evolve. Updates will always be transparently reflected in this document.",
+      bulletPoints: [],
+    },
+  ],
+  concludingNotice:
+    "If you have any questions regarding application privacy or local data storage architecture, you may review Cineva's open-source code or contact the developers.",
+};
+
+export const termsOfUseEn: LegalDocument = {
+  title: "Terms of Use",
+  subtitle: "Global Software License & Usage Agreement for Cineva",
+  calloutSummary:
+    'IMPORTANT: The Cineva application is provided "as is" without warranty of any kind. All movies and TV series do not belong to Cineva. Cineva is NOT a commercial service and is NOT a replacement for official paid streaming platforms.',
+  sections: [
+    {
+      number: "1",
+      title: "Acceptance of Terms of Use",
+      body:
+        "By downloading, installing, copying, or using the Cineva software on any device worldwide, you acknowledge that you have read, understood, and agreed to be bound by all of these Terms of Use. If you do not agree to any provision hereof, you must immediately cease use and remove the application from your device.",
+      bulletPoints: [],
+    },
+    {
+      number: "2",
+      title: 'Open-Source License (GPL-3.0) & "As-Is" Provision',
+      body:
+        'Cineva software is distributed as free and open-source software under the GNU General Public License v3.0 (GPL-3.0). The Cineva application is provided strictly on an "AS IS" and "AS AVAILABLE" basis, without warranties of any kind, whether express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, non-infringement of third-party rights, or freedom from defects, errors, or operational interruptions.',
+      bulletPoints: [],
+    },
+    {
+      number: "3",
+      title: "Third-Party Ownership & Media Content Disclaimer",
+      body: "Users expressly acknowledge and agree that:",
+      bulletPoints: [
+        "All Movies, TV Series, Trailers, Audio, Poster Images, and Subtitles DO NOT belong to the Cineva application or its developers.",
+        "Cineva does not produce, publish, upload, host, or control any media files whatsoever.",
+        "Copyrights, trademarks, patents, and intellectual property rights over all movies and TV series remain the sole and exclusive property of their respective copyright holders, production studios, and official distributors.",
+      ],
+    },
+    {
+      number: "4",
+      title: "Not a Replacement for Official Streaming Services & Non-Commercial Nature",
+      body:
+        "Cineva is developed purely as non-commercial open-source personal utility software:",
+      bulletPoints: [
+        "The application is 100% NON-COMMERCIAL, free of subscription fees, and generates zero revenue from the sale of copyrighted content.",
+        "Cineva is in NO WAY a replacement for official paid streaming services (such as Netflix, Disney+, Amazon Prime Video, HBO Max, theaters, or other licensed distribution channels).",
+        "We actively encourage all users to support filmmakers, actors, and producers by subscribing to and purchasing content on official licensed platforms.",
+      ],
+    },
+    {
+      number: "5",
+      title: "Disclaimer of Content Availability & Playback Capability",
+      body:
+        "We expressly state that NOT ALL movies or TV series are guaranteed to be available, complete, or playable:",
+      bulletPoints: [
+        "Cineva operates by dynamically parsing public P2P indexes and internet metadata.",
+        "Streaming success, download speed, and video resolution depend entirely on active public seeders/peers and third-party internet sources.",
+        "Cineva developers do not guarantee continuous availability of specific titles, smooth playback, or video quality.",
+      ],
+    },
+    {
+      number: "6",
+      title: "User Legal Responsibility Across Jurisdictions",
+      body:
+        "Users bear sole and absolute legal responsibility for how they use this application. You are fully responsible for ensuring that your use of P2P protocols and access to public content complies with applicable laws and copyright regulations in your country of residence. The developers are fully indemnified from any claims or legal disputes involving users.",
+      bulletPoints: [],
+    },
+  ],
+  concludingNotice:
+    "Your continued use of the Cineva application constitutes your ongoing agreement to all legal clauses set forth in these Terms of Use.",
+};
+
+export const disclaimerDocEn: LegalDocument = {
+  title: "Disclaimer",
+  subtitle: "Copyright Disclaimer, DMCA Compliance, & Limitation of Liability",
+  calloutSummary:
+    "Cineva is a decentralized media player interface. Cineva does not host any video files on its own servers. All copyrighted materials belong to their respective official owners.",
+  sections: [
+    {
+      number: "1",
+      title: "Content Hosting & Storage Disclaimer",
+      body:
+        "Cineva DOES NOT host, store, archive, or transmit any copyrighted video content from internal Cineva servers. The application functions purely as a client-side media player interface that parses publicly available information across the internet and global distributed networks.",
+      bulletPoints: [],
+    },
+    {
+      number: "2",
+      title: "Copyright Compliance, WIPO, & DMCA Notices",
+      body:
+        "Cineva developers respect global intellectual property rights in accordance with the Digital Millennium Copyright Act (DMCA), the Berne Convention, and World Intellectual Property Organization (WIPO) treaties:",
+      bulletPoints: [
+        "If you are a copyright owner or authorized agent and find your material indexed by public trackers, please understand that Cineva has no control over third-party servers or seeders where such files reside.",
+        "Takedown requests or distribution halts must be directed to the respective third-party web hosts or public tracker swarms distributing those files.",
+        "Cineva maintains no file repository that can be removed from our servers.",
+      ],
+    },
+    {
+      number: "3",
+      title: "No Warranty of Movie & TV Series Availability",
+      body:
+        "This application provides no guarantee that any specific movie title, season, or episode will always be available or play smoothly. The absence of active seeders on public networks will prevent content from loading or cause buffering, which is outside the technical control of Cineva software.",
+      bulletPoints: [],
+    },
+    {
+      number: "4",
+      title: "Non-Commercialization & Support for Original Creators",
+      body:
+        "Cineva reiterates that this application is not a commercial platform and is not designed to replace licensed entertainment services. We encourage every user to enjoy their favorite movies and TV series through official movie theaters and legal subscription streaming platforms to support the global film industry.",
+      bulletPoints: [],
+    },
+    {
+      number: "5",
+      title: "Limitation of Liability",
+      body:
+        "To the maximum extent permitted by applicable law, Cineva developers, contributors, and affiliates shall not be liable for any direct, indirect, incidental, special, or consequential damages of any kind (including data loss, bandwidth usage, or third-party claims) arising from the download, installation, or operation of this application by the user.",
+      bulletPoints: [],
+    },
+  ],
+  concludingNotice:
+    "By using Cineva, you affirm your understanding that Cineva is a standalone software player utility and release the developers from any liability regarding the content you access.",
+};
+
+export const legalUi = {
+  id: {
+    backHome: "Kembali ke Beranda",
+    backHomeAria: "Kembali ke Beranda Cineva",
+    tabsAria: "Pilihan Dokumen Hukum",
+    kicker: "Dokumen Hukum Resmi · Cineva",
+    tabs: [
+      { slug: "syarat-penggunaan" as const, label: "Syarat Penggunaan" },
+      { slug: "kebijakan-privasi" as const, label: "Kebijakan Privasi" },
+      { slug: "disclaimer" as const, label: "Disclaimer" },
+    ],
+    docs: {
+      "syarat-penggunaan": termsOfUse,
+      "kebijakan-privasi": privacyPolicy,
+      disclaimer: disclaimerDoc,
+    },
+  },
+  en: {
+    backHome: "Back to Home",
+    backHomeAria: "Back to Cineva Home",
+    tabsAria: "Legal Documents Navigation",
+    kicker: "Official Legal Document · Cineva",
+    tabs: [
+      { slug: "syarat-penggunaan" as const, label: "Terms of Use" },
+      { slug: "kebijakan-privasi" as const, label: "Privacy Policy" },
+      { slug: "disclaimer" as const, label: "Disclaimer" },
+    ],
+    docs: {
+      "syarat-penggunaan": termsOfUseEn,
+      "kebijakan-privasi": privacyPolicyEn,
+      disclaimer: disclaimerDocEn,
+    },
+  },
+};
+
+export function getLegalUi(lang: Locale) {
+  return legalUi[lang] || legalUi.id;
+}

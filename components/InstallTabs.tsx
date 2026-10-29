@@ -2,22 +2,30 @@
 
 import { useState } from "react";
 import CodeBlock from "./CodeBlock";
-import { install, RELEASES_URL } from "@/lib/content";
+import { RELEASES_URL } from "@/lib/content";
+import { useLanguage } from "@/lib/LanguageContext";
+import { useStats } from "@/lib/useStats";
 
 export default function InstallTabs() {
-  const [active, setActive] = useState(install.methods[0].id);
-  const current = install.methods.find((m) => m.id === active)!;
+  const { t } = useLanguage();
+  const { apkName } = useStats();
+  const methods = t.install.methods;
+  const [active, setActive] = useState(methods[0].id);
+  const current = methods.find((m) => m.id === active) || methods[0];
+
+  const codeToDisplay =
+    current.id === "adb" ? `adb install -r ${apkName}` : current.code;
 
   return (
-    <div className="term" role="group" aria-label="Cara memasang Cineva">
+    <div className="term" role="group" aria-label={t.install.groupAria}>
       <div className="term-bar">
         <span className="dots" aria-hidden="true">
           <i />
           <i />
           <i />
         </span>
-        <div className="term-tabs" role="tablist" aria-label="Metode instalasi">
-          {install.methods.map((m) => (
+        <div className="term-tabs" role="tablist" aria-label={t.install.tablistAria}>
+          {methods.map((m) => (
             <button
               key={m.id}
               role="tab"
@@ -42,7 +50,8 @@ export default function InstallTabs() {
                 <p>
                   {i === 0 ? (
                     <>
-                      Unduh <code className="inline">Cineva_v1.0.8.apk</code> dari{" "}
+                      {t.install.apkStep1Prefix} <code className="inline">{apkName}</code>{" "}
+                      {t.install.apkStep1Middle}{" "}
                       <a className="inline-link" href={RELEASES_URL} target="_blank" rel="noreferrer">
                         Releases
                       </a>
@@ -62,8 +71,8 @@ export default function InstallTabs() {
                 {s}
               </p>
             ))}
-            <CodeBlock code={current.code} />
-            {current.id === "source" && <p className="term-note">{install.envNote}</p>}
+            <CodeBlock code={codeToDisplay} />
+            {current.id === "source" && <p className="term-note">{t.install.envNote}</p>}
           </>
         )}
       </div>

@@ -1,4 +1,7 @@
-import { categories, stack } from "@/lib/content";
+"use client";
+
+import { stack } from "@/lib/content";
+import { useLanguage } from "@/lib/LanguageContext";
 
 function Row({ items, reverse, outline }: { items: string[]; reverse?: boolean; outline?: boolean }) {
   const loop = [...items, ...items, ...items, ...items];
@@ -16,14 +19,17 @@ function Row({ items, reverse, outline }: { items: string[]; reverse?: boolean; 
 }
 
 export default function Marquee() {
+  const { t } = useLanguage();
+  const categories = t.marquee.categories;
+
   return (
     <section className="sec marquee-sec" aria-labelledby="kategori-title">
       <div className="wrap center-head">
         <h2 id="kategori-title">
-          Apa pun seleramu, <span className="outline">ada di sini.</span>
+          {t.marquee.title1} <span className="outline">{t.marquee.title2}</span>
         </h2>
         <p className="sec-lead">
-          Pilih dari {categories.slice(0, 5).join(", ")}, lalu saring sesuai genre yang sedang kamu cari.
+          {t.marquee.leadPrefix} {categories.slice(0, 5).join(", ")}, {t.marquee.leadSuffix}
         </p>
       </div>
 
@@ -31,7 +37,9 @@ export default function Marquee() {
         <Row items={categories} />
         <Row items={stack} reverse outline />
       </div>
-      <p className="sr-only">Teknologi yang dipakai: {stack.join(", ")}.</p>
+      <p className="sr-only">
+        {t.marquee.srTech} {stack.join(", ")}.
+      </p>
     </section>
   );
 }

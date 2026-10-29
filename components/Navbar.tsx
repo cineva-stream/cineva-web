@@ -2,9 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { Icon } from "./Icons";
-import { navLinks, REPO_URL, APK_DOWNLOAD_URL } from "@/lib/content";
+import LanguageSwitcher, { FlagID, FlagUK } from "./LanguageSwitcher";
+import { REPO_URL } from "@/lib/content";
+import { useLanguage } from "@/lib/LanguageContext";
+import { useStats } from "@/lib/useStats";
 
 export default function Navbar() {
+  const { lang, setLang, t } = useLanguage();
+  const { apkUrl } = useStats();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -42,13 +47,13 @@ export default function Navbar() {
     <>
       <header className={`nav${scrolled ? " scrolled" : ""}${open ? " open" : ""}`}>
         <div className="wrap nav-inner">
-          <a href="#" className="brand" aria-label="Cineva, ke atas" onClick={() => setOpen(false)}>
+          <a href="#" className="brand" aria-label={t.nav.brandAria} onClick={() => setOpen(false)}>
             <img src="/icon.png" alt="" width={32} height={32} />
             Cineva
           </a>
 
-          <nav className="nav-pills" aria-label="Navigasi utama">
-            {navLinks.map((l) => (
+          <nav className="nav-pills" aria-label={t.nav.mainNavAria}>
+            {t.nav.links.map((l) => (
               <a key={l.href} href={l.href} className="pill">
                 {l.label}
               </a>
@@ -56,19 +61,21 @@ export default function Navbar() {
           </nav>
 
           <div className="nav-cta">
+            <LanguageSwitcher />
+            <span className="nav-divider" aria-hidden="true" />
             <a className="gh-pill" href={REPO_URL} target="_blank" rel="noreferrer" aria-label="GitHub Cineva">
               <Icon name="github" size={16} />
               <span>GitHub</span>
             </a>
-            <a className="btn btn-light btn-sm" href={APK_DOWNLOAD_URL} target="_blank" rel="noreferrer">
+            <a className="btn btn-light btn-sm" href={apkUrl} target="_blank" rel="noreferrer">
               <Icon name="download" size={16} />
-              Unduh
+              {t.nav.download}
             </a>
           </div>
 
           <button
             className="menu-btn"
-            aria-label={open ? "Tutup menu" : "Buka menu"}
+            aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
           >
@@ -87,24 +94,46 @@ export default function Navbar() {
         }}
       >
         <div className="nav-mobile-content">
-          <nav className="nav-mobile-links" aria-label="Navigasi menu mobile">
-            {navLinks.map((l) => (
+          <nav className="nav-mobile-links" aria-label={t.nav.mobileNavAria}>
+            {t.nav.links.map((l) => (
               <a key={l.href} href={l.href} onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
                 {l.label}
               </a>
             ))}
           </nav>
+
+          <div className="nav-mobile-lang" role="group" aria-label={t.nav.langAria}>
+            <button
+              type="button"
+              className={`nav-mobile-lang-btn${lang === "id" ? " is-active" : ""}`}
+              tabIndex={open ? 0 : -1}
+              onClick={() => setLang("id")}
+            >
+              <FlagID size={20} />
+              <span>Indonesia</span>
+            </button>
+            <button
+              type="button"
+              className={`nav-mobile-lang-btn${lang === "en" ? " is-active" : ""}`}
+              tabIndex={open ? 0 : -1}
+              onClick={() => setLang("en")}
+            >
+              <FlagUK size={20} />
+              <span>English</span>
+            </button>
+          </div>
+
           <div className="nav-mobile-cta">
             <a
               className="btn btn-primary btn-block"
-              href={APK_DOWNLOAD_URL}
+              href={apkUrl}
               target="_blank"
               rel="noreferrer"
               tabIndex={open ? 0 : -1}
               onClick={() => setOpen(false)}
             >
               <Icon name="download" size={19} />
-              Unduh APK
+              {t.nav.downloadApk}
             </a>
             <a
               className="btn btn-ghost btn-block"

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import DesignGuard from "@/components/DesignGuard";
+import { LanguageProvider } from "@/lib/LanguageContext";
 import "./globals.css";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://cineva.primadev.id";
@@ -184,7 +185,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <DesignGuard />
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
         <Analytics />
         <SpeedInsights />
       </body>

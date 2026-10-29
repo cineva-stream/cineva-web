@@ -24,8 +24,6 @@ export default function ScrollReveal() {
     if (reduce) return;
 
     const root = document.documentElement;
-    root.classList.add("has-reveal");
-
     const elements = Array.from(document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR));
 
     const markVisible = (el: Element) => {
@@ -43,19 +41,24 @@ export default function ScrollReveal() {
         });
       },
       {
-        threshold: 0.12,
-        rootMargin: "0px 0px -40px 0px",
+        threshold: 0.1,
+        rootMargin: "0px 0px -32px 0px",
       }
     );
 
+    // Tandai elemen yang sudah berada di viewport TERLEBIH DAHULU sebelum mengaktifkan class .has-reveal
+    // agar tidak terjadi efek kedip (flash) saat halaman pertama kali dibuka di tablet/mobile.
+    const vh = window.innerHeight;
     elements.forEach((el) => {
       const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight * 0.92) {
+      if (rect.top < vh * 0.95) {
         markVisible(el);
       } else {
         observer.observe(el);
       }
     });
+
+    root.classList.add("has-reveal");
 
     return () => {
       observer.disconnect();

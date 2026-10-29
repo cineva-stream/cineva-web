@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import Footer from "./Footer";
-import type { LegalDocument } from "@/lib/legal";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { getLegalUi, type LegalDocument } from "@/lib/legal";
+import { useLanguage } from "@/lib/LanguageContext";
 
 interface LegalLayoutProps {
   doc: LegalDocument;
@@ -8,26 +12,28 @@ interface LegalLayoutProps {
 }
 
 export default function LegalLayout({ doc, currentSlug }: LegalLayoutProps) {
-  const tabs = [
-    { slug: "syarat-penggunaan", label: "Syarat Penggunaan" },
-    { slug: "kebijakan-privasi", label: "Kebijakan Privasi" },
-    { slug: "disclaimer", label: "Disclaimer" },
-  ];
+  const { lang } = useLanguage();
+  const ui = getLegalUi(lang);
+  const activeDoc = ui.docs[currentSlug] || doc;
 
   return (
     <div className="legal-page">
       {/* Top Header Navigation */}
       <header className="legal-header">
         <div className="wrap legal-header-inner">
-          <Link href="/" className="brand" aria-label="Kembali ke Beranda Cineva">
+          <Link href="/" className="brand" aria-label={ui.backHomeAria}>
             <img src="/icon.png" alt="Cineva" width={30} height={30} />
             <span>Cineva</span>
           </Link>
 
-          <Link href="/" className="legal-back-link">
-            <span>←</span>
-            <span>Kembali ke Beranda</span>
-          </Link>
+          <div className="legal-header-actions">
+            <LanguageSwitcher />
+            <span className="nav-divider" aria-hidden="true" />
+            <Link href="/" className="legal-back-link">
+              <span>←</span>
+              <span>{ui.backHome}</span>
+            </Link>
+          </div>
         </div>
       </header>
 
@@ -36,8 +42,8 @@ export default function LegalLayout({ doc, currentSlug }: LegalLayoutProps) {
         <div className="wrap">
           <div className="legal-article">
             {/* Navigasi Dokumen Antar Tab */}
-            <nav className="legal-tabs-nav" aria-label="Pilihan Dokumen Hukum">
-              {tabs.map((tab) => (
+            <nav className="legal-tabs-nav" aria-label={ui.tabsAria}>
+              {ui.tabs.map((tab) => (
                 <Link
                   key={tab.slug}
                   href={`/${tab.slug}`}
@@ -50,20 +56,20 @@ export default function LegalLayout({ doc, currentSlug }: LegalLayoutProps) {
 
             {/* Header Dokumen */}
             <header className="legal-doc-header">
-              <span className="legal-kicker">Dokumen Hukum Resmi · Cineva</span>
-              <h1 className="legal-title">{doc.title}</h1>
-              <p className="legal-subtitle">{doc.subtitle}</p>
+              <span className="legal-kicker">{ui.kicker}</span>
+              <h1 className="legal-title">{activeDoc.title}</h1>
+              <p className="legal-subtitle">{activeDoc.subtitle}</p>
 
               {/* Callout Ringkasan / Peringatan */}
               <div className="legal-callout" role="note">
                 <div className="legal-callout-indicator" />
-                <p className="legal-callout-text">{doc.calloutSummary}</p>
+                <p className="legal-callout-text">{activeDoc.calloutSummary}</p>
               </div>
             </header>
 
             {/* Isi Pasal / Sections dalam Format Rapi Seperti Markdown */}
             <div className="legal-body">
-              {doc.sections.map((section) => (
+              {activeDoc.sections.map((section) => (
                 <section key={section.number} className="legal-section-block">
                   <h2 className="legal-section-heading">
                     <span className="legal-section-badge">{section.number}</span>
@@ -85,7 +91,7 @@ export default function LegalLayout({ doc, currentSlug }: LegalLayoutProps) {
 
             {/* Catatan Penutup */}
             <div className="legal-conclusion-box">
-              <p>{doc.concludingNotice}</p>
+              <p>{activeDoc.concludingNotice}</p>
             </div>
           </div>
         </div>

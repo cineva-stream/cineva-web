@@ -2,9 +2,10 @@
 
 import { useRef } from "react";
 import { Icon } from "./Icons";
-import { reasons } from "@/lib/content";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function Reasons() {
+  const { t } = useLanguage();
   const track = useRef<HTMLDivElement>(null);
 
   const scrollBy = (dir: 1 | -1) => {
@@ -19,22 +20,22 @@ export default function Reasons() {
         <div className="sec-head row">
           <div>
             <h2>
-              Delapan alasan untuk <span className="outline">tekan play.</span>
+              {t.reasons.title1} <span className="outline">{t.reasons.title2}</span>
             </h2>
           </div>
           <div className="arrows">
-            <button type="button" onClick={() => scrollBy(-1)} aria-label="Geser ke kiri">
+            <button type="button" onClick={() => scrollBy(-1)} aria-label={t.reasons.prevAria}>
               <Icon name="left" size={18} />
             </button>
-            <button type="button" onClick={() => scrollBy(1)} aria-label="Geser ke kanan">
+            <button type="button" onClick={() => scrollBy(1)} aria-label={t.reasons.nextAria}>
               <Icon name="right" size={18} />
             </button>
           </div>
         </div>
 
-        <div className="reasons" ref={track} tabIndex={0} aria-label="Daftar alasan, geser untuk melihat lainnya">
-          {reasons.map((r, i) => (
-            <article className={`reason${r.maintenance ? " is-maint" : ""}`} key={r.title}>
+        <div className="reasons" ref={track} tabIndex={0} aria-label={t.reasons.listAria}>
+          {t.reasons.items.map((r, i) => (
+            <article className={`reason${r.maintenance ? " is-maint" : ""}`} key={i}>
               <span className="reason-num" aria-hidden="true">
                 {i + 1}
               </span>

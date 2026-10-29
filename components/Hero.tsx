@@ -1,6 +1,10 @@
+"use client";
+
 import { Icon } from "./Icons";
 import HeroPhone from "./HeroPhone";
-import { hero, posterWall, APK_DOWNLOAD_URL } from "@/lib/content";
+import { posterWall } from "@/lib/content";
+import { useLanguage } from "@/lib/LanguageContext";
+import { useStats } from "@/lib/useStats";
 
 // Susun 6 kolom poster dengan urutan berbeda agar dinding terlihat acak
 const cols = Array.from({ length: 6 }, (_, i) => {
@@ -9,6 +13,9 @@ const cols = Array.from({ length: 6 }, (_, i) => {
 });
 
 export default function Hero() {
+  const { t } = useLanguage();
+  const { version, apkSize, apkUrl } = useStats();
+
   return (
     <section className="hero">
       <div className="hero-wall" aria-hidden="true">
@@ -16,7 +23,15 @@ export default function Hero() {
           <div key={i} className={`wall-col ${i % 2 === 0 ? "down" : "up"}`}>
             <div className="wall-track">
               {[...col, ...col].map((src, j) => (
-                <img key={j} src={src} alt="" width={240} height={360} loading={j < 3 ? "eager" : "lazy"} />
+                <img
+                  key={j}
+                  src={src}
+                  alt=""
+                  width={240}
+                  height={360}
+                  decoding="async"
+                  loading={j < 3 ? "eager" : "lazy"}
+                />
               ))}
             </div>
           </div>
@@ -27,27 +42,27 @@ export default function Hero() {
       <div className="wrap hero-grid">
         <div className="hero-copy">
           <h1>
-            <span>{hero.line1}</span>
-            <span className="outline">{hero.line2}</span>
+            <span>{t.hero.line1}</span>
+            <span className="outline">{t.hero.line2}</span>
           </h1>
-          <p className="hero-sub">{hero.sub}</p>
+          <p className="hero-sub">{t.hero.sub}</p>
 
           <div className="hero-actions">
-            <a className="btn btn-light btn-xl" href={APK_DOWNLOAD_URL} target="_blank" rel="noreferrer">
+            <a className="btn btn-light btn-xl" href={apkUrl} target="_blank" rel="noreferrer">
               <Icon name="download" size={22} />
               <span className="btn-stack">
-                <small>{hero.meta}</small>
-                Unduh untuk Android
+                <small>{`${version} · ${apkSize}`}</small>
+                {t.hero.downloadBtn}
               </span>
             </a>
             <a className="btn btn-glass btn-xl" href="#tur">
               <Icon name="play" size={18} />
-              Lihat tur
+              {t.hero.tourBtn}
             </a>
           </div>
 
           <ul className="hero-perks">
-            {hero.perks.map((p) => (
+            {t.hero.perks.map((p) => (
               <li key={p}>{p}</li>
             ))}
           </ul>
