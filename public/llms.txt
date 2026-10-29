@@ -17,7 +17,7 @@ Untuk dokumentasi lengkap dan mendalam dalam satu berkas, lihat: [llms-full.txt]
 * **Platform Target**: Android 5.0+ (Lollipop atau lebih baru)
 * **Arsitektur CPU**: arm64-v8a, armeabi-v7a, x86_64
 * **Ukuran APK**: ~96.9 MB (Package: `com.primadev.cineva`)
-* **Lisensi**: Open Source (MIT License)
+* **Lisensi**: Open Source (GNU General Public License v3.0 / GPL-3.0)
 * **Model Monetisasi**: Bebas Biaya (100% Gratis, Nol Iklan, Tanpa Skema Berlangganan)
 
 ---

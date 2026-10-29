@@ -12,33 +12,46 @@ const ctaPosters = [
   "/posters/game_of_thrones.webp",
 ];
 
+const row1 = [...ctaPosters, ...ctaPosters, ...ctaPosters, ...ctaPosters];
+const reversed = [...ctaPosters].reverse();
+const row2 = [...reversed, ...reversed, ...reversed, ...reversed];
+const shifted = [...ctaPosters.slice(3), ...ctaPosters.slice(0, 3)];
+const row3 = [...shifted, ...shifted, ...shifted, ...shifted];
+
 export default function CtaBanner() {
   return (
     <section className="cta-banner-section" aria-label="Unduh Cineva">
-      {/* Background Poster Wall with Deep Cinema Vignette */}
+      {/* Background Poster Wall with Smooth Marquee & Semi-Transparent Black Backdrop */}
       <div className="cta-backdrop" aria-hidden="true">
         <div className="cta-poster-grid">
           <div className="cta-poster-row">
-            {[...ctaPosters, ...ctaPosters].map((src, i) => (
+            {row1.map((src, i) => (
               <div key={`r1-${i}`} className="cta-poster-item">
-                <img src={src} alt="" loading="lazy" />
+                <img src={src} alt="" width={180} height={270} loading="lazy" />
               </div>
             ))}
           </div>
           <div className="cta-poster-row offset">
-            {[...ctaPosters.slice().reverse(), ...ctaPosters.slice().reverse()].map((src, i) => (
+            {row2.map((src, i) => (
               <div key={`r2-${i}`} className="cta-poster-item">
-                <img src={src} alt="" loading="lazy" />
+                <img src={src} alt="" width={180} height={270} loading="lazy" />
+              </div>
+            ))}
+          </div>
+          <div className="cta-poster-row slow">
+            {row3.map((src, i) => (
+              <div key={`r3-${i}`} className="cta-poster-item">
+                <img src={src} alt="" width={180} height={270} loading="lazy" />
               </div>
             ))}
           </div>
         </div>
-        {/* Radial Vignette & Edge Fades */}
+        {/* Semi-Transparent Black Backdrop Overlay */}
         <div className="cta-vignette-overlay" />
       </div>
 
       <div className="wrap">
-        <div className="cta-content">
+        <div className="cta-content" data-reveal="up">
           {/* Logo Cineva Transparan Tanpa Background */}
           <img
             src="/Cineva_transparent.png"
@@ -50,13 +63,13 @@ export default function CtaBanner() {
 
           {/* Dual-styled Heading */}
           <h2 className="cta-title">
-            <span>Cerita seru berikutnya,</span>
+            <span>Cerita seru berikutnya</span>
             <span className="cta-title-outline">dimulai di sini.</span>
           </h2>
 
           {/* Description */}
           <p className="cta-desc">
-            Gratis, open source, dan siap menemani waktu santaimu kapan saja.
+            Gratis, open source, dan siap menemani waktumu kapan saja.
           </p>
 
           {/* Action Buttons */}

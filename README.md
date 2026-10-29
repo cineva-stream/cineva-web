@@ -17,7 +17,7 @@
   <img src="https://img.shields.io/badge/Next.js-14_(App_Router)-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js 14" />
   <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React 18" />
   <img src="https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/License-MIT-FFA000?style=for-the-badge" alt="License MIT" />
+  <img src="https://img.shields.io/badge/License-GPL--3.0-FFA000?style=for-the-badge" alt="License GPL-3.0" />
 </p>
 
 ---
@@ -42,7 +42,13 @@ Situs ini menghadirkan pengalaman visual imersif yang mencerminkan kualitas apli
 
 ---
 
-## ✨ Fitur & Sorotan Desain
+## 🔄 Redesain (Okt 2026)
+
+Tata letak situs disegarkan: hero dengan mockup ponsel berputar, baris statistik live (unduhan & bintang GitHub), carousel "Delapan alasan" bernomor, bento fitur, tur scrollytelling, marquee kategori, instalasi gaya terminal, FAQ (dengan JSON-LD), dan footer 3 kolom. Warna tetap *Deep Obsidian* + *Cinema Amber*. Teks outline memakai isi warna latar + `paint-order` agar bersih di semua browser. Font Outfit di-host sendiri di `public/fonts` (lisensi OFL).
+
+> **Catatan:** fitur Unduhan offline di dalam aplikasi berstatus **Under Maintenance** (lihat `maintenance` di `lib/content.ts`). Tombol Unduh APK tetap aktif. Situs tidak memuat konten Android TV.
+
+## ✨ Fitur & Sorotan Desain (versi lama)
 
 - 🎞️ **Hero Marquee Sinematik**:
   - Dinding poster film bergerak (*infinite vertical marquee*) 4 kolom dengan arah bolak-balik.
@@ -177,5 +183,5 @@ Untuk membaca pernyataan hukum selengkapnya, silakan kunjungi:
 
 ## 📄 Lisensi
 
-Proyek ini dilisensikan di bawah **[MIT License](LICENSE)** Hak Cipta © 2026 **Cineva Group**.
+Proyek ini dilisensikan di bawah **[GNU General Public License v3.0 (GPL-3.0)](LICENSE)** Hak Cipta © 2026 **Cineva Group**.
 Dikembangkan untuk mendukung ekosistem aplikasi **[Cineva](https://github.com/iamwisnu99/Cineva)**.

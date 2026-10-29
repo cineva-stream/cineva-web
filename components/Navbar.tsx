@@ -2,14 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Icon } from "./Icons";
-import { REPO_URL, APK_DOWNLOAD_URL } from "@/lib/content";
-
-const links = [
-  { href: "#tampilan", label: "Tampilan" },
-  { href: "#fitur", label: "Fitur" },
-  { href: "#pemutar", label: "Pemutar" },
-  { href: "#pasang", label: "Pasang" },
-];
+import { navLinks, REPO_URL, APK_DOWNLOAD_URL } from "@/lib/content";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -22,7 +15,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Tutup menu saat layar diubah ukurannya ke desktop
   useEffect(() => {
     const onResize = () => {
       if (window.innerWidth > 960) setOpen(false);
@@ -31,19 +23,13 @@ export default function Navbar() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // Kunci scroll body saat menu mobile terbuka
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [open]);
 
-  // Tutup menu saat menekan tombol Escape
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
@@ -57,31 +43,29 @@ export default function Navbar() {
       <header className={`nav${scrolled ? " scrolled" : ""}${open ? " open" : ""}`}>
         <div className="wrap nav-inner">
           <a href="#" className="brand" aria-label="Cineva, ke atas" onClick={() => setOpen(false)}>
-            <img src="/icon.png" alt="" />
+            <img src="/icon.png" alt="" width={32} height={32} />
             Cineva
           </a>
 
-          {/* Navigasi Desktop */}
-          <nav className="nav-links" aria-label="Navigasi utama">
-            {links.map((l) => (
-              <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
+          <nav className="nav-pills" aria-label="Navigasi utama">
+            {navLinks.map((l) => (
+              <a key={l.href} href={l.href} className="pill">
                 {l.label}
               </a>
             ))}
           </nav>
 
-          {/* CTA Desktop */}
           <div className="nav-cta">
-            <a className="btn btn-ghost btn-sm" href={REPO_URL} target="_blank" rel="noreferrer">
-              <Icon name="github" size={17} />
-              GitHub
+            <a className="gh-pill" href={REPO_URL} target="_blank" rel="noreferrer" aria-label="GitHub Cineva">
+              <Icon name="github" size={16} />
+              <span>GitHub</span>
             </a>
-            <a className="btn btn-primary btn-sm" href={APK_DOWNLOAD_URL} target="_blank" rel="noreferrer">
-              Unduh APK
+            <a className="btn btn-light btn-sm" href={APK_DOWNLOAD_URL} target="_blank" rel="noreferrer">
+              <Icon name="download" size={16} />
+              Unduh
             </a>
           </div>
 
-          {/* Tombol Hamburger Mobile (Tanpa Background & Border) */}
           <button
             className="menu-btn"
             aria-label={open ? "Tutup menu" : "Buka menu"}
@@ -95,7 +79,6 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Dropdown Menu Mobile Saat Hamburger Ditekan (Terpisah dari <header> agar tidak terpengaruh backdrop-filter dan tinggi header saat scroll) */}
       <div
         className={`nav-mobile-menu${open ? " is-open" : ""}`}
         aria-hidden={!open}
@@ -105,32 +88,30 @@ export default function Navbar() {
       >
         <div className="nav-mobile-content">
           <nav className="nav-mobile-links" aria-label="Navigasi menu mobile">
-            {links.map((l) => (
-              <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
+            {navLinks.map((l) => (
+              <a key={l.href} href={l.href} onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
                 {l.label}
               </a>
             ))}
           </nav>
-
-          <div className="nav-mobile-divider" />
-
-          {/* Tombol Aksi di Menu Mobile: Unduh APK dan GitHub */}
           <div className="nav-mobile-cta">
             <a
-              className="btn btn-primary btn-mobile-cta"
+              className="btn btn-primary btn-block"
               href={APK_DOWNLOAD_URL}
               target="_blank"
               rel="noreferrer"
+              tabIndex={open ? 0 : -1}
               onClick={() => setOpen(false)}
             >
               <Icon name="download" size={19} />
               Unduh APK
             </a>
             <a
-              className="btn btn-ghost btn-mobile-cta"
+              className="btn btn-ghost btn-block"
               href={REPO_URL}
               target="_blank"
               rel="noreferrer"
+              tabIndex={open ? 0 : -1}
               onClick={() => setOpen(false)}
             >
               <Icon name="github" size={19} />

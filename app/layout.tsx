@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s | Cineva",
   },
   description:
-    "Unduh Cineva APK - Aplikasi streaming & unduhan film dan serial TV modern berbasis Flutter untuk Android. Kualitas HD & 4K, streaming P2P super cepat, subtitle Indonesia otomatis, tanpa iklan, dan 100% gratis.",
+    "Unduh Cineva APK - Aplikasi streaming film dan serial TV modern berbasis Flutter untuk Android. Kualitas HD & 4K, streaming P2P super cepat, subtitle Indonesia otomatis, tanpa iklan, dan 100% gratis.",
   applicationName: "Cineva",
   authors: [{ name: "Wisnu", url: "https://github.com/iamwisnu99" }],
   generator: "Next.js",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     siteName: "Cineva",
     title: "Cineva - Nonton Film & Serial TV Favorit Tanpa Batas",
     description:
-      "Aplikasi streaming dan pengunduh film & serial TV modern untuk Android. Kualitas HD & 4K, subtitle Indonesia otomatis, bebas iklan, dan 100% gratis. Unduh APK sekarang!",
+      "Aplikasi streaming film & serial TV modern untuk Android. Kualitas HD & 4K, subtitle Indonesia otomatis, bebas iklan, dan 100% gratis. Unduh APK sekarang!",
     images: [
       {
         url: "/og-image.png",
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Cineva - Nonton Film & Serial TV Favorit Tanpa Batas",
     description:
-      "Aplikasi streaming dan pengunduh film & serial TV modern untuk Android. Kualitas HD & 4K, subtitle otomatis, bebas iklan, dan 100% gratis.",
+      "Aplikasi streaming film & serial TV modern untuk Android. Kualitas HD & 4K, subtitle otomatis, bebas iklan, dan 100% gratis.",
     images: ["/og-image.png"],
     creator: "@iamwisnu99",
   },
@@ -105,7 +105,7 @@ const jsonLdWebSite = {
   "@type": "WebSite",
   name: "Cineva",
   url: "https://cineva.primadev.id",
-  description: "Situs resmi Cineva - Aplikasi streaming dan unduhan film & serial TV Android tanpa iklan.",
+  description: "Situs resmi Cineva - Aplikasi streaming film & serial TV Android tanpa iklan.",
   inLanguage: "id-ID",
   publisher: {
     "@type": "Organization",
@@ -121,9 +121,9 @@ const jsonLdSoftwareApp = {
   name: "Cineva",
   operatingSystem: "Android 5.0+",
   applicationCategory: "EntertainmentApplication",
-  applicationSubCategory: "Video Streaming & Downloader",
+  applicationSubCategory: "Video Streaming",
   description:
-    "Aplikasi streaming dan pengunduh Film & Serial TV modern berbasis Flutter untuk Android. Pengalaman sinematik premium: kualitas Ultra HD, streaming P2P super cepat, subtitle bahasa Indonesia otomatis, tanpa iklan, dan 100% gratis.",
+    "Aplikasi streaming Film & Serial TV modern berbasis Flutter untuk Android. Pengalaman sinematik premium: kualitas Ultra HD, streaming P2P super cepat, subtitle bahasa Indonesia otomatis, tanpa iklan, dan 100% gratis.",
   offers: {
     "@type": "Offer",
     price: "0",
@@ -165,7 +165,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
         />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt" />
         <script

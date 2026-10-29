@@ -12,99 +12,86 @@ export default function Showcase() {
       const viewportCenter = window.innerHeight / 2;
       let closestIdx = 0;
       let minDistance = Infinity;
-
       stepRefs.current.forEach((el, idx) => {
         if (!el) return;
         const rect = el.getBoundingClientRect();
-        const stepCenter = rect.top + rect.height / 2;
-        const distance = Math.abs(stepCenter - viewportCenter);
-
+        const distance = Math.abs(rect.top + rect.height / 2 - viewportCenter);
         if (distance < minDistance) {
           minDistance = distance;
           closestIdx = idx;
         }
       });
-
       setActiveIdx((prev) => (prev !== closestIdx ? closestIdx : prev));
     };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleStepClick = (idx: number) => {
+  const go = (idx: number) => {
     setActiveIdx(idx);
-    const target = stepRefs.current[idx];
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
+    stepRefs.current[idx]?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
   return (
-    <section id="tampilan" className="section showcase-section">
+    <section id="tur" className="sec tour">
       <div className="wrap">
-        <div className="scrolly-container">
-          {/* Sisi Kiri: Daftar Teks Menyatu Background dengan Garis Putih Halus */}
-          <div className="scrolly-steps-list">
+        <div className="sec-head row">
+          <div>
+            <h2>
+              Dari penemuan <span className="outline">sampai play.</span>
+            </h2>
+          </div>
+          <p className="sec-lead">
+            Tur singkat lewat layar asli Cineva: Beranda, Pencarian, Watchlist, Subtitle, dan Profil.
+          </p>
+        </div>
+
+        <div className="tour-grid">
+          <div className="tour-steps">
             {screens.map((s, idx) => (
               <div
                 key={s.num}
                 ref={(el) => {
                   stepRefs.current[idx] = el;
                 }}
-                className={`scrolly-step-item ${activeIdx === idx ? "active" : ""}`}
-                onClick={() => handleStepClick(idx)}
+                className={`tour-step${activeIdx === idx ? " active" : ""}`}
+                onClick={() => go(idx)}
               >
-                {/* Garis putih halus di sisi kiri */}
-                <div className="step-line" />
-
-                <div className="step-body">
-                  <span className="step-num">{s.num}</span>
-                  <h3 className="step-title">{s.title}</h3>
-                  <p className="step-desc">{s.desc}</p>
+                <span className="tour-line" />
+                <div>
+                  <span className="tour-num">{s.num}</span>
+                  <h3>{s.title}</h3>
+                  <p>{s.desc}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Sisi Kanan: Sticky Phone Rata Tengah Vertikal dengan Tab Pills di Atasnya */}
-          <div className="scrolly-phone-col">
-            {/* Pill Navigation di Atas Phone */}
-            <div className="showcase-pills" aria-label="Navigasi tampilan">
+          <div className="tour-stage">
+            <div className="tour-pills" role="tablist" aria-label="Pilih layar">
               {screens.map((s, idx) => (
                 <button
                   key={s.num}
                   type="button"
-                  className={`pill-btn ${activeIdx === idx ? "active" : ""}`}
-                  onClick={() => handleStepClick(idx)}
+                  role="tab"
+                  aria-selected={activeIdx === idx}
+                  className={`pill${activeIdx === idx ? " on" : ""}`}
+                  onClick={() => go(idx)}
                 >
                   {s.tag}
                 </button>
               ))}
             </div>
 
-            {/* Mockup Smartphone */}
-            <div className="phone-wrapper">
-              <div className="phone-glow" />
+            <div className="hero-device tour-device">
+              <div className="phone-glow" aria-hidden="true" />
               <div className="phone-device">
                 <div className="phone-camera-hole" />
                 <div className="phone-screen-container">
                   {screens.map((s, idx) => (
-                    <div
-                      key={s.src}
-                      className={`screen-layer ${activeIdx === idx ? "active" : ""}`}
-                    >
-                      <img
-                        src={s.src}
-                        alt={s.alt}
-                        width={560}
-                        height={1162}
-                        loading={idx === 0 ? "eager" : "lazy"}
-                      />
+                    <div key={s.src} className={`screen-layer${activeIdx === idx ? " active" : ""}`}>
+                      <img src={s.src} alt={s.alt} width={560} height={1162} loading={idx === 0 ? "eager" : "lazy"} />
                     </div>
                   ))}
                 </div>

@@ -96,9 +96,9 @@ export const termsOfUse: LegalDocument = {
     },
     {
       number: "2",
-      title: "Penyediaan Piranti Lunak \"Sebagaimana Adanya\" (As-Is Provision)",
+      title: "Lisensi Sumber Terbuka (GPL-3.0) & Penyediaan \"Sebagaimana Adanya\" (As-Is Provision)",
       body:
-        "Aplikasi Cineva disediakan secara mutlak atas dasar \"SEBAGAIMANA ADANYA\" (\"AS IS\") dan \"SEBAGAIMANA TERSEDIA\" (\"AS AVAILABLE\"), tanpa jaminan dalam bentuk apa pun, baik tersurat maupun tersirat, termasuk namun tidak terbatas pada jaminan tersirat atas kelayakan untuk diperdagangkan (merchantability), kesesuaian untuk tujuan tertentu (fitness for a particular purpose), ketiadaan pelanggaran hak pihak ketiga, serta kebebasan dari cacat, galat, atau gangguan operasional.",
+        "Piranti lunak Cineva didistribusikan sebagai perangkat lunak bebas dan sumber terbuka di bawah lisensi GNU General Public License v3.0 (GPL-3.0). Aplikasi Cineva disediakan secara mutlak atas dasar \"SEBAGAIMANA ADANYA\" (\"AS IS\") dan \"SEBAGAIMANA TERSEDIA\" (\"AS AVAILABLE\"), tanpa jaminan dalam bentuk apa pun, baik tersurat maupun tersirat, termasuk namun tidak terbatas pada jaminan tersirat atas kelayakan untuk diperdagangkan (merchantability), kesesuaian untuk tujuan tertentu (fitness for a particular purpose), ketiadaan pelanggaran hak pihak ketiga, serta kebebasan dari cacat, galat, atau gangguan operasional.",
       bulletPoints: [],
     },
     {

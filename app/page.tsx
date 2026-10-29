@@ -1,86 +1,47 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import Stats from "@/components/Stats";
+import Reasons from "@/components/Reasons";
+import Bento from "@/components/Bento";
 import Showcase from "@/components/Showcase";
-import Section from "@/components/Section";
-import InstallTabs from "@/components/InstallTabs";
+import PlayerSection from "@/components/PlayerSection";
+import Marquee from "@/components/Marquee";
+import Install from "@/components/Install";
+import Faq from "@/components/Faq";
 import CtaBanner from "@/components/CtaBanner";
 import Footer from "@/components/Footer";
-import { Icon } from "@/components/Icons";
-import { features, player, stack, install, specs, notice } from "@/lib/content";
+import ScrollReveal from "@/components/ScrollReveal";
+import { faq } from "@/lib/content";
+
+const jsonLdFaq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.items.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
 
 export default function Page() {
   return (
     <>
+      <ScrollReveal />
       <Navbar />
       <main>
         <Hero />
+        <Stats />
+        <Reasons />
+        <Bento />
         <Showcase />
-
-        <Section id="fitur" title="Semua yang kamu butuhkan, tanpa ribet">
-          <div className="bento">
-            {features.map((f) => (
-              <article className="tile" key={f.title}>
-                <div className="ico">
-                  <Icon name={f.icon} />
-                </div>
-                <h3>{f.title}</h3>
-                <p className="body">{f.body}</p>
-              </article>
-            ))}
-          </div>
-        </Section>
-
-        <section id="pemutar" className="section">
-          <div className="wrap split wide">
-            <div>
-              <h2 className="h2">{player.title}</h2>
-              <ul className="checks" style={{ marginTop: 28 }}>
-                {player.points.map((p) => (
-                  <li key={p}>{p}</li>
-                ))}
-              </ul>
-            </div>
-            <figure className="player-shot">
-              <div className="phone land">
-                <img src={player.src} alt={player.alt} width={1200} height={527} loading="lazy" />
-              </div>
-              <span className="callout">Subtitle Indonesia otomatis</span>
-            </figure>
-          </div>
-        </section>
-
-        <section className="stack-band" aria-label="Teknologi">
-          <div className="wrap">
-            <div className="chips center">
-              {stack.map((s) => (
-                <span className="chip" key={s}>
-                  {s}
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <Section id="pasang" title={install.title}>
-          <InstallTabs />
-          <dl className="specs">
-            {specs.map((s) => (
-              <div key={s.k}>
-                <dt>{s.k}</dt>
-                <dd>{s.v}</dd>
-              </div>
-            ))}
-          </dl>
-          <div className="notice" role="note">
-            <div className="ico">
-              <Icon name="warning" />
-            </div>
-            <p>{notice}</p>
-          </div>
-        </Section>
+        <PlayerSection />
+        <Marquee />
+        <Install />
+        <Faq />
       </main>
       <CtaBanner />
       <Footer />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
     </>
   );
 }
