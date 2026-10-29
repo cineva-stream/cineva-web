@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/iamwisnu99/Cineva">
+  <a href="https://github.com/cineva-stream/Cineva">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="public/logo_cineva.png" />
       <source media="(prefers-color-scheme: light)" srcset="public/logo_cineva_light.png" />
@@ -9,11 +9,11 @@
 </p>
 
 <p align="center">
-  <strong>Situs Web & Landing Page Resmi untuk <a href="https://github.com/iamwisnu99/Cineva">Cineva</a> | Aplikasi Streaming & Unduhan Film dan Serial TV Modern</strong>
+  <strong>Situs Web & Landing Page Resmi untuk <a href="https://github.com/cineva-stream/Cineva">Cineva</a> | Aplikasi Streaming & Unduhan Film dan Serial TV Modern</strong>
 </p>
 
 <p align="center">
-  <a href="https://github.com/iamwisnu99/Cineva"><img src="https://img.shields.io/badge/Aplikasi_Utama-Cineva_Android-FFA000?style=for-the-badge&logo=android&logoColor=black" alt="Main App Cineva" /></a>
+  <a href="https://github.com/cineva-stream/Cineva"><img src="https://img.shields.io/badge/Aplikasi_Utama-Cineva_Android-FFA000?style=for-the-badge&logo=android&logoColor=black" alt="Main App Cineva" /></a>
   <img src="https://img.shields.io/badge/Next.js-14_(App_Router)-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js 14" />
   <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React 18" />
   <img src="https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
@@ -24,13 +24,13 @@
 
 ## 🔗 Terhubung dengan Aplikasi Utama Cineva
 
-Repositori ini merupakan **situs web resmi dan landing page portal** yang dirancang khusus untuk mempromosikan, mendistribusikan, dan mendokumentasikan aplikasi mobile **[Cineva (Flutter Android)](https://github.com/iamwisnu99/Cineva)**.
+Repositori ini merupakan **situs web resmi dan landing page portal** yang dirancang khusus untuk mempromosikan, mendistribusikan, dan mendokumentasikan aplikasi mobile **[Cineva (Flutter Android)](https://github.com/cineva-stream/Cineva)**.
 
 | Proyek | Repositori | Keterangan |
 | :--- | :--- | :--- |
-| **Aplikasi Utama** | [iamwisnu99/Cineva](https://github.com/iamwisnu99/Cineva) | Aplikasi streaming & pengunduh Film/Serial TV berbasis Flutter untuk Android |
-| **Situs Web Portal** | [iamwisnu99/cineva-web](https://github.com/iamwisnu99/cineva-web) | Portal web modern, showcase fitur, panduan instalasi & dokumen legal |
-| **Unduh APK Rilis** | [Cineva v1.0.8 APK](https://github.com/iamwisnu99/Cineva/releases/download/v1.0.8/Cineva_v1.0.8.apk) | File instalasi resmi Android (~90 MB) |
+| **Aplikasi Utama** | [cineva-stream/Cineva](https://github.com/cineva-stream/Cineva) | Aplikasi streaming & pengunduh Film/Serial TV berbasis Flutter untuk Android |
+| **Situs Web Portal** | [cineva-stream/cineva-web](https://github.com/cineva-stream/cineva-web) | Portal web modern, showcase fitur, panduan instalasi & dokumen legal |
+| **Unduh APK Rilis** | [Cineva v1.0.8 APK](https://github.com/cineva-stream/Cineva/releases/download/v1.0.8/Cineva_v1.0.8.apk) | File instalasi resmi Android (~90 MB) |
 
 ---
 
@@ -147,7 +147,7 @@ Pastikan perangkat Anda telah terpasang:
 
 1. **Clone repositori ini:**
    ```bash
-   git clone https://github.com/iamwisnu99/cineva-web.git
+   git clone https://github.com/cineva-stream/cineva-web.git
    cd cineva-web
    ```
 
@@ -184,4 +184,4 @@ Untuk membaca pernyataan hukum selengkapnya, silakan kunjungi:
 ## 📄 Lisensi
 
 Proyek ini dilisensikan di bawah **[GNU General Public License v3.0 (GPL-3.0)](LICENSE)** Hak Cipta © 2026 **Cineva Group**.
-Dikembangkan untuk mendukung ekosistem aplikasi **[Cineva](https://github.com/iamwisnu99/Cineva)**.
+Dikembangkan untuk mendukung ekosistem aplikasi **[Cineva](https://github.com/cineva-stream/Cineva)**.

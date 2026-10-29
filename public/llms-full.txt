@@ -11,9 +11,9 @@ Cineva (dikenal juga sebagai Cineva Stream) adalah aplikasi pemutar media dan st
 ### Informasi Metadata Utama:
 * **Nama Resmi**: Cineva Stream
 * **Domain Resmi**: https://cineva.primadev.id
-* **Repositori Kode Sumber**: https://github.com/iamwisnu99/Cineva
-* **Rilis Resmi & APK**: https://github.com/iamwisnu99/Cineva/releases
-* **Pengembang**: Wisnu (GitHub: @iamwisnu99) / Primadev
+* **Repositori Kode Sumber**: https://github.com/cineva-stream/Cineva
+* **Rilis Resmi & APK**: https://github.com/cineva-stream/Cineva/releases
+* **Pengembang**: Wisnu (GitHub: @cineva-stream) / Primadev
 * **Target Sistem Operasi**: Android 5.0 (API level 21) hingga versi Android terbaru
 * **Arsitektur CPU yang Didukung**: arm64-v8a, armeabi-v7a, x86_64
 * **Nama Paket Aplikasi (Package Name)**: `com.primadev.cineva`
@@ -85,7 +85,7 @@ Cineva (dikenal juga sebagai Cineva Stream) adalah aplikasi pemutar media dan st
 ## 4. Panduan Pemasangan (Installation Guide)
 
 ### Metode 1: Unduh APK Langsung di Ponsel Android
-1. Kunjungi tautan rilis resmi di GitHub: https://github.com/iamwisnu99/Cineva/releases
+1. Kunjungi tautan rilis resmi di GitHub: https://github.com/cineva-stream/Cineva/releases
 2. Unduh berkas rilisan publik terbaru: `Cineva_v1.0.8.apk`.
 3. Buka berkas APK yang telah selesai diunduh.
 4. Jika muncul peringatan keamanan sistem Android, pilih "Setelan" (Settings) dan aktifkan "Izinkan instalasi dari sumber ini" (Allow from this source).
@@ -106,7 +106,7 @@ Cineva (dikenal juga sebagai Cineva Stream) adalah aplikasi pemutar media dan st
    * Android SDK dengan target API 34
 2. Kloning repositori resmi:
    ```bash
-   git clone https://github.com/iamwisnu99/Cineva.git
+   git clone https://github.com/cineva-stream/Cineva.git
    cd Cineva
    ```
 3. Salin berkas konfigurasi lingkungan dan sesuaikan kunci API:
@@ -199,7 +199,7 @@ J: Tidak. Cineva 100% gratis, bersifat non-komersial, dan sama sekali tidak memi
 J: Tidak. Cineva menganut prinsip Zero Data Collection. Tidak ada akun, tidak ada nomor telepon, dan tidak ada email. Semua data tontonan dan watchlist disimpan lokal di ponsel pengguna (Hive DB).
 
 **T: Di mana saya bisa mengunduh Cineva APK resmi?**
-J: File APK resmi dapat diunduh di tautan rilis GitHub resmi: https://github.com/iamwisnu99/Cineva/releases atau melalui situs web https://cineva.primadev.id.
+J: File APK resmi dapat diunduh di tautan rilis GitHub resmi: https://github.com/cineva-stream/Cineva/releases atau melalui situs web https://cineva.primadev.id.
 
 ---
 *Dokumen ini diperbarui secara berkala dan disajikan secara terbuka untuk mendukung transparansi indeks pencarian AI.*

@@ -1,7 +1,16 @@
+"use client";
+
+import { useState } from "react";
 import { Icon } from "./Icons";
 import { faq, contribute } from "@/lib/content";
 
 export default function Faq() {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  const toggleItem = (index: number) => {
+    setOpenIndex((prev) => (prev === index ? null : index));
+  };
+
   return (
     <section id="faq" className="sec">
       <div className="wrap faq-grid">
@@ -21,18 +30,41 @@ export default function Faq() {
           </div>
         </div>
 
-        <div className="faq-list">
-          {faq.items.map((f, i) => (
-            <details className="faq-item" key={f.q} open={i === 0}>
-              <summary>
-                <span>{f.q}</span>
-                <span className="faq-ico" aria-hidden="true">
-                  <Icon name="plus" size={16} />
-                </span>
-              </summary>
-              <p>{f.a}</p>
-            </details>
-          ))}
+        <div className="faq-list" role="region" aria-label="Pertanyaan yang sering diajukan">
+          {faq.items.map((f, i) => {
+            const isOpen = openIndex === i;
+            const btnId = `faq-trigger-${i}`;
+            const panelId = `faq-panel-${i}`;
+
+            return (
+              <div className="faq-item" data-open={isOpen} key={f.q}>
+                <button
+                  type="button"
+                  id={btnId}
+                  className="faq-trigger"
+                  aria-expanded={isOpen}
+                  aria-controls={panelId}
+                  onClick={() => toggleItem(i)}
+                >
+                  <span className="faq-q">{f.q}</span>
+                  <span className="faq-ico" aria-hidden="true">
+                    <Icon name="plus" size={16} />
+                  </span>
+                </button>
+                <div
+                  id={panelId}
+                  role="region"
+                  aria-labelledby={btnId}
+                  aria-hidden={!isOpen}
+                  className="faq-panel"
+                >
+                  <div className="faq-panel-inner">
+                    <p>{f.a}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import DesignGuard from "@/components/DesignGuard";
 import "./globals.css";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://cineva.primadev.id";
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
   description:
     "Unduh Cineva APK - Aplikasi streaming film dan serial TV modern berbasis Flutter untuk Android. Kualitas HD & 4K, streaming P2P super cepat, subtitle Indonesia otomatis, tanpa iklan, dan 100% gratis.",
   applicationName: "Cineva",
-  authors: [{ name: "Wisnu", url: "https://github.com/iamwisnu99" }],
+  authors: [{ name: "Wisnu", url: "https://github.com/cineva-stream" }],
   generator: "Next.js",
   keywords: [
     "Cineva",
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
     "Cineva Android",
     "cineva.primadev.id",
   ],
-  creator: "Wisnu (iamwisnu99)",
+  creator: "Wisnu (cineva-stream)",
   publisher: "Primadev",
   category: "entertainment",
   classification: "Entertainment, Video Streaming, Android Application",
@@ -76,7 +77,7 @@ export const metadata: Metadata = {
     description:
       "Aplikasi streaming film & serial TV modern untuk Android. Kualitas HD & 4K, subtitle otomatis, bebas iklan, dan 100% gratis.",
     images: ["/og-image.png"],
-    creator: "@iamwisnu99",
+    creator: "@cineva-stream",
   },
   robots: {
     index: true,
@@ -130,14 +131,14 @@ const jsonLdSoftwareApp = {
     priceCurrency: "IDR",
   },
   downloadUrl: "https://cineva.primadev.id/#unduh",
-  installUrl: "https://github.com/iamwisnu99/Cineva/releases",
+  installUrl: "https://github.com/cineva-stream/Cineva/releases",
   screenshot: "https://cineva.primadev.id/screens/home.webp",
   softwareVersion: "v1.0.8",
   fileSize: "35MB",
   author: {
-    "@type": "Person",
-    name: "Wisnu",
-    url: "https://github.com/iamwisnu99",
+    "@type": "Organization",
+    name: "Cineva Group",
+    url: "https://github.com/cineva-stream",
   },
   aggregateRating: {
     "@type": "AggregateRating",
@@ -154,7 +155,7 @@ const jsonLdOrganization = {
   name: "Cineva",
   url: "https://cineva.primadev.id",
   logo: "https://cineva.primadev.id/icon.png",
-  sameAs: ["https://github.com/iamwisnu99/Cineva"],
+  sameAs: ["https://github.com/cineva-stream/Cineva"],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -182,6 +183,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
+        <DesignGuard />
         {children}
         <Analytics />
         <SpeedInsights />

@@ -28,11 +28,16 @@ export default function ScrollReveal() {
 
     const elements = Array.from(document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR));
 
+    const markVisible = (el: Element) => {
+      el.classList.add("is-visible");
+      el.setAttribute("data-visible", "true");
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
+            markVisible(entry.target);
             observer.unobserve(entry.target);
           }
         });
@@ -46,7 +51,7 @@ export default function ScrollReveal() {
     elements.forEach((el) => {
       const rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight * 0.92) {
-        el.classList.add("is-visible");
+        markVisible(el);
       } else {
         observer.observe(el);
       }
@@ -60,4 +65,3 @@ export default function ScrollReveal() {
 
   return null;
 }
-

@@ -3,8 +3,8 @@
 > Cineva adalah aplikasi streaming dan pengunduh Film & Serial TV modern berbasis Flutter untuk Android. Menyajikan pengalaman sinematik premium: streaming P2P super cepat, subtitle bahasa Indonesia otomatis, profil lokal tanpa registrasi, tanpa iklan, dan 100% gratis.
 
 Situs Resmi: https://cineva.primadev.id
-Repositori GitHub: https://github.com/iamwisnu99/Cineva
-Rilis & Unduhan APK: https://github.com/iamwisnu99/Cineva/releases
+Repositori GitHub: https://github.com/cineva-stream/Cineva
+Rilis & Unduhan APK: https://github.com/cineva-stream/Cineva/releases
 
 Untuk dokumentasi lengkap dan mendalam dalam satu berkas, lihat: [llms-full.txt](https://cineva.primadev.id/llms-full.txt)
 
@@ -49,7 +49,7 @@ Untuk dokumentasi lengkap dan mendalam dalam satu berkas, lihat: [llms-full.txt]
 ## Cara Instalasi
 
 1. **Android Direct APK**:
-   * Unduh file `Cineva_v1.0.8.apk` dari https://github.com/iamwisnu99/Cineva/releases
+   * Unduh file `Cineva_v1.0.8.apk` dari https://github.com/cineva-stream/Cineva/releases
    * Buka file APK dan aktifkan izin "Install dari Sumber Tidak Dikenal" (Unknown Sources).
    * Ketuk Instal dan buka Cineva.
 2. **Via ADB (Android Debug Bridge)**:
@@ -58,7 +58,7 @@ Untuk dokumentasi lengkap dan mendalam dalam satu berkas, lihat: [llms-full.txt]
    ```
 3. **Kompilasi dari Source Code**:
    ```bash
-   git clone https://github.com/iamwisnu99/Cineva.git
+   git clone https://github.com/cineva-stream/Cineva.git
    cd Cineva
    cp .env.example .env # Isi API key TMDB & OpenSubtitles
    flutter pub get

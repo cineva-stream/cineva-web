@@ -1,11 +1,11 @@
 // Konten situs Cineva - ubah teks situs di file ini.
-// Sumber: README.md dan RELEASE.md repositori https://github.com/iamwisnu99/Cineva
+// Sumber: README.md dan RELEASE.md repositori https://github.com/cineva-stream/Cineva
 
-export const REPO_URL = "https://github.com/iamwisnu99/Cineva";
-export const RELEASES_URL = "https://github.com/iamwisnu99/Cineva/releases";
-export const ISSUES_URL = "https://github.com/iamwisnu99/Cineva/issues";
-export const LICENSE_URL = "https://github.com/iamwisnu99/Cineva/blob/main/LICENSE";
-export const APK_DOWNLOAD_URL = "https://github.com/iamwisnu99/Cineva/releases/download/v1.0.8/Cineva_v1.0.8.apk";
+export const REPO_URL = "https://github.com/cineva-stream/Cineva";
+export const RELEASES_URL = "https://github.com/cineva-stream/Cineva/releases";
+export const ISSUES_URL = "https://github.com/cineva-stream/Cineva/issues";
+export const LICENSE_URL = "https://github.com/cineva-stream/Cineva/blob/main/LICENSE";
+export const APK_DOWNLOAD_URL = "https://github.com/cineva-stream/Cineva/releases/download/v1.0.8/Cineva_v1.0.8.apk";
 
 export const navLinks = [
   { href: "#alasan", label: "Alasan" },
@@ -178,7 +178,7 @@ export const install = {
       id: "source",
       tab: "Dari source",
       steps: ["Butuh Flutter 3.12+, Dart 3.0+, dan Android SDK API 34."],
-      code: `git clone https://github.com/iamwisnu99/Cineva.git
+      code: `git clone https://github.com/cineva-stream/Cineva.git
 cd Cineva
 cp .env.example .env
 flutter pub get

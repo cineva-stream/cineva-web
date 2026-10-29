@@ -6,7 +6,7 @@ const CACHE = { "Cache-Control": "public, s-maxage=300, stale-while-revalidate=9
 
 export async function GET() {
   try {
-    const res = await fetch("https://api.github.com/repos/iamwisnu99/Cineva", {
+    const res = await fetch("https://api.github.com/repos/cineva-stream/Cineva", {
       headers: { "User-Agent": "Cineva-Web", Accept: "application/vnd.github.v3+json" },
       next: { revalidate: process.env.NODE_ENV === "development" ? 0 : 300 },
     });

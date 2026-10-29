@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   try {
     const res = await fetch(
-      "https://api.github.com/repos/iamwisnu99/Cineva/releases?per_page=100",
+      "https://api.github.com/repos/cineva-stream/Cineva/releases?per_page=100",
       {
         headers: {
           "User-Agent": "Cineva-Web",

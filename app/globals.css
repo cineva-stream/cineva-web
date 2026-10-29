@@ -65,16 +65,28 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 img {
   display: block;
   max-width: 100%;
   height: auto;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}
+svg {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
 }
 a {
   color: inherit;
   text-decoration: none;
+  -webkit-user-drag: none;
 }
 button {
   font: inherit;
@@ -2050,26 +2062,37 @@ h2 {
 }
 .faq-item {
   border-bottom: 1px solid var(--line);
+  transition: border-color 0.35s ease;
 }
 .faq-item:first-child {
   border-top: 1px solid var(--line);
 }
-.faq-item summary {
+.faq-item[data-open="true"] {
+  border-bottom-color: var(--line-strong);
+}
+.faq-trigger {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
   padding: 22px 0;
   cursor: pointer;
-  list-style: none;
+  text-align: left;
   font-family: var(--font-display);
   font-size: 19px;
   font-weight: 600;
   letter-spacing: -0.015em;
   line-height: 1.3;
+  color: var(--text);
+  transition: color 0.25s ease;
 }
-.faq-item summary::-webkit-details-marker {
-  display: none;
+.faq-trigger:hover {
+  color: #ffffff;
+}
+.faq-trigger:hover .faq-ico {
+  border-color: rgba(255, 255, 255, 0.36);
+  background: rgba(255, 255, 255, 0.06);
 }
 .faq-ico {
   flex: none;
@@ -2079,28 +2102,47 @@ h2 {
   height: 34px;
   border-radius: 50%;
   border: 1px solid var(--line-strong);
-  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.28s ease,
+    color 0.28s ease,
+    border-color 0.28s ease;
 }
-.faq-item[open] .faq-ico {
+.faq-item[data-open="true"] .faq-ico {
   transform: rotate(45deg);
   background: var(--text);
   color: var(--obsidian);
   border-color: var(--text);
 }
-.faq-item p {
+.faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: grid-template-rows, opacity;
+}
+.faq-item[data-open="true"] .faq-panel {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+.faq-panel-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+.faq-panel-inner p {
   padding: 0 52px 24px 0;
   color: #e4e1da;
   font-size: 16px;
   font-weight: 450;
   line-height: 1.7;
   max-width: 62ch;
-  animation: faqIn 0.3s ease;
+  transform: translateY(-10px);
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
 }
-@keyframes faqIn {
-  from {
-    opacity: 0;
-    transform: translateY(-6px);
-  }
+.faq-item[data-open="true"] .faq-panel-inner p {
+  transform: translateY(0);
 }
 
 /* ---------- CTA ---------- */
@@ -2638,10 +2680,10 @@ h2 {
   .term-body {
     padding: 20px;
   }
-  .faq-item summary {
+  .faq-trigger {
     font-size: 17px;
   }
-  .faq-item p {
+  .faq-panel-inner p {
     padding-right: 0;
   }
   .marq-item {
@@ -2702,7 +2744,8 @@ html.has-reveal [data-delay="3"] {
   transition-delay: 240ms;
 }
 
-html.has-reveal .is-visible {
+html.has-reveal .is-visible,
+html.has-reveal [data-visible="true"] {
   opacity: 1 !important;
   transform: none !important;
 }
@@ -2976,5 +3019,14 @@ html.has-reveal .tile.is-visible:hover {
   }
   .legal-section-bullets li {
     font-size: 14.5px;
+  }
+}
+
+/* ---------- Anti-Theft Print & Export Protection ---------- */
+@media print {
+  html,
+  body {
+    display: none !important;
+    visibility: hidden !important;
   }
 }
