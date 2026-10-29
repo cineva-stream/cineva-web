@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 import { Icon } from "./Icons";
+import { FlagID, FlagUS, FlagES, FlagJP, FlagKR } from "./LanguageSwitcher";
 import { subtitleLangs, posterWall } from "@/lib/content";
 import { useLanguage } from "@/lib/LanguageContext";
 
 const row1Posters = [...posterWall, ...posterWall];
 const shiftedWall = [...posterWall.slice(4), ...posterWall.slice(0, 4)];
 const row2Posters = [...shiftedWall, ...shiftedWall];
-const langCodes = ["ID", "EN", "ES", "JA", "KO"];
+const SUBTITLE_FLAGS = [FlagID, FlagUS, FlagES, FlagJP, FlagKR];
 
 export default function Bento() {
   const { t } = useLanguage();
@@ -168,6 +169,7 @@ export default function Bento() {
             <div className="tile-art list-art lang-art">
               {subtitleLangs.map((l, idx) => {
                 const isOn = activeLang === idx;
+                const FlagComp = SUBTITLE_FLAGS[idx] || FlagID;
                 return (
                   <button
                     type="button"
@@ -175,7 +177,9 @@ export default function Bento() {
                     key={l.name}
                     onClick={() => setActiveLang(idx)}
                   >
-                    <span className="lang-code">{langCodes[idx] || "CC"}</span>
+                    <span className="lang-code">
+                      <FlagComp size={22} />
+                    </span>
                     <span className="lang-names">
                       <b>{l.name}</b>
                       <span>{l.native}</span>
