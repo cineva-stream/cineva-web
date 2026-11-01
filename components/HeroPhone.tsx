@@ -59,8 +59,8 @@ export default function HeroPhone() {
                     alt={s.alt}
                     width={560}
                     height={1162}
-                    loading={i === 0 ? "eager" : "lazy"}
-                    fetchPriority={i === 0 ? "high" : "auto"}
+                    loading={isCenter ? "eager" : "lazy"}
+                    fetchPriority={isCenter ? "high" : "auto"}
                     className="trio-screen-img"
                   />
                 </div>
@@ -70,9 +70,10 @@ export default function HeroPhone() {
                   width={380}
                   height={800}
                   className="phone-frame-img"
-                  loading="eager"
+                  loading={isCenter ? "eager" : "lazy"}
+                  fetchPriority={isCenter ? "high" : "auto"}
                   aria-hidden="true"
-                  decoding="async"
+                  decoding={isCenter ? "sync" : "async"}
                 />
               </div>
               <span className={`trio-label${isCenter ? " on" : ""}`}>{s.label}</span>

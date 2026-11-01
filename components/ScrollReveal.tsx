@@ -46,21 +46,18 @@ export default function ScrollReveal() {
       }
     );
 
-    // Tandai elemen yang sudah berada di viewport TERLEBIH DAHULU sebelum mengaktifkan class .has-reveal
-    // agar tidak terjadi efek kedip (flash) saat halaman pertama kali dibuka di tablet/mobile.
-    const vh = window.innerHeight;
-    elements.forEach((el) => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < vh * 0.95) {
-        markVisible(el);
-      } else {
-        observer.observe(el);
-      }
+    // Observasi semua elemen dengan IntersectionObserver native tanpa memanggil getBoundingClientRect()
+    // untuk mencegah Forced Reflow (layout thrashing) saat inisialisasi halaman.
+    elements.forEach((el) => observer.observe(el));
+
+    // Aktifkan class .has-reveal pada animation frame berikutnya agar elemen di viewport
+    // sudah terdaftar tanpa jeda kedip (flash).
+    const rafId = requestAnimationFrame(() => {
+      root.classList.add("has-reveal");
     });
 
-    root.classList.add("has-reveal");
-
     return () => {
+      cancelAnimationFrame(rafId);
       observer.disconnect();
       root.classList.remove("has-reveal");
     };

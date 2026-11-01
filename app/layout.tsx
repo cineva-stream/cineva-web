@@ -180,10 +180,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link
           rel="preload"
-          href="/fonts/outfit-700.woff2"
+          href="/fonts/outfit-800.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/outfit-600.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/screens/google_pixel_10_pro.webp"
+          as="image"
+          type="image/webp"
+          fetchPriority="high"
         />
         <link
           rel="preload"

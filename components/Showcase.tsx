@@ -37,7 +37,6 @@ export default function Showcase() {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    updateActiveStep();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
