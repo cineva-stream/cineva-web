@@ -9,11 +9,11 @@
 </p>
 
 <p align="center">
-  <strong>Situs Web & Landing Page Resmi untuk <a href="https://github.com/cineva-stream/Cineva">Cineva</a> | Aplikasi Streaming & Unduhan Film dan Serial TV Modern</strong>
+  <strong>Official Web Portal and Landing Platform for the Cineva Streaming Ecosystem</strong>
 </p>
 
 <p align="center">
-  <a href="https://github.com/cineva-stream/Cineva"><img src="https://img.shields.io/badge/Aplikasi_Utama-Cineva_Android-FFA000?style=for-the-badge&logo=android&logoColor=black" alt="Main App Cineva" /></a>
+  <a href="https://github.com/cineva-stream/Cineva"><img src="https://img.shields.io/badge/Main_App-Cineva_Android-FFA000?style=for-the-badge&logo=android&logoColor=black" alt="Main App Cineva" /></a>
   <img src="https://img.shields.io/badge/Next.js-14_(App_Router)-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js 14" />
   <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React 18" />
   <img src="https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
@@ -22,147 +22,126 @@
 
 ---
 
-## 🔗 Terhubung dengan Aplikasi Utama Cineva
+## Connected Repositories
 
-Repositori ini merupakan **situs web resmi dan landing page portal** yang dirancang khusus untuk mempromosikan, mendistribusikan, dan mendokumentasikan aplikasi mobile **[Cineva (Flutter Android)](https://github.com/cineva-stream/Cineva)**.
+This repository represents the official web portal, distribution showcase, and documentation platform for the Cineva application ecosystem.
 
-| Proyek | Repositori | Keterangan |
+| Project | Repository | Description |
 | :--- | :--- | :--- |
-| **Aplikasi Utama** | [cineva-stream/Cineva](https://github.com/cineva-stream/Cineva) | Aplikasi streaming & pengunduh Film/Serial TV berbasis Flutter untuk Android |
-| **Situs Web Portal** | [cineva-stream/cineva-web](https://github.com/cineva-stream/cineva-web) | Portal web modern, showcase fitur, panduan instalasi & dokumen legal |
-| **Unduh APK Rilis** | [Cineva v1.0.8 APK](https://github.com/cineva-stream/Cineva/releases/download/v1.0.8/Cineva_v1.0.8.apk) | File instalasi resmi Android (~90 MB) |
+| **Main Application** | [cineva-stream/Cineva](https://github.com/cineva-stream/Cineva) | High-performance Flutter Android application for streaming and offline media management |
+| **Web Portal** | [cineva-stream/cineva-web](https://github.com/cineva-stream/cineva-web) | Next.js landing portal, feature showcase, legal documentation, and distribution site |
+| **Release APK** | [Cineva Android APK Releases](https://github.com/cineva-stream/Cineva/releases) | Official Android installation binaries and changelog history |
 
 ---
 
-## 🎬 Tentang Cineva Web
+## About Cineva Web
 
-**Cineva Web** dirancang dengan estetika sinematik premium (*Deep Obsidian* dan aksen *Cinema Amber*). Dibangun menggunakan **Next.js 14 App Router**, **React 18**, dan **TypeScript** dengan performa tinggi tanpa dependensi framework CSS pihak ketiga (*pure Vanilla CSS modern*).
+Cineva Web is the official presentation, distribution, and documentation portal engineered to showcase the Cineva streaming ecosystem. Built using Next.js 14 (App Router), React 18, and TypeScript, the web platform delivers a cinematic, highly responsive user experience echoing the mobile application's Deep Obsidian aesthetic and Cinema Amber lighting without relying on heavy third-party CSS frameworks.
 
-Situs ini menghadirkan pengalaman visual imersif yang mencerminkan kualitas aplikasi aslinya, lengkap dengan interaksi scrollytelling, galeri tangkapan layar, pemutar video mockup, serta dokumentasi hukum legalitas resmi.
-
----
-
-## 🔄 Redesain (Okt 2026)
-
-Tata letak situs disegarkan: hero dengan mockup ponsel berputar, baris statistik live (unduhan & bintang GitHub), carousel "Delapan alasan" bernomor, bento fitur, tur scrollytelling, marquee kategori, instalasi gaya terminal, FAQ (dengan JSON-LD), dan footer 3 kolom. Warna tetap *Deep Obsidian* + *Cinema Amber*. Teks outline memakai isi warna latar + `paint-order` agar bersih di semua browser. Font Outfit di-host sendiri di `public/fonts` (lisensi OFL).
-
-> **Catatan:** fitur Unduhan offline di dalam aplikasi berstatus **Under Maintenance** (lihat `maintenance` di `lib/content.ts`). Tombol Unduh APK tetap aktif. Situs tidak memuat konten Android TV.
-
-## ✨ Fitur & Sorotan Desain (versi lama)
-
-- 🎞️ **Hero Marquee Sinematik**:
-  - Dinding poster film bergerak (*infinite vertical marquee*) 4 kolom dengan arah bolak-balik.
-  - Efek *gradient fade* halus dari kiri ke kanan yang membaurkan poster ke dalam latar belakang teks.
-  - Tiga mockup ponsel mengambang di latar depan dengan efek bayangan dan hover 3D.
-- 📱 **Interactive Scrollytelling Showcase**:
-  - Presentasi fitur per nomor (01 s.d. 05: Beranda, Pencarian, Watchlist, Subtitle, Profil).
-  - Teks terintegrasi mulus dengan background gelap, dilengkapi garis indikator vertikal putih halus yang menyala saat aktif.
-  - Mockup smartphone *sticky* di sisi kanan yang otomatis bertransisi (*cross-fade*) saat halaman di-scroll.
-  - Dilengkapi *filter chips* tab di atas ponsel untuk berpindah layar secara instan.
-- 🍱 **Bento Grid Fitur Unggulan**:
-  - Menampilkan arsitektur streaming P2P terdistribusi, pengunduh multi-worker berkecepatan tinggi, integrasi subtitle otomatis, dan penyimpanan lokal NoSQL.
-- 📺 **Mockup Pemutar Media Sinematik**:
-  - Menampilkan layar pemutar video format landscape lengkap dengan penanda *Next Episode* dan status *Direct Stream*.
-- 📥 **Panduan Pemasangan Multi-Metode**:
-  - Tab cara pasang interaktif: Unduhan langsung APK Android, *sideload* melalui ADB, serta langkah kompilasi dari *source code*.
-- 🌟 **CTA Banner Sinematik**:
-  - Backdrop dinding poster dinamis dengan *cinema radial vignette*.
-  - Logo transparan Cineva berukuran besar dengan aksen bayangan hangat.
-  - Tombol aksi terpadu untuk mengunduh `Cineva_v1.0.8.apk` langsung dari GitHub Releases.
-- ⚖️ **Halaman Dokumen Legalitas Lengkap (Markdown Format)**:
-  - Menyediakan halaman mandiri layar penuh (*full-screen editorial layout*):
-    - [Syarat Penggunaan](/syarat-penggunaan) (`/syarat-penggunaan`)
-    - [Kebijakan Privasi](/kebijakan-privasi) (`/kebijakan-privasi`)
-    - [Disclaimer & Hak Cipta](/disclaimer) (`/disclaimer`)
-  - Konten disinkronkan secara resmi dengan teks legal aplikasi Cineva.
-- 🧭 **Footer Modern 2 Kolom**:
-  - Tautan navigasi proyek dan dokumen legalitas tersusun rapi dalam 2 kolom vertikal.
-- 🎨 **Suite Favicon Lengkap**:
-  - Mendukung favicon default `.ico`, vektor tajam `.svg`, Apple Touch Icon, dan Web App Manifest PWA.
+The site provides an immersive overview of Cineva capabilities, interactive installation pathways, synchronized legal documentation (Terms of Use, Privacy Policy, and DMCA Disclaimer), and direct access to production release binaries.
 
 ---
 
-## 🛠️ Tumpukan Teknologi (*Tech Stack*)
+## Key Features
 
-| Komponen | Teknologi |
+- **Cinematic Marquee and Visual Showcase**
+  Four-column dynamic poster marquee highlighting global movie releases with linear gradient fading and floating smartphone mockups.
+
+- **Interactive Scrollytelling Tour**
+  Synchronized section-by-section feature walkthrough (Home, Search, Watchlist, Subtitle Customizer, and Profile) with sticky mobile mockup transitions.
+
+- **Multi-Method Installation Guides**
+  Interactive guide detailing multiple Android installation pathways, including direct APK installation, ADB sideloading commands, and compiling from source code.
+
+- **Synchronized Legal Documentation**
+  Full-screen editorial markdown layouts for Terms of Service (/syarat-penggunaan), Privacy Policy (/kebijakan-privasi), and DMCA Disclaimer (/disclaimer), maintained in alignment with the Android application.
+
+- **Zero-Dependency Styling and High Performance**
+  Pure modern CSS custom properties and design tokens ensuring minimal bundle overhead, maximum rendering speed, and fluid cross-browser rendering.
+
+- **Comprehensive SEO and Metadata**
+  Automated Open Graph image generation, Twitter card integration, JSON-LD structured data for FAQ queries, and complete multi-format favicon suites.
+
+---
+
+## Technology Stack
+
+| Layer | Technology |
 | :--- | :--- |
-| **Framework** | [Next.js 14](https://nextjs.org/) (App Router) |
-| **Library UI** | [React 18](https://react.dev/) |
-| **Bahasa** | [TypeScript](https://www.typescriptlang.org/) (Strict Mode) |
-| **Styling** | Vanilla CSS (CSS Variables, Flexbox, CSS Grid, Design Tokens) |
-| **Tipografi** | Google Fonts ([Outfit](https://fonts.google.com/specimen/Outfit), [Inter](https://fonts.google.com/specimen/Inter), [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono)) |
-| **Optimasi Gambar** | WebP format dengan *responsive lazy loading* |
+| **Framework** | Next.js 14 (App Router) |
+| **UI Library** | React 18 |
+| **Language** | TypeScript (Strict Mode) |
+| **Styling** | Vanilla CSS (CSS Variables, Flexbox, CSS Grid) |
+| **Typography** | Google Fonts (Self-hosted Outfit, Inter, JetBrains Mono) |
+| **Asset Delivery** | WebP responsive image optimization |
 
 ---
 
-## 📁 Struktur Proyek
+## Project Structure
 
 ```text
 cineva-web/
 ├── app/
-│   ├── disclaimer/          # Halaman Disclaimer & Hak Cipta
-│   ├── kebijakan-privasi/   # Halaman Kebijakan Privasi
-│   ├── syarat-penggunaan/   # Halaman Syarat dan Ketentuan Penggunaan
-│   ├── globals.css          # Desain sistem global, token, animasi marquee & responsive
-│   ├── layout.tsx           # Root layout, metadata SEO & konfigurasi favicon suite
-│   └── page.tsx             # Susunan section halaman utama landing page
+│   ├── disclaimer/          # DMCA and copyright disclaimer page
+│   ├── kebijakan-privasi/   # Privacy policy documentation page
+│   ├── syarat-penggunaan/   # Terms and conditions page
+│   ├── globals.css          # Design system, CSS variables, and layout styles
+│   ├── layout.tsx           # Root layout and global SEO metadata
+│   └── page.tsx             # Main landing page composition
 ├── components/
-│   ├── CtaBanner.tsx        # Banner CTA unduh sebelum footer dengan poster wall
-│   ├── Footer.tsx           # Footer navigasi 2 kolom & hak cipta
-│   ├── Hero.tsx             # Hero section dengan 4-kolom marquee poster & 3 HP mockup
-│   ├── Icons.tsx            # Ikon SVG inline (Warning, Download, GitHub, Stream, dll.)
-│   ├── InstallTabs.tsx      # Tab instalasi (Android APK, ADB, Source Code)
-│   ├── LegalLayout.tsx      # Layout full-screen format markdown untuk halaman legal
-│   ├── Navbar.tsx           # Navigasi melayang dengan blur glassmorphism
-│   ├── Section.tsx          # Pembungkus layout konsisten per section
-│   └── Showcase.tsx         # Scrollytelling interaktif dengan sticky phone mockup
+│   ├── CtaBanner.tsx        # Call-to-action banner with poster background
+│   ├── Footer.tsx           # Multi-column navigation and legal links
+│   ├── Hero.tsx             # Hero section with poster marquee and device mockups
+│   ├── Icons.tsx            # Inline SVG icons
+│   ├── InstallTabs.tsx      # Multi-platform installation guide tabs
+│   ├── LegalLayout.tsx      # Editorial layout for legal documentation
+│   ├── Navbar.tsx           # Floating glassmorphism navigation bar
+│   ├── Section.tsx          # Consistent section layout container
+│   └── Showcase.tsx         # Interactive scrollytelling feature showcase
 ├── lib/
-│   ├── content.ts           # Konten teks situs, metadata, daftar screens & posters
-│   └── legal.ts             # Teks resmi Syarat Penggunaan, Privasi & Disclaimer
+│   ├── content.ts           # Site text content, feature lists, and metadata
+│   └── legal.ts             # Canonical legal terms, privacy, and disclaimer text
 ├── public/
-│   ├── posters/             # Aset poster film berkualitas tinggi (.webp)
-│   ├── screens/             # Tangkapan layar resmi antarmuka aplikasi Cineva (.webp)
-│   ├── Cineva_transparent.png # Logo resmi transparan Cineva
-│   ├── logo_cineva.png      # Logo Cineva versi gelap (Dark Mode)
-│   ├── logo_cineva_light.png # Logo Cineva versi cerah (Light Mode)
-│   ├── favicon.ico          # Favicon default browser
-│   ├── favicon.svg          # Favicon vektor modern
-│   ├── apple-touch-icon.png # Icon perangkat iOS / Apple
-│   └── site.webmanifest     # Manifest PWA
+│   ├── posters/             # High-resolution poster assets (.webp)
+│   ├── screens/             # Official Cineva Android application screenshots (.webp)
+│   ├── Cineva_transparent.png # Transparent Cineva branding asset
+│   ├── logo_cineva.png      # Cineva dark theme logo
+│   ├── logo_cineva_light.png # Cineva light theme logo
+│   └── favicon.ico          # Browser favicon
 ├── package.json
 └── tsconfig.json
 ```
 
 ---
 
-## 🚀 Menjalankan Secara Lokal
+## Getting Started Locally
 
-### Prasyarat
+### Prerequisites
 
-Pastikan perangkat Anda telah terpasang:
-- **Node.js** versi 18.17.0 atau yang lebih baru
-- **npm** (atau package manager pilihan seperti pnpm / yarn)
+Ensure the following tools are installed on your machine:
+- Node.js version 18.17.0 or higher
+- npm, yarn, or pnpm package manager
 
-### Langkah Instalasi
+### Local Development Setup
 
-1. **Clone repositori ini:**
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/cineva-stream/cineva-web.git
    cd cineva-web
    ```
 
-2. **Pasang dependensi:**
+2. **Install dependencies:**
    ```bash
    npm install
    ```
 
-3. **Jalankan server pengembangan (Development):**
+3. **Run the local development server:**
    ```bash
    npm run dev
    ```
-   Buka browser dan akses [http://localhost:3000](http://localhost:3000).
+   Open your browser and navigate to http://localhost:3000.
 
-4. **Kompilasi produksi (Production Build):**
+4. **Build for production:**
    ```bash
    npm run build
    npm run start
@@ -170,18 +149,40 @@ Pastikan perangkat Anda telah terpasang:
 
 ---
 
-## ⚖️ Penafian & Pernyataan Hukum
+## Can I Contribute?
 
-Cineva dan Cineva Web merupakan piranti lunak utilitas pribadi sumber terbuka (*open-source software*). Seluruh hak cipta film, poster, sinopsis, dan materi media yang ditampilkan di situs ini adalah milik studio produksi, distributor resmi, dan pemegang hak cipta masing-masing (didukung oleh metadata TMDB).
+Yes, absolutely. Contributions to Cineva Web are warmly welcomed and strongly encouraged.
 
-Untuk membaca pernyataan hukum selengkapnya, silakan kunjungi:
-- [Syarat Penggunaan](/syarat-penggunaan)
-- [Kebijakan Privasi](/kebijakan-privasi)
-- [Disclaimer & DMCA](/disclaimer)
+Whether you wish to refine user interface responsiveness, polish animations, optimize Lighthouse performance metrics, expand accessibility (a11y) support, enhance internationalization, or update documentation, your contributions are highly appreciated.
+
+To contribute:
+1. Fork the repository.
+2. Create a topic branch (`git checkout -b feature/your-improvement`).
+3. Commit your changes with clear, concise commit messages.
+4. Ensure the project builds cleanly without TypeScript or linting errors (`npm run build`).
+5. Open a Pull Request detailing your enhancements and testing results.
 
 ---
 
-## 📄 Lisensi
+## License
 
-Proyek ini dilisensikan di bawah **[GNU General Public License v3.0 (GPL-3.0)](LICENSE)** Hak Cipta © 2026 **Cineva Group**.
-Dikembangkan untuk mendukung ekosistem aplikasi **[Cineva](https://github.com/cineva-stream/Cineva)**.
+This project is open-source software licensed under the **GNU General Public License v3.0 (GPL-3.0)**.
+
+Please read the [LICENSE](LICENSE) file located in the root directory of this repository for the full terms and conditions regarding usage, redistribution, and modification.
+
+---
+
+## Disclaimer
+
+Cineva and Cineva Web are open-source software utilities. All movie metadata, poster artworks, synopsis texts, and related media assets referenced on this platform are the property of their respective production studios, copyright owners, and distributors (supported via TMDB API).
+
+To review our complete legal terms, please visit:
+- [Terms of Use](/syarat-penggunaan)
+- [Privacy Policy](/kebijakan-privasi)
+- [DMCA Disclaimer](/disclaimer)
+
+---
+
+## Maintainers
+
+Developed and maintained by the **Cineva Group**.
