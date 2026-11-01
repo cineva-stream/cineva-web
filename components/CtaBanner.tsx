@@ -71,7 +71,7 @@ export default function CtaBanner() {
         <div className="cta-content" data-reveal="up">
           {/* Logo Cineva Transparan Tanpa Background */}
           <img
-            src="/Cineva_transparent.png"
+            src="/Cineva_transparent.webp"
             alt="Cineva"
             className="cta-logo-img"
             width={104}

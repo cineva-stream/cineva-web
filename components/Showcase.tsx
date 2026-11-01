@@ -98,7 +98,6 @@ export default function Showcase() {
             <div className="hero-device tour-device">
               <div className="phone-glow" aria-hidden="true" />
               <div className="phone-device">
-                <div className="phone-camera-hole" />
                 <div className="phone-screen-container">
                   {screens.map((s, idx) => (
                     <div key={s.src} className={`screen-layer${activeIdx === idx ? " active" : ""}`}>
@@ -113,6 +112,16 @@ export default function Showcase() {
                     </div>
                   ))}
                 </div>
+                <img
+                  src="/screens/google_pixel_10_pro.webp"
+                  alt=""
+                  width={380}
+                  height={800}
+                  className="phone-frame-img"
+                  loading="lazy"
+                  aria-hidden="true"
+                  decoding="async"
+                />
               </div>
             </div>
           </div>

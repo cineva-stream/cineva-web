@@ -25,6 +25,10 @@
         {
           "key": "Referrer-Policy",
           "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
         }
       ]
     },
@@ -42,7 +46,7 @@
       ]
     },
     {
-      "source": "/(og-image.png|icon.png|favicon.svg|favicon.ico)",
+      "source": "/(og-image.png|icon.png|icon-64.webp|Cineva_transparent.webp|favicon.svg|favicon.ico)",
       "headers": [
         {
           "key": "Cache-Control",

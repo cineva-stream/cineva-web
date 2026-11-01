@@ -30,7 +30,7 @@ export default function Hero() {
                   width={240}
                   height={360}
                   decoding="async"
-                  loading={j < 3 ? "eager" : "lazy"}
+                  loading="lazy"
                 />
               ))}
             </div>

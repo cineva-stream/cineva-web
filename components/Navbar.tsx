@@ -48,7 +48,7 @@ export default function Navbar() {
       <header className={`nav${scrolled ? " scrolled" : ""}${open ? " open" : ""}`}>
         <div className="wrap nav-inner">
           <a href="#" className="brand" aria-label={t.nav.brandAria} onClick={() => setOpen(false)}>
-            <img src="/icon.png" alt="" width={32} height={32} />
+            <img src="/icon-64.webp" alt="Cineva Logo" width={32} height={32} />
             Cineva
           </a>
 

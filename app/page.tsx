@@ -28,7 +28,7 @@ export default function Page() {
     <>
       <ScrollReveal />
       <Navbar />
-      <main>
+      <main id="main">
         <Hero />
         <Stats />
         <Reasons />

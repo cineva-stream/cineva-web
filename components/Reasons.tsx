@@ -40,7 +40,7 @@ export default function Reasons() {
                 {i + 1}
               </span>
               <div className="reason-card">
-                <img src={r.src} alt="" width={342} height={513} loading="lazy" />
+                <img src={r.src} alt={r.title} width={342} height={513} loading="lazy" />
                 {r.badge && <span className={`reason-badge${r.maintenance ? " maint" : ""}`}>{r.badge}</span>}
                 <div className="reason-text">
                   <h3>{r.title}</h3>

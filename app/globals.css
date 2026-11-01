@@ -20,6 +20,28 @@
   font-display: swap;
 }
 
+/* ---------- Aksesibilitas (WCAG AA Skip Link) ---------- */
+.skip-link {
+  position: absolute;
+  top: -120px;
+  left: 20px;
+  background: var(--amber);
+  color: #130b00;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 13.5px;
+  z-index: 99999;
+  text-decoration: none;
+  transition: top 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+}
+.skip-link:focus {
+  top: 18px;
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
 :root {
   --obsidian: #0a0a0c;
   --surface: #121216;
@@ -33,9 +55,9 @@
   --amber-soft: rgba(255, 149, 0, 0.14);
   --amber-glow: rgba(255, 149, 0, 0.32);
   --radius: 22px;
-  --font-display: "Outfit", "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-body: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-display: "Outfit", var(--font-plus-jakarta-sans, "Plus Jakarta Sans"), system-ui, sans-serif;
+  --font-body: var(--font-plus-jakarta-sans, "Plus Jakarta Sans"), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-jetbrains-mono, "JetBrains Mono"), ui-monospace, "SFMono-Regular", Menlo, monospace;
   --maxw: 100%;
   --nav-h: 72px;
   color-scheme: dark;
@@ -591,9 +613,7 @@ h2 {
   opacity: 1;
 }
 .phone-trio-item.is-center .phone-device {
-  border-color: rgba(255, 149, 0, 0.45);
-  box-shadow: 0 50px 90px -25px rgba(0, 0, 0, 0.95), 0 0 40px -12px rgba(255, 149, 0, 0.32),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  filter: drop-shadow(0 42px 85px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 42px rgba(255, 149, 0, 0.32));
 }
 .phone-trio-item.is-left {
   z-index: 2;
@@ -648,30 +668,37 @@ h2 {
 .phone-device {
   position: relative;
   width: var(--pw);
-  padding: 9px;
-  border-radius: calc(var(--pw) * 0.15);
-  background: linear-gradient(160deg, #26262d, #131317);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 50px 90px -30px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  aspect-ratio: 380 / 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 32px 65px rgba(0, 0, 0, 0.9)) drop-shadow(0 10px 24px rgba(0, 0, 0, 0.6));
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), filter 0.55s ease;
+}
+.phone-frame-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+  z-index: 3;
+  user-select: none;
+  -webkit-user-select: none;
 }
 .phone-camera-hole {
-  position: absolute;
-  top: 19px;
-  left: 50%;
-  width: 11px;
-  height: 11px;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  background: #000;
-  z-index: 3;
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05);
+  display: none;
 }
 .phone-screen-container {
-  position: relative;
-  aspect-ratio: 560 / 1162;
-  border-radius: calc(var(--pw) * 0.12);
+  position: absolute;
+  top: 1.75%;
+  bottom: 2%;
+  left: 3.95%;
+  right: 5%;
+  border-radius: calc(var(--pw) * 0.082);
   overflow: hidden;
   background: #000;
+  z-index: 1;
 }
 .screen-layer {
   position: absolute;
@@ -1789,6 +1816,9 @@ h2 {
 }
 .tour-device {
   --pw: min(290px, calc((100svh - 250px) * 0.47));
+}
+.tour-device .phone-device {
+  filter: drop-shadow(0 45px 85px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 35px rgba(255, 149, 0, 0.24));
 }
 
 /* ---------- Pemutar ---------- */

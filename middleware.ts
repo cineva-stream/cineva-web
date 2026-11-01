@@ -162,7 +162,7 @@ export function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!api|_next/image|favicon.ico|favicon.svg|favicon-96x96.png|apple-touch-icon.png|og-image.png|opengraph-image.png|icon.png|site.webmanifest|robots.txt|sitemap.xml|llms.txt|llms-full.txt).*)",
+    "/((?!api|_next/image|favicon.ico|favicon.svg|favicon-96x96.png|apple-touch-icon.png|og-image.png|opengraph-image.png|icon.png|icon-64.webp|Cineva_transparent.webp|site.webmanifest|robots.txt|sitemap.xml|llms.txt|llms-full.txt).*)",
   ],
 };
 

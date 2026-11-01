@@ -13,7 +13,7 @@ export default function Footer() {
         <div className="footer-row">
           <div className="footer-brand-wrap">
             <Link href="/" className="brand">
-              <img src="/icon.png" alt="" width={32} height={32} />
+              <img src="/icon-64.webp" alt="Cineva Logo" width={32} height={32} />
               Cineva
             </Link>
             <p className="footer-subtext">{t.footer.subtext}</p>

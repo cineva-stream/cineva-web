@@ -22,7 +22,7 @@ export default function LegalLayout({ doc, currentSlug }: LegalLayoutProps) {
       <header className="legal-header">
         <div className="wrap legal-header-inner">
           <Link href="/" className="brand" aria-label={ui.backHomeAria}>
-            <img src="/icon.png" alt="Cineva" width={30} height={30} />
+            <img src="/icon-64.webp" alt="Cineva" width={30} height={30} />
             <span>Cineva</span>
           </Link>
 
