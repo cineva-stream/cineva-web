@@ -2,7 +2,21 @@ import type { ReactNode } from "react";
 
 const paths: Record<string, ReactNode> = {
   stream: <path d="M7 4.5l12 7.5-12 7.5z" />,
-  download: <path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14" />,
+  cpu: (
+    <>
+      <rect x="4" y="4" width="16" height="16" rx="2" />
+      <rect x="9" y="9" width="6" height="6" />
+      <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3" />
+    </>
+  ),
+  download: (
+    <>
+      <path d="M12 3.5v10m-3.5-3.5l3.5 3.5 3.5-3.5" />
+      <path d="M5 16.5v1a2 2 0 002 2h10a2 2 0 002-2v-1" />
+    </>
+  ),
+  "chevron-down": <path d="M6 9l6 6 6-6" />,
+  "chevron-up": <path d="M18 15l-6-6-6 6" />,
   file: <path d="M7 3h7l4 4v14H7zM14 3v4h4M10 13h5M10 17h5" />,
   subtitle: (
     <>

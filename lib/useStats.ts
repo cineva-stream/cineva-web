@@ -3,6 +3,17 @@
 import { useEffect, useState } from "react";
 import { APK_DOWNLOAD_URL } from "./content";
 
+export type ArchitectureAbi = "arm64-v8a" | "armeabi-v7a" | "x86_64" | "universal";
+
+export type ApkVariant = {
+  abi: ArchitectureAbi;
+  label: string;
+  name: string;
+  url: string;
+  size: string;
+  sizeBytes: number;
+};
+
 export type Stats = {
   stars: number | null;
   downloads: number | null;
@@ -10,15 +21,17 @@ export type Stats = {
   apkName: string;
   apkUrl: string;
   apkSize: string;
+  apks: ApkVariant[];
 };
 
 const DEFAULT_STATS: Stats = {
   stars: null,
   downloads: null,
-  version: "v1.0.8",
-  apkName: "Cineva_v1.0.8.apk",
+  version: "v1.1.1",
+  apkName: "Cineva_v1.1.1.apk",
   apkUrl: APK_DOWNLOAD_URL,
-  apkSize: "~98 MB",
+  apkSize: "~38 MB",
+  apks: [],
 };
 
 let cache: Promise<Stats> | null = null;
@@ -41,6 +54,7 @@ function load(): Promise<Stats> {
       apkName: typeof dl?.apkName === "string" && dl.apkName ? dl.apkName : DEFAULT_STATS.apkName,
       apkUrl: typeof dl?.apkUrl === "string" && dl.apkUrl ? dl.apkUrl : DEFAULT_STATS.apkUrl,
       apkSize: typeof dl?.apkSize === "string" && dl.apkSize ? dl.apkSize : DEFAULT_STATS.apkSize,
+      apks: Array.isArray(dl?.apks) ? dl.apks : [],
     }));
   }
   return cache;

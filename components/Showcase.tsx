@@ -10,35 +10,29 @@ export default function Showcase() {
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    let ticking = false;
-
-    const updateActiveStep = () => {
-      const viewportCenter = window.innerHeight / 2;
-      let closestIdx = 0;
-      let minDistance = Infinity;
-      stepRefs.current.forEach((el, idx) => {
-        if (!el) return;
-        const rect = el.getBoundingClientRect();
-        const distance = Math.abs(rect.top + rect.height / 2 - viewportCenter);
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestIdx = idx;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const idx = stepRefs.current.indexOf(entry.target as HTMLDivElement);
+            if (idx !== -1) {
+              setActiveIdx(idx);
+            }
+          }
         }
-      });
-      setActiveIdx((prev) => (prev !== closestIdx ? closestIdx : prev));
-      ticking = false;
-    };
-
-    const handleScroll = () => {
-      if (!ticking) {
-        ticking = true;
-        window.requestAnimationFrame(updateActiveStep);
+      },
+      {
+        rootMargin: "-45% 0px -45% 0px",
+        threshold: 0,
       }
-    };
+    );
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    stepRefs.current.forEach((el) => {
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [screens.length]);
 
   const go = (idx: number) => {
     setActiveIdx(idx);

@@ -1,9 +1,9 @@
 "use client";
 
 import { Icon } from "./Icons";
+import DownloadPicker from "./DownloadPicker";
 import { RELEASES_URL } from "@/lib/content";
 import { useLanguage } from "@/lib/LanguageContext";
-import { useStats } from "@/lib/useStats";
 
 const ctaPosters = [
   "/posters/squid_game.webp",
@@ -27,7 +27,6 @@ const row4 = [...shifted2, ...shifted2];
 
 export default function CtaBanner() {
   const { t } = useLanguage();
-  const { version, apkSize, apkUrl } = useStats();
 
   return (
     <section className="cta-banner-section" aria-label={t.cta.sectionAria}>
@@ -89,20 +88,7 @@ export default function CtaBanner() {
 
           {/* Action Buttons */}
           <div className="cta-actions">
-            <a
-              href={apkUrl}
-              className="cta-btn-primary"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div className="cta-btn-ico">
-                <Icon name="download" size={24} />
-              </div>
-              <div className="cta-btn-text">
-                <span className="cta-btn-meta">{`${version} ${apkSize}`}</span>
-                <span className="cta-btn-title">{t.cta.downloadBtn}</span>
-              </div>
-            </a>
+            <DownloadPicker variant="cta" />
 
             <a
               href={RELEASES_URL}

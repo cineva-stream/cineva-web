@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import DesignGuard from "@/components/DesignGuard";
@@ -174,17 +175,32 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
 });
 
+const outfit = localFont({
+  src: [
+    {
+      path: "../public/fonts/outfit-600.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/outfit-700.woff2",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/outfit-800.woff2",
+      weight: "800",
+      style: "normal",
+    },
+  ],
+  variable: "--font-outfit",
+  display: "swap",
+});
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id" className={`${plusJakartaSans.variable} ${jetbrainsMono.variable}`}>
+    <html lang="id" className={`${plusJakartaSans.variable} ${jetbrainsMono.variable} ${outfit.variable}`}>
       <head>
-        <link
-          rel="preload"
-          href="/fonts/outfit-800.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
         <link
           rel="preload"
           href="/fonts/outfit-600.woff2"
@@ -194,17 +210,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <link
           rel="preload"
-          href="/screens/google_pixel_10_pro.webp"
-          as="image"
-          type="image/webp"
-          fetchPriority="high"
-        />
-        <link
-          rel="preload"
-          href="/screens/home.webp"
-          as="image"
-          type="image/webp"
-          fetchPriority="high"
+          href="/fonts/outfit-800.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
         />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt" />
         <script

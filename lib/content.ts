@@ -73,6 +73,38 @@ export const translations = {
       closeMenu: "Tutup menu",
       langAria: "Pilih bahasa",
     },
+    archModal: {
+      title: "Pilih Versi Arsitektur CPU",
+      subtitle: "Unduh varian APK yang dioptimalkan khusus untuk prosesor perangkat Anda agar ukuran lebih kecil dan kinerja lebih cepat.",
+      recommendedBadge: "Disarankan untuk Perangkat Anda",
+      guideTitle: "Bagaimana cara mengetahui prosesor HP saya?",
+      guideDesc: "Hampir seluruh smartphone Android keluaran 2017 ke atas (Samsung, Xiaomi, Oppo, Vivo, Realme, Infinix, Pixel, dll.) menggunakan arsitektur 64-bit (arm64-v8a). Jika Anda ragu, pilih varian Universal.",
+      closeAria: "Tutup pilihan arsitektur",
+      downloadAction: "Unduh",
+      openSelectorBtn: "Pilihan CPU Lain",
+      variants: {
+        arm64: {
+          title: "arm64-v8a (64-bit ARM)",
+          badge: "Disarankan (99% HP Modern)",
+          desc: "Optimal untuk hampir semua smartphone Android modern (2017 ke atas). Paling hemat kuota (~16 MB) dan performa maksimal.",
+        },
+        armv7: {
+          title: "armeabi-v7a (32-bit ARM)",
+          badge: "HP Lawas / Entry-Level",
+          desc: "Untuk smartphone Android jadul (keluaran sebelum 2017) atau perangkat ekonomis berbasis 32-bit (~15 MB).",
+        },
+        x86_64: {
+          title: "x86_64 (64-bit Intel/AMD)",
+          badge: "Emulator PC & Chromebook",
+          desc: "Untuk emulator Android di PC/Laptop (BlueStacks, LDPlayer, NoxPlayer) atau Chromebook berbasis prosesor Intel/AMD (~18 MB).",
+        },
+        universal: {
+          title: "Universal (Semua CPU)",
+          badge: "Kompatibilitas Penuh",
+          desc: "Menggabungkan semua pustaka prosesor. Ukuran lebih besar (~38 MB), namun dijamin dapat terpasang di perangkat apapun.",
+        },
+      },
+    },
     hero: {
       line1: "Nonton film & serial TV",
       line2: "tanpa batas.",
@@ -364,6 +396,38 @@ export const translations = {
       openMenu: "Open menu",
       closeMenu: "Close menu",
       langAria: "Select language",
+    },
+    archModal: {
+      title: "Select CPU Architecture",
+      subtitle: "Download the APK variant optimized specifically for your device processor for a smaller download size and faster performance.",
+      recommendedBadge: "Recommended for Your Device",
+      guideTitle: "How do I know my phone's CPU architecture?",
+      guideDesc: "Nearly all Android smartphones released since 2017 (Samsung, Xiaomi, Oppo, Vivo, Realme, Infinix, Pixel, etc.) use 64-bit ARM (arm64-v8a). If in doubt, choose the Universal build.",
+      closeAria: "Close architecture options",
+      downloadAction: "Download",
+      openSelectorBtn: "Choose other CPU",
+      variants: {
+        arm64: {
+          title: "arm64-v8a (64-bit ARM)",
+          badge: "Recommended (99% Modern Phones)",
+          desc: "Optimized for virtually all modern Android smartphones (2017+). Lightest download size (~16 MB) and maximum performance.",
+        },
+        armv7: {
+          title: "armeabi-v7a (32-bit ARM)",
+          badge: "Older / 32-bit Phones",
+          desc: "For older Android phones (released before 2017) or entry-level 32-bit devices (~15 MB).",
+        },
+        x86_64: {
+          title: "x86_64 (64-bit Intel/AMD)",
+          badge: "PC Emulators & Chromebooks",
+          desc: "For Android emulators on PC/Laptop (BlueStacks, LDPlayer, NoxPlayer) or Intel/AMD-powered Chromebooks (~18 MB).",
+        },
+        universal: {
+          title: "Universal (All CPUs)",
+          badge: "Full Compatibility",
+          desc: "Bundles all CPU libraries in one package. Larger file size (~38 MB), but guaranteed to work on any device.",
+        },
+      },
     },
     hero: {
       line1: "Stream movies & TV series",

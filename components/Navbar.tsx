@@ -6,18 +6,37 @@ import LanguageSwitcher, { FlagID, FlagUK } from "./LanguageSwitcher";
 import { REPO_URL } from "@/lib/content";
 import { useLanguage } from "@/lib/LanguageContext";
 import { useStats } from "@/lib/useStats";
+import { useDeviceArch } from "@/lib/useDeviceArch";
 
 export default function Navbar() {
   const { lang, setLang, t } = useLanguage();
-  const { apkUrl } = useStats();
+  const stats = useStats();
+  const deviceArch = useDeviceArch();
+  const matchedApk = stats.apks?.find((a) => a.abi === deviceArch.recommendedAbi);
+  const recommendedUrl = matchedApk?.url || stats.apkUrl;
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 12);
+          ticking = false;
+        });
+      }
+    };
+    // Defer initial scroll state check to avoid forced reflow during hydration
+    const rafId = window.requestAnimationFrame(() => {
+      onScroll();
+    });
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -67,7 +86,7 @@ export default function Navbar() {
               <Icon name="github" size={16} />
               <span>GitHub</span>
             </a>
-            <a className="btn btn-light btn-sm" href={apkUrl} target="_blank" rel="noreferrer">
+            <a className="btn btn-light btn-sm" href={recommendedUrl} target="_blank" rel="noreferrer">
               <Icon name="download" size={16} />
               {t.nav.download}
             </a>
@@ -126,7 +145,7 @@ export default function Navbar() {
           <div className="nav-mobile-cta">
             <a
               className="btn btn-primary btn-block"
-              href={apkUrl}
+              href={recommendedUrl}
               target="_blank"
               rel="noreferrer"
               tabIndex={open ? 0 : -1}

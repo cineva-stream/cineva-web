@@ -1,25 +1,3 @@
-@font-face {
-  font-family: "Outfit";
-  src: url("/fonts/outfit-600.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Outfit";
-  src: url("/fonts/outfit-700.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Outfit";
-  src: url("/fonts/outfit-800.woff2") format("woff2");
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
 /* ---------- Aksesibilitas (WCAG AA Skip Link) ---------- */
 .skip-link {
   position: absolute;
@@ -55,7 +33,7 @@
   --amber-soft: rgba(255, 149, 0, 0.14);
   --amber-glow: rgba(255, 149, 0, 0.32);
   --radius: 22px;
-  --font-display: "Outfit", var(--font-plus-jakarta-sans, "Plus Jakarta Sans"), system-ui, sans-serif;
+  --font-display: var(--font-outfit), var(--font-plus-jakarta-sans, "Plus Jakarta Sans"), system-ui, sans-serif;
   --font-body: var(--font-plus-jakarta-sans, "Plus Jakarta Sans"), system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: var(--font-jetbrains-mono, "JetBrains Mono"), ui-monospace, "SFMono-Regular", Menlo, monospace;
   --maxw: 100%;
@@ -799,13 +777,19 @@ h2 {
   display: flex;
   align-items: center;
   padding: calc(var(--nav-h) + 40px) 0 96px;
+  overflow: visible;
+  z-index: 25;
+}
+.hero-wall-viewport {
+  position: absolute;
+  inset: 0;
   overflow: hidden;
-  isolation: isolate;
+  z-index: -1;
+  pointer-events: none;
 }
 .hero-wall {
   position: absolute;
   inset: 0;
-  z-index: -1;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 14px;
@@ -2696,6 +2680,7 @@ h2 {
   .hero {
     min-height: 0;
     padding: calc(var(--nav-h) + 28px) 0 88px;
+    overflow: visible;
   }
   .hero-grid {
     grid-template-columns: minmax(0, 1fr);
@@ -3264,5 +3249,371 @@ html.has-reveal .tile.is-visible:hover {
   body {
     display: none !important;
     visibility: hidden !important;
+  }
+}
+
+/* ---------- Architecture Selector Modal & Hero Button ---------- */
+.hero-download-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ========================================================
+   MODERN MINIMALIST DOWNLOAD SPLIT & FLYOUT SELECTOR
+   ======================================================== */
+
+.download-picker-wrap {
+  position: relative;
+  display: inline-flex;
+  z-index: 50;
+}
+
+.download-split-btn {
+  display: inline-flex;
+  align-items: stretch;
+  position: relative;
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+.download-split-btn:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+/* Modern Download Icon Badge */
+.download-ico-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(18, 18, 22, 0.08);
+  color: #121216;
+  flex-shrink: 0;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.18s ease;
+}
+.download-main-action:hover .download-ico-badge {
+  background: rgba(18, 18, 22, 0.15);
+  transform: translateY(1.5px);
+}
+
+/* HERO & INSTALL SPLIT BUTTON (Pill 64px - 100% Unified Surface & Radius) */
+.download-split-hero,
+.download-split-install {
+  background: var(--text);
+  color: var(--obsidian);
+  height: 64px;
+}
+
+.download-split-hero .download-main-action,
+.download-split-install .download-main-action {
+  background: transparent !important;
+  color: var(--obsidian) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding-left: 24px;
+  padding-right: 18px;
+  height: 64px;
+  transition: background 0.15s ease;
+}
+.download-split-hero .download-main-action:hover,
+.download-split-install .download-main-action:hover {
+  background: rgba(255, 255, 255, 0.35) !important;
+}
+
+.download-split-toggle-hero,
+.download-split-toggle-install {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px;
+  background: transparent !important;
+  color: var(--obsidian) !important;
+  border: none !important;
+  border-left: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-radius: 0 !important;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  height: 64px;
+}
+.download-split-toggle-hero:hover,
+.download-split-toggle-install:hover {
+  background: rgba(0, 0, 0, 0.06) !important;
+}
+.download-split-toggle-hero.is-active,
+.download-split-toggle-install.is-active {
+  background: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* CTA SPLIT BUTTON (Rounded 18px) */
+.download-split-cta {
+  border-radius: 18px;
+  background: var(--amber);
+  color: #130b00;
+  box-shadow: 0 10px 30px rgba(255, 149, 0, 0.25);
+}
+.download-split-cta:hover {
+  background: #ffa31f;
+  box-shadow: 0 14px 36px rgba(255, 149, 0, 0.35);
+}
+.download-split-cta .download-main-action {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  transition: background 0.15s ease;
+}
+.download-split-cta .download-main-action:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+.cta-split-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  background: transparent !important;
+  color: #130b00;
+  border: none !important;
+  border-left: 1px solid rgba(19, 11, 0, 0.15) !important;
+  border-radius: 0 !important;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.cta-split-toggle:hover {
+  background: rgba(19, 11, 0, 0.08) !important;
+}
+.cta-split-toggle.is-active {
+  background: rgba(19, 11, 0, 0.14) !important;
+}
+
+/* ROTATING CHEVRON TOGGLE */
+.split-toggle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.is-active .split-toggle-icon {
+  transform: rotate(180deg);
+}
+
+/* Hide hero perks completely when download flyout is open to eliminate text overlap glitch */
+.hero-perks.is-hidden,
+.hero-actions:has(.download-flyout-menu) ~ .hero-perks {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity 0.18s ease, visibility 0.18s ease;
+}
+
+/* SLEEK MINIMALIST FLYOUT MENU */
+.download-flyout-menu {
+  position: absolute;
+  left: 0;
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  max-height: min(440px, calc(100vh - 40px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: rgba(18, 18, 22, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  z-index: 9999;
+  padding: 8px;
+}
+.download-flyout-menu.placement-bottom {
+  top: calc(100% + 10px);
+  bottom: auto;
+  transform-origin: top left;
+  animation: flyoutFadeInDown 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.download-flyout-menu.placement-top {
+  top: auto;
+  bottom: calc(100% + 10px);
+  transform-origin: bottom left;
+  animation: flyoutFadeInUp 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes flyoutFadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes flyoutFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.flyout-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 6px;
+}
+.flyout-title {
+  font-family: var(--font-plus-jakarta-sans), -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0.8;
+}
+.flyout-version-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--amber);
+  background: rgba(255, 149, 0, 0.14);
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 149, 0, 0.22);
+}
+
+.flyout-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.flyout-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  color: var(--text);
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+}
+.flyout-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(2px);
+}
+.flyout-item.is-recommended {
+  background: rgba(255, 149, 0, 0.07);
+  border-color: rgba(255, 149, 0, 0.22);
+}
+.flyout-item.is-recommended:hover {
+  background: rgba(255, 149, 0, 0.14);
+  border-color: rgba(255, 149, 0, 0.38);
+}
+
+.flyout-item-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.flyout-item-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.flyout-abi-name {
+  font-family: var(--font-plus-jakarta-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+.flyout-badge-recommended {
+  font-family: var(--font-plus-jakarta-sans), -apple-system, sans-serif;
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(255, 149, 0, 0.18);
+  color: var(--amber);
+  border: 1px solid rgba(255, 149, 0, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+.flyout-abi-note {
+  font-size: 11.5px;
+  color: var(--muted);
+  opacity: 0.8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.flyout-item-end {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.flyout-abi-size {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  opacity: 0.85;
+}
+.flyout-download-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--muted);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.flyout-item:hover .flyout-download-icon {
+  background: var(--amber);
+  color: #130b00;
+}
+
+.flyout-footer {
+  padding: 8px 12px 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top: 6px;
+}
+.flyout-footer p {
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--muted);
+  opacity: 0.65;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .download-flyout-menu {
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100vw - 32px);
+  }
+  .download-flyout-menu.placement-bottom {
+    transform-origin: top center;
+  }
+  .download-flyout-menu.placement-top {
+    transform-origin: bottom center;
   }
 }

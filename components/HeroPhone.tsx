@@ -61,6 +61,7 @@ export default function HeroPhone() {
                     height={1162}
                     loading={isCenter ? "eager" : "lazy"}
                     fetchPriority={isCenter ? "high" : "auto"}
+                    {...({ fetchpriority: isCenter ? "high" : "auto" } as any)}
                     className="trio-screen-img"
                   />
                 </div>
@@ -72,6 +73,7 @@ export default function HeroPhone() {
                   className="phone-frame-img"
                   loading={isCenter ? "eager" : "lazy"}
                   fetchPriority={isCenter ? "high" : "auto"}
+                  {...({ fetchpriority: isCenter ? "high" : "auto" } as any)}
                   aria-hidden="true"
                   decoding={isCenter ? "sync" : "async"}
                 />
