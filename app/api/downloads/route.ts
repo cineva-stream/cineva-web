@@ -2,11 +2,11 @@ import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-const DEFAULT_VERSION = "v1.1.1";
-const DEFAULT_APK_NAME = "Cineva_v1.1.1.apk";
+const DEFAULT_VERSION = "v1.1.2";
+const DEFAULT_APK_NAME = "Cineva_v1.1.2.apk";
 const DEFAULT_APK_URL =
-  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.1/Cineva_v1.1.1.apk";
-const DEFAULT_APK_SIZE = "~38 MB";
+  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.2/Cineva_v1.1.2.apk";
+const DEFAULT_APK_SIZE = "35.5 MB";
 
 interface GitHubAsset {
   name?: string;
@@ -80,11 +80,11 @@ export async function GET() {
           (a) => typeof a.name === "string" && a.name.toLowerCase().endsWith(".apk")
         );
 
-        // Helper to format MB string
-        const formatSize = (bytes?: number, fallback = "~16 MB"): string => {
+        // Helper to format real MB string from exact bytes
+        const formatSize = (bytes?: number, fallback = "35.5 MB"): string => {
           if (typeof bytes === "number" && bytes > 0) {
-            const mb = Math.max(1, Math.round(bytes / (1024 * 1024)));
-            return `~${mb} MB`;
+            const mb = bytes / (1024 * 1024);
+            return `${mb.toFixed(1)} MB`;
           }
           return fallback;
         };
@@ -114,7 +114,7 @@ export async function GET() {
             label: "ARM64 (64-bit)",
             name: arm64Asset.name || `Cineva_${version}-arm64-v8a.apk`,
             url: arm64Asset.browser_download_url,
-            size: formatSize(arm64Asset.size, "~16 MB"),
+            size: formatSize(arm64Asset.size, "35.5 MB"),
             sizeBytes: arm64Asset.size || 0,
           });
         }
@@ -125,7 +125,7 @@ export async function GET() {
             label: "ARMv7 (32-bit)",
             name: armv7Asset.name || `Cineva_${version}-armeabi-v7a.apk`,
             url: armv7Asset.browser_download_url,
-            size: formatSize(armv7Asset.size, "~15 MB"),
+            size: formatSize(armv7Asset.size, "32.4 MB"),
             sizeBytes: armv7Asset.size || 0,
           });
         }
@@ -136,7 +136,7 @@ export async function GET() {
             label: "x86_64 (Intel/AMD)",
             name: x86_64Asset.name || `Cineva_${version}-x86_64.apk`,
             url: x86_64Asset.browser_download_url,
-            size: formatSize(x86_64Asset.size, "~18 MB"),
+            size: formatSize(x86_64Asset.size, "40.3 MB"),
             sizeBytes: x86_64Asset.size || 0,
           });
         }
@@ -147,7 +147,7 @@ export async function GET() {
             label: "Universal (Semua CPU)",
             name: universalAsset.name || `Cineva_${version}.apk`,
             url: universalAsset.browser_download_url,
-            size: formatSize(universalAsset.size, "~38 MB"),
+            size: formatSize(universalAsset.size, "99.2 MB"),
             sizeBytes: universalAsset.size || 0,
           });
         }
@@ -159,7 +159,7 @@ export async function GET() {
           apkUrl =
             primaryAsset.browser_download_url?.trim() ||
             `https://github.com/cineva-stream/Cineva/releases/download/${version}/${apkName}`;
-          apkSize = formatSize(primaryAsset.size, "~38 MB");
+          apkSize = formatSize(primaryAsset.size, "35.5 MB");
         }
       }
     }

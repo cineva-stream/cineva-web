@@ -8,7 +8,7 @@ export const RELEASES_URL = "https://github.com/cineva-stream/Cineva/releases";
 export const ISSUES_URL = "https://github.com/cineva-stream/Cineva/issues";
 export const LICENSE_URL = "https://github.com/cineva-stream/Cineva/blob/main/LICENSE";
 export const APK_DOWNLOAD_URL =
-  "https://github.com/cineva-stream/Cineva/releases/download/v1.0.8/Cineva_v1.0.8.apk";
+  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.2/Cineva_v1.1.2.apk";
 
 export const posterWall = [
   "/posters/squid_game.webp",
@@ -86,22 +86,22 @@ export const translations = {
         arm64: {
           title: "arm64-v8a (64-bit ARM)",
           badge: "Disarankan (99% HP Modern)",
-          desc: "Optimal untuk hampir semua smartphone Android modern (2017 ke atas). Paling hemat kuota (~16 MB) dan performa maksimal.",
+          desc: "Optimal untuk hampir semua smartphone Android modern (2017 ke atas). Paling hemat kuota (35.5 MB) dan performa maksimal.",
         },
         armv7: {
           title: "armeabi-v7a (32-bit ARM)",
           badge: "HP Lawas / Entry-Level",
-          desc: "Untuk smartphone Android jadul (keluaran sebelum 2017) atau perangkat ekonomis berbasis 32-bit (~15 MB).",
+          desc: "Untuk smartphone Android jadul (keluaran sebelum 2017) atau perangkat ekonomis berbasis 32-bit (32.4 MB).",
         },
         x86_64: {
           title: "x86_64 (64-bit Intel/AMD)",
           badge: "Emulator PC & Chromebook",
-          desc: "Untuk emulator Android di PC/Laptop (BlueStacks, LDPlayer, NoxPlayer) atau Chromebook berbasis prosesor Intel/AMD (~18 MB).",
+          desc: "Untuk emulator Android di PC/Laptop (BlueStacks, LDPlayer, NoxPlayer) atau Chromebook berbasis prosesor Intel/AMD (40.3 MB).",
         },
         universal: {
           title: "Universal (Semua CPU)",
           badge: "Kompatibilitas Penuh",
-          desc: "Menggabungkan semua pustaka prosesor. Ukuran lebih besar (~38 MB), namun dijamin dapat terpasang di perangkat apapun.",
+          desc: "Menggabungkan semua pustaka prosesor. Ukuran lebih besar (99.2 MB), namun dijamin dapat terpasang di perangkat apapun.",
         },
       },
     },
@@ -410,22 +410,22 @@ export const translations = {
         arm64: {
           title: "arm64-v8a (64-bit ARM)",
           badge: "Recommended (99% Modern Phones)",
-          desc: "Optimized for virtually all modern Android smartphones (2017+). Lightest download size (~16 MB) and maximum performance.",
+          desc: "Optimized for virtually all modern Android smartphones (2017+). Lightest download size (35.5 MB) and maximum performance.",
         },
         armv7: {
           title: "armeabi-v7a (32-bit ARM)",
           badge: "Older / 32-bit Phones",
-          desc: "For older Android phones (released before 2017) or entry-level 32-bit devices (~15 MB).",
+          desc: "For older Android phones (released before 2017) or entry-level 32-bit devices (32.4 MB).",
         },
         x86_64: {
           title: "x86_64 (64-bit Intel/AMD)",
           badge: "PC Emulators & Chromebooks",
-          desc: "For Android emulators on PC/Laptop (BlueStacks, LDPlayer, NoxPlayer) or Intel/AMD-powered Chromebooks (~18 MB).",
+          desc: "For Android emulators on PC/Laptop (BlueStacks, LDPlayer, NoxPlayer) or Intel/AMD-powered Chromebooks (40.3 MB).",
         },
         universal: {
           title: "Universal (All CPUs)",
           badge: "Full Compatibility",
-          desc: "Bundles all CPU libraries in one package. Larger file size (~38 MB), but guaranteed to work on any device.",
+          desc: "Bundles all CPU libraries in one package. Larger file size (99.2 MB), but guaranteed to work on any device.",
         },
       },
     },
@@ -711,7 +711,7 @@ export const hero = {
   line1: translations.id.hero.line1,
   line2: translations.id.hero.line2,
   sub: translations.id.hero.sub,
-  meta: "v1.0.8 · ~98 MB",
+  meta: "v1.1.2 · 35.5 MB",
   perks: translations.id.hero.perks,
 };
 export const heroScreens = translations.id.heroScreens;
@@ -728,10 +728,10 @@ export const player = translations.id.player;
 export const categories = translations.id.marquee.categories;
 export const install = translations.id.install;
 export const specs = [
-  { k: "Versi", v: "v1.0.8" },
-  { k: "Ukuran APK", v: "~98 MB" },
+  { k: "Versi", v: "v1.1.2" },
+  { k: "Ukuran APK", v: "35.5 MB (arm64-v8a) / 99.2 MB (Universal)" },
   { k: "Target OS", v: "Android 5.0+" },
-  { k: "CPU", v: "arm64-v8a, armeabi-v7a, x86_64" },
+  { k: "CPU", v: "arm64-v8a, armeabi-v7a, x86_64, Universal" },
   { k: "Package", v: "com.primadev.cineva" },
 ];
 export const faq = {

@@ -88,7 +88,7 @@ export default function DownloadPicker({
   const matchedApk = stats.apks?.find((a) => a.abi === deviceArch.recommendedAbi);
   const recommendedUrl = matchedApk?.url || stats.apkUrl;
   const recommendedSize =
-    matchedApk?.size || (deviceArch.recommendedAbi === "universal" ? "~38 MB" : "~16 MB");
+    matchedApk?.size || (deviceArch.recommendedAbi === "universal" ? "99.2 MB" : "35.5 MB");
   const recommendedLabel = matchedApk?.label || deviceArch.label;
 
   const m = t.archModal;
@@ -109,7 +109,7 @@ export default function DownloadPicker({
       badge: lang === "en" ? "Recommended" : "Disarankan",
       isRecommended: deviceArch.recommendedAbi === "arm64-v8a",
       url: stats.apks?.find((a) => a.abi === "arm64-v8a")?.url || stats.apkUrl.replace(".apk", "-arm64-v8a.apk"),
-      size: stats.apks?.find((a) => a.abi === "arm64-v8a")?.size || "~16 MB",
+      size: stats.apks?.find((a) => a.abi === "arm64-v8a")?.size || "35.5 MB",
     },
     {
       abi: "armeabi-v7a",
@@ -118,7 +118,7 @@ export default function DownloadPicker({
       badge: lang === "en" ? "Recommended" : "Disarankan",
       isRecommended: deviceArch.recommendedAbi === "armeabi-v7a",
       url: stats.apks?.find((a) => a.abi === "armeabi-v7a")?.url || stats.apkUrl.replace(".apk", "-armeabi-v7a.apk"),
-      size: stats.apks?.find((a) => a.abi === "armeabi-v7a")?.size || "~15 MB",
+      size: stats.apks?.find((a) => a.abi === "armeabi-v7a")?.size || "32.4 MB",
     },
     {
       abi: "x86_64",
@@ -127,7 +127,7 @@ export default function DownloadPicker({
       badge: lang === "en" ? "Recommended" : "Disarankan",
       isRecommended: deviceArch.recommendedAbi === "x86_64",
       url: stats.apks?.find((a) => a.abi === "x86_64")?.url || stats.apkUrl.replace(".apk", "-x86_64.apk"),
-      size: stats.apks?.find((a) => a.abi === "x86_64")?.size || "~18 MB",
+      size: stats.apks?.find((a) => a.abi === "x86_64")?.size || "40.3 MB",
     },
     {
       abi: "universal",
@@ -136,7 +136,7 @@ export default function DownloadPicker({
       badge: lang === "en" ? "Recommended" : "Disarankan",
       isRecommended: deviceArch.recommendedAbi === "universal",
       url: stats.apks?.find((a) => a.abi === "universal")?.url || stats.apkUrl,
-      size: stats.apks?.find((a) => a.abi === "universal")?.size || (stats.apkSize || "~38 MB"),
+      size: stats.apks?.find((a) => a.abi === "universal")?.size || (stats.apkSize || "99.2 MB"),
     },
   ];
 

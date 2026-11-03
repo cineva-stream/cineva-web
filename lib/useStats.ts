@@ -27,10 +27,10 @@ export type Stats = {
 const DEFAULT_STATS: Stats = {
   stars: null,
   downloads: null,
-  version: "v1.1.1",
-  apkName: "Cineva_v1.1.1.apk",
+  version: "v1.1.2",
+  apkName: "Cineva_v1.1.2.apk",
   apkUrl: APK_DOWNLOAD_URL,
-  apkSize: "~38 MB",
+  apkSize: "35.5 MB",
   apks: [],
 };
 
