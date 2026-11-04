@@ -2824,7 +2824,7 @@ h2 {
   }
 }
 
-@media (max-width: 620px) {
+@media (max-width: 640px) {
   .wrap {
     padding: 0 20px;
   }
@@ -2834,12 +2834,73 @@ h2 {
   .sec-head {
     margin-bottom: 32px;
   }
-  .btn-xl {
-    height: 60px;
-    padding: 0 24px;
+  .btn-xl,
+  .download-split-hero,
+  .download-split-install,
+  .download-split-cta,
+  .cta-btn-secondary,
+  .download-split-toggle-hero,
+  .download-split-toggle-install,
+  .download-split-toggle-cta,
+  .download-main-action {
+    height: 60px !important;
   }
-  .hero-actions .btn {
+
+  .hero-actions,
+  .install-actions,
+  .cta-actions {
     width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .hero-actions {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-actions {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions .download-picker-wrap,
+  .install-actions .download-picker-wrap,
+  .cta-actions .download-picker-wrap {
+    width: 100%;
+    display: flex;
+  }
+
+  .download-split-btn {
+    width: 100%;
+    display: flex;
+  }
+
+  .download-main-action {
+    flex: 1 1 auto;
+    min-width: 0;
+    justify-content: center;
+    padding-left: 16px !important;
+    padding-right: 12px !important;
+  }
+
+  .download-split-toggle-hero,
+  .download-split-toggle-install,
+  .download-split-toggle-cta {
+    flex-shrink: 0;
+    padding: 0 16px;
+  }
+
+  .hero-actions .btn,
+  .install-actions .btn,
+  .cta-actions .cta-btn-secondary {
+    width: 100%;
+    max-width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
   }
   .hero h1 {
     font-size: clamp(40px, 12.5vw, 56px);
@@ -2890,9 +2951,7 @@ h2 {
   .player-point-card:last-child:nth-child(odd) {
     grid-column: span 1;
   }
-  .install-actions .btn {
-    flex: 1 1 100%;
-  }
+  /* install-actions unified above */
   .term-body {
     padding: 20px;
   }
@@ -2911,14 +2970,7 @@ h2 {
   .cta-banner-section {
     padding: 96px 0 84px;
   }
-  .cta-actions {
-    width: 100%;
-  }
-  .cta-btn-primary,
-  .cta-btn-secondary {
-    width: 100%;
-    justify-content: center;
-  }
+  /* cta-actions unified above */
   .footer-cols {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -3573,14 +3625,46 @@ html.has-reveal .tile.is-visible:hover {
 
 @media (max-width: 640px) {
   .download-flyout-menu {
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100vw - 32px);
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+    max-height: min(440px, calc(100vh - 120px)) !important;
   }
   .download-flyout-menu.placement-bottom {
-    transform-origin: top center;
+    top: calc(100% + 8px) !important;
+    bottom: auto !important;
+    transform-origin: top center !important;
+    animation: mobileFlyoutFadeDown 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
   .download-flyout-menu.placement-top {
-    transform-origin: bottom center;
+    top: auto !important;
+    bottom: calc(100% + 8px) !important;
+    transform-origin: bottom center !important;
+    animation: mobileFlyoutFadeUp 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+}
+
+@keyframes mobileFlyoutFadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mobileFlyoutFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
