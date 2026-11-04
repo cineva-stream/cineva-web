@@ -53,28 +53,15 @@ export default function HeroPhone() {
               }}
             >
               <div className="phone-device">
-                <div className="phone-screen-container">
-                  <img
-                    src={s.src}
-                    alt={s.alt}
-                    width={560}
-                    height={1162}
-                    loading={isCenter ? "eager" : "lazy"}
-                    fetchPriority={isCenter ? "high" : "auto"}
-                    {...({ fetchpriority: isCenter ? "high" : "auto" } as any)}
-                    className="trio-screen-img"
-                  />
-                </div>
                 <img
-                  src="/screens/google_pixel_10_pro.webp"
-                  alt=""
-                  width={380}
-                  height={800}
-                  className="phone-frame-img"
+                  src={s.src}
+                  alt={s.alt}
+                  width={1216}
+                  height={2560}
                   loading={isCenter ? "eager" : "lazy"}
                   fetchPriority={isCenter ? "high" : "auto"}
                   {...({ fetchpriority: isCenter ? "high" : "auto" } as any)}
-                  aria-hidden="true"
+                  className="phone-mockup-img"
                   decoding={isCenter ? "sync" : "async"}
                 />
               </div>

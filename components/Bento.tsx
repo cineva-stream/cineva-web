@@ -83,7 +83,14 @@ export default function Bento() {
             <div className="tile-art player-art">
               <div className="mini-player-stage">
                 <div className="mini-player-frame">
-                  <img src={t.player.src} alt={t.player.alt} width={1200} height={527} loading="lazy" />
+                  <img
+                    src={t.player.src}
+                    alt={t.player.alt}
+                    width={1216}
+                    height={2560}
+                    loading="lazy"
+                    className="mini-player-img"
+                  />
                 </div>
               </div>
             </div>

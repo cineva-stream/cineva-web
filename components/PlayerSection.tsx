@@ -29,11 +29,15 @@ export default function PlayerSection() {
 
         <figure className="player-shot" data-reveal="scale" data-delay="2">
           <div className="player-glow-orb" aria-hidden="true" />
-          <div className="landscape-device">
-            <span className="landscape-cam" aria-hidden="true" />
-            <div className="landscape-screen">
-              <img src={t.player.src} alt={t.player.alt} width={1200} height={527} loading="lazy" />
-            </div>
+          <div className="player-device">
+            <img
+              src={t.player.src}
+              alt={t.player.alt}
+              width={1216}
+              height={2560}
+              loading="lazy"
+              className="player-mockup-img"
+            />
           </div>
         </figure>
       </div>
