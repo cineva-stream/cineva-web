@@ -33,8 +33,8 @@ export default function PlayerSection() {
             <img
               src={t.player.src}
               alt={t.player.alt}
-              width={1216}
-              height={2560}
+              width={2560}
+              height={1216}
               loading="lazy"
               className="player-mockup-img"
             />
