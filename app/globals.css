@@ -2014,7 +2014,7 @@ h2 {
 .platform-marq-track {
   display: flex;
   align-items: flex-start;
-  gap: 18px;
+  gap: 12px;
   width: max-content;
   will-change: transform;
   backface-visibility: hidden;
@@ -2056,16 +2056,16 @@ h2 {
 }
 
 .platform-card {
-  width: 148px;
-  height: 76px;
-  border-radius: 16px;
+  width: 168px;
+  height: 86px;
+  border-radius: 18px;
   background: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 10px 22px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease;
 }
 
@@ -2076,8 +2076,8 @@ h2 {
 }
 
 .platform-logo {
-  max-height: 34px;
-  max-width: 86px;
+  max-height: 44px;
+  max-width: 108px;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -2087,36 +2087,38 @@ h2 {
 
 .platform-label {
   margin-top: 10px;
-  font-size: 13px;
-  font-weight: 500;
-  color: rgba(244, 242, 238, 0.68);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #F4F2EE;
   letter-spacing: -0.01em;
   text-align: center;
   white-space: nowrap;
-  transition: color 0.2s ease;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+  transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
 .platform-item:hover .platform-label {
-  color: #FFFFFF;
+  color: var(--amber);
+  text-shadow: 0 1px 6px rgba(255, 184, 0, 0.45);
 }
 
 @media (max-width: 768px) {
   .platform-card {
-    width: 124px;
-    height: 64px;
-    border-radius: 13px;
-    padding: 8px 14px;
+    width: 136px;
+    height: 70px;
+    border-radius: 14px;
+    padding: 8px 16px;
   }
   .platform-logo {
-    max-height: 28px;
-    max-width: 72px;
+    max-height: 34px;
+    max-width: 86px;
   }
   .platform-label {
     margin-top: 8px;
-    font-size: 11.5px;
+    font-size: 12px;
   }
   .platform-marq-track {
-    gap: 14px;
+    gap: 9px;
   }
   .platform-marq-wrapper {
     gap: 16px;
