@@ -265,11 +265,15 @@ export const translations = {
       ],
     },
     marquee: {
+      eyebrow: "SATU PENCARIAN. SEMUA PLATFORM.",
+      title: "Ketahui tempat menontonnya.",
+      subtitle:
+        "Filter berdasarkan layanan langgananmu dan cek ketersediaan tayangan favoritmu — semua dalam satu tempat.",
       title1: "Apa pun seleramu,",
       title2: "ada di sini.",
       leadPrefix: "Pilih dari",
       leadSuffix: "lalu saring sesuai genre yang sedang kamu cari.",
-      srTech: "Teknologi yang dipakai:",
+      srTech: "Platform streaming yang didukung:",
       categories: ["Indonesia", "Anime", "Hollywood", "Korea", "Bollywood", "Serial TV", "Film"],
     },
     install: {
@@ -589,11 +593,15 @@ export const translations = {
       ],
     },
     marquee: {
+      eyebrow: "ONE SEARCH. EVERY SERVICE.",
+      title: "Know where it's streaming.",
+      subtitle:
+        "Filter by the services you already pay for and see availability for your favorite titles — all in one place.",
       title1: "Whatever your taste,",
       title2: "it's right here.",
       leadPrefix: "Choose from",
       leadSuffix: "then filter by the exact genre you're in the mood for.",
-      srTech: "Powered by:",
+      srTech: "Streaming platforms supported:",
       categories: ["Indonesian", "Anime", "Hollywood", "K-Drama", "Bollywood", "TV Series", "Movies"],
     },
     install: {
@@ -745,3 +753,34 @@ export const faq = {
 export const contribute = translations.id.faq.contribute;
 export const disclaimer = translations.id.footer.disclaimer;
 export const credit = translations.id.footer.credit;
+
+export interface StreamingPlatform {
+  id: string;
+  name: string;
+  logo: string;
+  alt: string;
+}
+
+export const platformsRow1: StreamingPlatform[] = [
+  { id: "max", name: "Max", logo: "/platforms/hbo_max.png", alt: "HBO Max / Max" },
+  { id: "apple_tv", name: "Apple TV+", logo: "/platforms/apple_tv.png", alt: "Apple TV+" },
+  { id: "hulu", name: "Hulu", logo: "/platforms/hulu.png", alt: "Hulu" },
+  { id: "peacock", name: "Peacock", logo: "/platforms/peacock.png", alt: "Peacock" },
+  { id: "paramount", name: "Paramount+", logo: "/platforms/paramount.png", alt: "Paramount+" },
+  { id: "youtube", name: "YouTube", logo: "/platforms/youtube.png", alt: "YouTube" },
+  { id: "netflix", name: "Netflix", logo: "/platforms/netflix.png", alt: "Netflix" },
+  { id: "prime_video", name: "Prime Video", logo: "/platforms/amazon_prime.png", alt: "Amazon Prime Video" },
+  { id: "disney_plus", name: "Disney+", logo: "/platforms/disney_plus.png", alt: "Disney+" },
+];
+
+export const platformsRow2: StreamingPlatform[] = [
+  { id: "disney_plus", name: "Disney+", logo: "/platforms/disney_plus.png", alt: "Disney+" },
+  { id: "max", name: "Max", logo: "/platforms/hbo_max.png", alt: "HBO Max / Max" },
+  { id: "apple_tv", name: "Apple TV+", logo: "/platforms/apple_tv.png", alt: "Apple TV+" },
+  { id: "hulu", name: "Hulu", logo: "/platforms/hulu.png", alt: "Hulu" },
+  { id: "peacock", name: "Peacock", logo: "/platforms/peacock.png", alt: "Peacock" },
+  { id: "paramount", name: "Paramount+", logo: "/platforms/paramount.png", alt: "Paramount+" },
+  { id: "youtube", name: "YouTube", logo: "/platforms/youtube.png", alt: "YouTube" },
+  { id: "netflix", name: "Netflix", logo: "/platforms/netflix.png", alt: "Netflix" },
+  { id: "prime_video", name: "Prime Video", logo: "/platforms/amazon_prime.png", alt: "Amazon Prime Video" },
+];
