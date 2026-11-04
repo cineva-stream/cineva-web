@@ -268,7 +268,7 @@ export const translations = {
       eyebrow: "SATU PENCARIAN. SEMUA PLATFORM.",
       title: "Ketahui tempat menontonnya.",
       subtitle:
-        "Filter berdasarkan layanan langgananmu dan cek ketersediaan tayangan favoritmu — semua dalam satu tempat.",
+        "Filter berdasarkan layanan langgananmu dan cek ketersediaan tayangan favoritmu - semua dalam satu tempat.",
       title1: "Apa pun seleramu,",
       title2: "ada di sini.",
       leadPrefix: "Pilih dari",
@@ -596,7 +596,7 @@ export const translations = {
       eyebrow: "ONE SEARCH. EVERY SERVICE.",
       title: "Know where it's streaming.",
       subtitle:
-        "Filter by the services you already pay for and see availability for your favorite titles — all in one place.",
+        "Filter by the services you already pay for and see availability for your favorite titles - all in one place.",
       title1: "Whatever your taste,",
       title2: "it's right here.",
       leadPrefix: "Choose from",
