@@ -210,24 +210,24 @@ export default function DownloadPicker({
       )}
 
       {variant === "cta" && (
-        <div className={`download-split-btn download-split-cta ${isOpen ? "is-active" : ""}`}>
+        <div className={`download-split-btn download-split-hero download-split-cta ${isOpen ? "is-active" : ""}`}>
           <a
+            className="btn btn-light btn-xl download-main-action"
             href={recommendedUrl}
-            className="cta-btn-primary download-main-action"
             target="_blank"
             rel="noreferrer"
           >
-            <div className="cta-btn-ico">
-              <Icon name="download" size={24} />
-            </div>
-            <div className="cta-btn-text">
-              <span className="cta-btn-meta">{`${stats.version} · ${recommendedLabel} (${recommendedSize})`}</span>
-              <span className="cta-btn-title">{t.cta.downloadBtn}</span>
-            </div>
+            <span className="download-ico-badge" aria-hidden="true">
+              <Icon name="download" size={20} />
+            </span>
+            <span className="btn-stack">
+              <small>{`${stats.version} · ${recommendedLabel} (${recommendedSize})`}</small>
+              {t.cta.downloadBtn}
+            </span>
           </a>
           <button
             type="button"
-            className={`cta-split-toggle ${isOpen ? "is-active" : ""}`}
+            className={`download-split-toggle download-split-toggle-hero download-split-toggle-cta ${isOpen ? "is-active" : ""}`}
             onClick={() => setOpenState((prev) => !prev)}
             aria-haspopup="menu"
             aria-expanded={isOpen}
@@ -235,7 +235,7 @@ export default function DownloadPicker({
             title={m.openSelectorBtn}
           >
             <span className="split-toggle-icon">
-              <Icon name="chevron-down" size={18} />
+              <Icon name="chevron-down" size={16} />
             </span>
           </button>
         </div>

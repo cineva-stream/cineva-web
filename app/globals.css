@@ -2333,7 +2333,7 @@ h2 {
   flex-direction: column;
   justify-content: center;
   gap: 18px;
-  opacity: 0.52;
+  opacity: 0.85;
   transform: rotate(-4deg) scale(1.14);
 }
 .cta-poster-row {
@@ -2390,20 +2390,18 @@ h2 {
     linear-gradient(
       180deg,
       var(--obsidian) 0%,
-      #0a0a0c 4%,
-      rgba(10, 10, 12, 0.94) 14%,
-      rgba(10, 10, 12, 0.72) 30%,
-      rgba(10, 10, 12, 0.66) 50%,
-      rgba(10, 10, 12, 0.72) 70%,
-      rgba(10, 10, 12, 0.94) 86%,
-      #0a0a0c 96%,
+      rgba(10, 10, 12, 0.82) 6%,
+      rgba(10, 10, 12, 0.42) 28%,
+      rgba(10, 10, 12, 0.35) 50%,
+      rgba(10, 10, 12, 0.42) 72%,
+      rgba(10, 10, 12, 0.82) 94%,
       var(--obsidian) 100%
     ),
     radial-gradient(
-      ellipse 72% 65% at 50% 50%,
-      rgba(10, 10, 12, 0.76) 0%,
-      rgba(10, 10, 12, 0.58) 55%,
-      rgba(10, 10, 12, 0.94) 100%
+      ellipse 76% 68% at 50% 50%,
+      rgba(10, 10, 12, 0.38) 0%,
+      rgba(10, 10, 12, 0.52) 58%,
+      rgba(10, 10, 12, 0.88) 100%
     );
 }
 .cta-content {
@@ -2424,20 +2422,23 @@ h2 {
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.04em;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
 }
 .cta-title span {
   display: block;
 }
 .cta-title-outline {
-  color: var(--obsidian);
-  -webkit-text-stroke: 4px rgba(244, 242, 238, 0.85);
-  paint-order: stroke fill;
+  color: transparent;
+  -webkit-text-stroke: 1.8px rgba(255, 255, 255, 0.92);
+  text-shadow: none;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.7));
 }
 .cta-desc {
   margin-top: 22px;
   color: #ece9e2;
   font-size: 18.5px;
   font-weight: 500;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.8);
 }
 .cta-actions {
   margin-top: 36px;
@@ -3300,16 +3301,18 @@ html.has-reveal .tile.is-visible:hover {
   transform: translateY(1.5px);
 }
 
-/* HERO & INSTALL SPLIT BUTTON (Pill 64px - 100% Unified Surface & Radius) */
+/* HERO, INSTALL & CTA SPLIT BUTTON (Pill 64px - 100% Unified Surface & Radius) */
 .download-split-hero,
-.download-split-install {
+.download-split-install,
+.download-split-cta {
   background: var(--text);
   color: var(--obsidian);
   height: 64px;
 }
 
 .download-split-hero .download-main-action,
-.download-split-install .download-main-action {
+.download-split-install .download-main-action,
+.download-split-cta .download-main-action {
   background: transparent !important;
   color: var(--obsidian) !important;
   border: none !important;
@@ -3320,12 +3323,14 @@ html.has-reveal .tile.is-visible:hover {
   transition: background 0.15s ease;
 }
 .download-split-hero .download-main-action:hover,
-.download-split-install .download-main-action:hover {
+.download-split-install .download-main-action:hover,
+.download-split-cta .download-main-action:hover {
   background: rgba(255, 255, 255, 0.35) !important;
 }
 
 .download-split-toggle-hero,
-.download-split-toggle-install {
+.download-split-toggle-install,
+.download-split-toggle-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -3340,52 +3345,14 @@ html.has-reveal .tile.is-visible:hover {
   height: 64px;
 }
 .download-split-toggle-hero:hover,
-.download-split-toggle-install:hover {
+.download-split-toggle-install:hover,
+.download-split-toggle-cta:hover {
   background: rgba(0, 0, 0, 0.06) !important;
 }
 .download-split-toggle-hero.is-active,
-.download-split-toggle-install.is-active {
+.download-split-toggle-install.is-active,
+.download-split-toggle-cta.is-active {
   background: rgba(0, 0, 0, 0.1) !important;
-}
-
-/* CTA SPLIT BUTTON (Rounded 18px) */
-.download-split-cta {
-  border-radius: 18px;
-  background: var(--amber);
-  color: #130b00;
-  box-shadow: 0 10px 30px rgba(255, 149, 0, 0.25);
-}
-.download-split-cta:hover {
-  background: #ffa31f;
-  box-shadow: 0 14px 36px rgba(255, 149, 0, 0.35);
-}
-.download-split-cta .download-main-action {
-  background: transparent !important;
-  border: none !important;
-  border-radius: 0 !important;
-  transition: background 0.15s ease;
-}
-.download-split-cta .download-main-action:hover {
-  background: rgba(255, 255, 255, 0.15) !important;
-}
-.cta-split-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 20px;
-  background: transparent !important;
-  color: #130b00;
-  border: none !important;
-  border-left: 1px solid rgba(19, 11, 0, 0.15) !important;
-  border-radius: 0 !important;
-  cursor: pointer;
-  transition: background 0.15s ease;
-}
-.cta-split-toggle:hover {
-  background: rgba(19, 11, 0, 0.08) !important;
-}
-.cta-split-toggle.is-active {
-  background: rgba(19, 11, 0, 0.14) !important;
 }
 
 /* ROTATING CHEVRON TOGGLE */
