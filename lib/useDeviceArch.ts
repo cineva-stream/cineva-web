@@ -5,6 +5,7 @@ import { ArchitectureAbi } from "./useStats";
 
 export interface DeviceArchInfo {
   recommendedAbi: ArchitectureAbi;
+  platform: "android" | "windows";
   isAndroid: boolean;
   isWindows: boolean;
   isEmulatorOrPc: boolean;
@@ -14,6 +15,7 @@ export interface DeviceArchInfo {
 export function useDeviceArch(): DeviceArchInfo {
   const [arch, setArch] = useState<DeviceArchInfo>({
     recommendedAbi: "arm64-v8a",
+    platform: "android",
     isAndroid: true,
     isWindows: false,
     isEmulatorOrPc: false,
@@ -47,11 +49,26 @@ export function useDeviceArch(): DeviceArchInfo {
         .then((hints) => {
           const archHint = (hints.architecture || "").toLowerCase();
           const bitness = hints.bitness || "";
+          const platformHint = (hints.platform || "").toLowerCase();
+          const isWinHint = platformHint.includes("win") || isWindows;
+
+          if (isWinHint) {
+            setArch({
+              recommendedAbi: "windows",
+              platform: "windows",
+              isAndroid: false,
+              isWindows: true,
+              isEmulatorOrPc: true,
+              label: "Windows (Setup .exe)",
+            });
+            return;
+          }
 
           if (isAndroid) {
             if (archHint === "arm" && bitness === "32") {
               setArch({
                 recommendedAbi: "armeabi-v7a",
+                platform: "android",
                 isAndroid: true,
                 isWindows: false,
                 isEmulatorOrPc: false,
@@ -62,6 +79,7 @@ export function useDeviceArch(): DeviceArchInfo {
             if (archHint.includes("x86") || archHint.includes("amd")) {
               setArch({
                 recommendedAbi: "x86_64",
+                platform: "android",
                 isAndroid: true,
                 isWindows: false,
                 isEmulatorOrPc: true,
@@ -69,9 +87,10 @@ export function useDeviceArch(): DeviceArchInfo {
               });
               return;
             }
-            // Almost all modern Android phones are 64-bit ARM
+            // Standard modern 64-bit Android smartphone
             setArch({
               recommendedAbi: "arm64-v8a",
+              platform: "android",
               isAndroid: true,
               isWindows: false,
               isEmulatorOrPc: false,
@@ -82,11 +101,12 @@ export function useDeviceArch(): DeviceArchInfo {
 
           if (isEmulatorOrPc) {
             setArch({
-              recommendedAbi: "x86_64",
+              recommendedAbi: isWindows ? "windows" : "x86_64",
+              platform: isWindows ? "windows" : "android",
               isAndroid: false,
               isWindows,
               isEmulatorOrPc: true,
-              label: "x86_64 (Emulator PC)",
+              label: isWindows ? "Windows (Setup .exe)" : "x86_64 (Emulator PC)",
             });
             return;
           }
@@ -95,10 +115,20 @@ export function useDeviceArch(): DeviceArchInfo {
     }
 
     // Fallback based on User-Agent string
-    if (isAndroid) {
+    if (isWindows) {
+      setArch({
+        recommendedAbi: "windows",
+        platform: "windows",
+        isAndroid: false,
+        isWindows: true,
+        isEmulatorOrPc: true,
+        label: "Windows (Setup .exe)",
+      });
+    } else if (isAndroid) {
       if (ua.includes("x86_64") || ua.includes("x86-64") || ua.includes("amd64")) {
         setArch({
           recommendedAbi: "x86_64",
+          platform: "android",
           isAndroid: true,
           isWindows: false,
           isEmulatorOrPc: true,
@@ -107,6 +137,7 @@ export function useDeviceArch(): DeviceArchInfo {
       } else if (ua.includes("armeabi") && !ua.includes("arm64") && !ua.includes("aarch64")) {
         setArch({
           recommendedAbi: "armeabi-v7a",
+          platform: "android",
           isAndroid: true,
           isWindows: false,
           isEmulatorOrPc: false,
@@ -116,6 +147,7 @@ export function useDeviceArch(): DeviceArchInfo {
         // Standard modern Android smartphone
         setArch({
           recommendedAbi: "arm64-v8a",
+          platform: "android",
           isAndroid: true,
           isWindows: false,
           isEmulatorOrPc: false,
@@ -123,17 +155,17 @@ export function useDeviceArch(): DeviceArchInfo {
         });
       }
     } else {
-      // Desktop / PC / Laptop
+      // Mac / Linux / Other Desktop
       setArch({
-        recommendedAbi: "arm64-v8a", // Default recommend for when sending to phone
+        recommendedAbi: "arm64-v8a",
+        platform: "android",
         isAndroid: false,
-        isWindows,
+        isWindows: false,
         isEmulatorOrPc: true,
-        label: "ARM64 (Disarankan untuk HP)",
+        label: "ARM64 (Android)",
       });
     }
   }, []);
 
   return arch;
 }
-

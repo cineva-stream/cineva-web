@@ -2,11 +2,16 @@ import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-const DEFAULT_VERSION = "v1.1.2";
-const DEFAULT_APK_NAME = "Cineva_v1.1.2.apk";
+const DEFAULT_VERSION = "v1.1.4";
+const DEFAULT_APK_NAME = "Cineva_v1.1.4-arm64-v8a.apk";
 const DEFAULT_APK_URL =
-  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.2/Cineva_v1.1.2.apk";
-const DEFAULT_APK_SIZE = "35.5 MB";
+  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.4/Cineva_v1.1.4-arm64-v8a.apk";
+const DEFAULT_APK_SIZE = "35.8 MB";
+
+const DEFAULT_WINDOWS_NAME = "Cineva_setup_v1.1.4.exe";
+const DEFAULT_WINDOWS_URL =
+  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.4/Cineva_setup_v1.1.4.exe";
+const DEFAULT_WINDOWS_SIZE = "28.2 MB";
 
 interface GitHubAsset {
   name?: string;
@@ -27,6 +32,13 @@ export type ArchitectureAbi = "arm64-v8a" | "armeabi-v7a" | "x86_64" | "universa
 export interface ApkVariant {
   abi: ArchitectureAbi;
   label: string;
+  name: string;
+  url: string;
+  size: string;
+  sizeBytes: number;
+}
+
+export interface WindowsVariant {
   name: string;
   url: string;
   size: string;
@@ -57,6 +69,12 @@ export async function GET() {
     let apkUrl = DEFAULT_APK_URL;
     let apkSize = DEFAULT_APK_SIZE;
     const apks: ApkVariant[] = [];
+    let windows: WindowsVariant | null = {
+      name: DEFAULT_WINDOWS_NAME,
+      url: DEFAULT_WINDOWS_URL,
+      size: DEFAULT_WINDOWS_SIZE,
+      sizeBytes: 29620072,
+    };
 
     if (Array.isArray(releases) && releases.length > 0) {
       for (const r of releases) {
@@ -79,15 +97,27 @@ export async function GET() {
         const apkAssets = assets.filter(
           (a) => typeof a.name === "string" && a.name.toLowerCase().endsWith(".apk")
         );
+        const exeAsset = assets.find(
+          (a) => typeof a.name === "string" && a.name.toLowerCase().endsWith(".exe")
+        );
 
         // Helper to format real MB string from exact bytes
-        const formatSize = (bytes?: number, fallback = "35.5 MB"): string => {
+        const formatSize = (bytes?: number, fallback = "35.8 MB"): string => {
           if (typeof bytes === "number" && bytes > 0) {
             const mb = bytes / (1024 * 1024);
             return `${mb.toFixed(1)} MB`;
           }
           return fallback;
         };
+
+        if (exeAsset && exeAsset.browser_download_url) {
+          windows = {
+            name: exeAsset.name || `Cineva_setup_${version}.exe`,
+            url: exeAsset.browser_download_url,
+            size: formatSize(exeAsset.size, "28.2 MB"),
+            sizeBytes: exeAsset.size || 0,
+          };
+        }
 
         // Find specific architecture variants
         const arm64Asset = apkAssets.find(
@@ -114,7 +144,7 @@ export async function GET() {
             label: "ARM64 (64-bit)",
             name: arm64Asset.name || `Cineva_${version}-arm64-v8a.apk`,
             url: arm64Asset.browser_download_url,
-            size: formatSize(arm64Asset.size, "35.5 MB"),
+            size: formatSize(arm64Asset.size, "35.8 MB"),
             sizeBytes: arm64Asset.size || 0,
           });
         }
@@ -125,7 +155,7 @@ export async function GET() {
             label: "ARMv7 (32-bit)",
             name: armv7Asset.name || `Cineva_${version}-armeabi-v7a.apk`,
             url: armv7Asset.browser_download_url,
-            size: formatSize(armv7Asset.size, "32.4 MB"),
+            size: formatSize(armv7Asset.size, "32.8 MB"),
             sizeBytes: armv7Asset.size || 0,
           });
         }
@@ -136,7 +166,7 @@ export async function GET() {
             label: "x86_64 (Intel/AMD)",
             name: x86_64Asset.name || `Cineva_${version}-x86_64.apk`,
             url: x86_64Asset.browser_download_url,
-            size: formatSize(x86_64Asset.size, "40.3 MB"),
+            size: formatSize(x86_64Asset.size, "40.7 MB"),
             sizeBytes: x86_64Asset.size || 0,
           });
         }
@@ -147,7 +177,7 @@ export async function GET() {
             label: "Universal (Semua CPU)",
             name: universalAsset.name || `Cineva_${version}.apk`,
             url: universalAsset.browser_download_url,
-            size: formatSize(universalAsset.size, "99.2 MB"),
+            size: formatSize(universalAsset.size, "100.1 MB"),
             sizeBytes: universalAsset.size || 0,
           });
         }
@@ -155,11 +185,11 @@ export async function GET() {
         // Default primary APK for backward compatibility (prefer arm64 if available, else universal)
         const primaryAsset = arm64Asset || universalAsset || apkAssets[0];
         if (primaryAsset) {
-          apkName = primaryAsset.name?.trim() || `Cineva_${version}.apk`;
+          apkName = primaryAsset.name?.trim() || `Cineva_${version}-arm64-v8a.apk`;
           apkUrl =
             primaryAsset.browser_download_url?.trim() ||
             `https://github.com/cineva-stream/Cineva/releases/download/${version}/${apkName}`;
-          apkSize = formatSize(primaryAsset.size, "35.5 MB");
+          apkSize = formatSize(primaryAsset.size, "35.8 MB");
         }
       }
     }
@@ -172,6 +202,7 @@ export async function GET() {
         apkUrl,
         apkSize,
         apks,
+        windows,
       },
       {
         headers: {
@@ -179,26 +210,21 @@ export async function GET() {
         },
       }
     );
-  } catch (err) {
+  } catch {
     return NextResponse.json(
       {
-        total: 1,
+        total: null,
         version: DEFAULT_VERSION,
         apkName: DEFAULT_APK_NAME,
         apkUrl: DEFAULT_APK_URL,
         apkSize: DEFAULT_APK_SIZE,
-        apks: [
-          {
-            abi: "universal",
-            label: "Universal (Semua CPU)",
-            name: DEFAULT_APK_NAME,
-            url: DEFAULT_APK_URL,
-            size: DEFAULT_APK_SIZE,
-            sizeBytes: 38000000,
-          },
-        ],
-        fallback: true,
-        error: (err as Error).message,
+        apks: [],
+        windows: {
+          name: DEFAULT_WINDOWS_NAME,
+          url: DEFAULT_WINDOWS_URL,
+          size: DEFAULT_WINDOWS_SIZE,
+          sizeBytes: 29620072,
+        },
       },
       {
         headers: {

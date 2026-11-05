@@ -11,6 +11,8 @@ const REVEAL_SELECTOR = [
   ".tile",
   ".player-copy",
   ".player-shot",
+  ".multiplatform-copy",
+  ".multiplatform-visual",
   ".install-copy",
   ".install-term",
   ".faq-head",

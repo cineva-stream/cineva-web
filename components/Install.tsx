@@ -13,15 +13,17 @@ export default function Install() {
   const stats = useStats();
   const deviceArch = useDeviceArch();
 
-  const matchedApk = stats.apks?.find((a) => a.abi === deviceArch.recommendedAbi);
-  const recommendedSize = matchedApk?.size || stats.apkSize;
+  const isWindows = deviceArch.isWindows;
+  const targetSize = isWindows
+    ? (stats.windows?.size || "28.2 MB")
+    : (stats.apks?.find((a) => a.abi === deviceArch.recommendedAbi)?.size || stats.apkSize || "35.8 MB");
 
   const dynamicSpecs = [
     { k: t.install.specLabels.version, v: stats.version },
-    { k: t.install.specLabels.size, v: `${recommendedSize} (${deviceArch.label})` },
-    { k: t.install.specLabels.os, v: "Android 5.0+" },
-    { k: t.install.specLabels.cpu, v: "arm64-v8a, armeabi-v7a, x86_64, Universal" },
-    { k: t.install.specLabels.pkg, v: "com.primadev.cineva" },
+    { k: t.install.specLabels.size, v: `${targetSize} (${deviceArch.label})` },
+    { k: t.install.specLabels.os, v: isWindows ? "Windows 10 / 11 (64-bit)" : "Android 5.0+" },
+    { k: t.install.specLabels.cpu, v: isWindows ? "x86_64 (64-bit)" : "arm64-v8a, armeabi-v7a, x86_64" },
+    { k: t.install.specLabels.pkg, v: isWindows ? "Cineva_setup.exe" : "com.primadev.cineva" },
   ];
 
   return (

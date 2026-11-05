@@ -8,7 +8,9 @@ export const RELEASES_URL = "https://github.com/cineva-stream/Cineva/releases";
 export const ISSUES_URL = "https://github.com/cineva-stream/Cineva/issues";
 export const LICENSE_URL = "https://github.com/cineva-stream/Cineva/blob/main/LICENSE";
 export const APK_DOWNLOAD_URL =
-  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.2/Cineva_v1.1.2.apk";
+  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.4/Cineva_v1.1.4-arm64-v8a.apk";
+export const EXE_DOWNLOAD_URL =
+  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.4/Cineva_setup_v1.1.4.exe";
 
 export const posterWall = [
   "/posters/squid_game.webp",
@@ -61,6 +63,7 @@ export const translations = {
         { href: "#alasan", label: "Alasan" },
         { href: "#fitur", label: "Fitur" },
         { href: "#tur", label: "Tur" },
+          { href: "#multiplatform", label: "Windows" },
         { href: "#pasang", label: "Pasang" },
         { href: "#faq", label: "FAQ" },
       ],
@@ -83,6 +86,11 @@ export const translations = {
       downloadAction: "Unduh",
       openSelectorBtn: "Pilihan CPU Lain",
       variants: {
+        windows: {
+          title: "Windows Setup (64-bit)",
+          badge: "PC & Laptop",
+          desc: "Installer resmi tunggal untuk Windows 10 & 11 (64-bit). Dilengkapi pintasan keyboard & frameless player (28.2 MB).",
+        },
         arm64: {
           title: "arm64-v8a (64-bit ARM)",
           badge: "Disarankan (99% HP Modern)",
@@ -202,6 +210,32 @@ export const translations = {
         avatarAlt: "Pilihan avatar sinema di profil Cineva",
         perks: ["Tanpa email", "Tanpa nomor telepon", "Tanpa registrasi"],
       },
+    },
+    multiplatform: {
+      badge: "WINDOWS DESKTOP",
+      title1: "Hadir di layar lebar,",
+      title2: "PC & Laptop.",
+      lead: "Katalog, watchlist, dan pemutar sinematik yang sama, didesain ulang penuh untuk keleluasaan monitor layar lebar dan kontrol keyboard & mouse yang presisi.",
+      screens: [
+        {
+          src: "/screens/windows_home.webp",
+          alt: "Tampilan Beranda Cineva di Windows Desktop",
+          label: "Beranda Layar Lebar",
+          desc: "Billboard carousel 490px dengan navigasi rail kiri yang elegan.",
+        },
+        {
+          src: "/screens/windows_details.webp",
+          alt: "Tampilan Detail Film Cineva di Windows Desktop",
+          label: "Detail Sinematik",
+          desc: "Canvas header 480px, poster mengambang, dan grid episode 2-kolom.",
+        },
+      ],
+      features: [
+        { title: "Frameless Obsidian UI", desc: "Tampilan borderless minimalis dengan tombol kontrol native." },
+        { title: "Smooth Mouse Scrolling", desc: "Guliran mouse super mulus berbasis interpolasi eksponensial." },
+        { title: "Pintasan Keyboard Penuh", desc: "Spasi untuk jeda, panah untuk seek & volume boost 150%." },
+        { title: "Single-File Installer", desc: "Setup instan berukuran ringan (28.2 MB) siap pasang." },
+      ],
     },
     showcase: {
       title1: "Dari penemuan",
@@ -389,6 +423,7 @@ export const translations = {
         { href: "#alasan", label: "Reasons" },
         { href: "#fitur", label: "Features" },
         { href: "#tur", label: "Tour" },
+          { href: "#multiplatform", label: "Windows" },
         { href: "#pasang", label: "Install" },
         { href: "#faq", label: "FAQ" },
       ],
@@ -411,6 +446,11 @@ export const translations = {
       downloadAction: "Download",
       openSelectorBtn: "Choose other CPU",
       variants: {
+        windows: {
+          title: "Windows Setup (64-bit)",
+          badge: "PC & Laptop",
+          desc: "Official standalone installer for Windows 10 & 11 (64-bit). Features keyboard controls & frameless player (28.2 MB).",
+        },
         arm64: {
           title: "arm64-v8a (64-bit ARM)",
           badge: "Recommended (99% Modern Phones)",
@@ -530,6 +570,32 @@ export const translations = {
         avatarAlt: "Cinema character avatar selection in Cineva profile",
         perks: ["No email", "No phone number", "No registration"],
       },
+    },
+    multiplatform: {
+      badge: "WINDOWS DESKTOP",
+      title1: "Made for the big screen,",
+      title2: "desktop too.",
+      lead: "The same library, watchlist, and cinematic player, redrawn for the widescreen clarity of desktop monitors, keyboard shortcuts, and mouse precision.",
+      screens: [
+        {
+          src: "/screens/windows_home.webp",
+          alt: "Cineva Home on Windows Desktop",
+          label: "Widescreen Home",
+          desc: "490px billboard carousel with an elegant left navigation rail.",
+        },
+        {
+          src: "/screens/windows_details.webp",
+          alt: "Cineva Details on Windows Desktop",
+          label: "Cinematic Details",
+          desc: "480px canvas header, floating poster, and 2-column episode grid.",
+        },
+      ],
+      features: [
+        { title: "Frameless Obsidian UI", desc: "Minimal borderless dark window with integrated title controls." },
+        { title: "Smooth Mouse Scrolling", desc: "Buttery-smooth scrolling powered by exponential interpolation." },
+        { title: "Keyboard Shortcuts", desc: "Space for play/pause, arrows for seeking and 150% volume boost." },
+        { title: "Single-File Installer", desc: "Lightweight standalone installer (28.2 MB) ready to run." },
+      ],
     },
     showcase: {
       title1: "From discovery",
@@ -733,12 +799,13 @@ export const discover = {
 };
 export const watchlistRows = translations.id.bento.watch.rows;
 export const player = translations.id.player;
+export const multiplatform = translations.id.multiplatform;
 export const categories = translations.id.marquee.categories;
 export const install = translations.id.install;
 export const specs = [
-  { k: "Versi", v: "v1.1.2" },
-  { k: "Ukuran APK", v: "35.5 MB (arm64-v8a) / 99.2 MB (Universal)" },
-  { k: "Target OS", v: "Android 5.0+" },
+  { k: "Versi", v: "v1.1.4" },
+  { k: "Ukuran", v: "28.2 MB (Windows) / 35.8 MB (Android)" },
+  { k: "Target OS", v: "Windows 10/11 (64-bit), Android 5.0+" },
   { k: "CPU", v: "arm64-v8a, armeabi-v7a, x86_64, Universal" },
   { k: "Package", v: "com.primadev.cineva" },
 ];

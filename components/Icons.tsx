@@ -69,6 +69,22 @@ const paths: Record<string, ReactNode> = {
   github: (
     <path d="M9 19c-4 1.2-4-2-6-2.5m12 5v-3.5a3 3 0 00-.8-2.3c2.6-.3 5.3-1.3 5.3-5.7a4.4 4.4 0 00-1.2-3.1 4.1 4.1 0 00-.1-3.1s-1-.3-3.2 1.2a11 11 0 00-5.8 0C6.9 4 5.9 4.3 5.9 4.3a4.1 4.1 0 00-.1 3.1A4.4 4.4 0 004.6 10.5c0 4.4 2.7 5.4 5.3 5.7A3 3 0 009 18.5V22" />
   ),
+  android: (
+    <>
+      <path d="M5 11.5a7 7 0 0114 0H5z" />
+      <path d="M7.5 5l1.6 2.4M16.5 5l-1.6 2.4" />
+      <circle cx="9.2" cy="9.2" r="1" fill="currentColor" stroke="none" />
+      <circle cx="14.8" cy="9.2" r="1" fill="currentColor" stroke="none" />
+    </>
+  ),
+  windows: (
+    <>
+      <rect x="3" y="3.5" width="8" height="8" rx="1" fill="currentColor" stroke="none" />
+      <rect x="13" y="3.5" width="8" height="8" rx="1" fill="currentColor" stroke="none" />
+      <rect x="3" y="12.5" width="8" height="8" rx="1" fill="currentColor" stroke="none" />
+      <rect x="13" y="12.5" width="8" height="8" rx="1" fill="currentColor" stroke="none" />
+    </>
+  ),
 };
 
 export function Icon({ name, size = 22 }: { name: keyof typeof paths | string; size?: number }) {

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Icon } from "./Icons";
 import LanguageSwitcher, { FlagID, FlagUK } from "./LanguageSwitcher";
-import { REPO_URL } from "@/lib/content";
+import { REPO_URL, EXE_DOWNLOAD_URL } from "@/lib/content";
 import { useLanguage } from "@/lib/LanguageContext";
 import { useStats } from "@/lib/useStats";
 import { useDeviceArch } from "@/lib/useDeviceArch";
@@ -12,8 +12,10 @@ export default function Navbar() {
   const { lang, setLang, t } = useLanguage();
   const stats = useStats();
   const deviceArch = useDeviceArch();
+  const isWindows = deviceArch.isWindows;
   const matchedApk = stats.apks?.find((a) => a.abi === deviceArch.recommendedAbi);
-  const recommendedUrl = matchedApk?.url || stats.apkUrl;
+  const targetUrl = isWindows ? (stats.windows?.url || stats.exeUrl || EXE_DOWNLOAD_URL) : (matchedApk?.url || stats.apkUrl);
+  const platformIcon: "windows" | "android" = isWindows ? "windows" : "android";
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -86,8 +88,8 @@ export default function Navbar() {
               <Icon name="github" size={16} />
               <span>GitHub</span>
             </a>
-            <a className="btn btn-light btn-sm" href={recommendedUrl} target="_blank" rel="noreferrer">
-              <Icon name="download" size={16} />
+            <a className="btn btn-light btn-sm" href={targetUrl} target="_blank" rel="noreferrer">
+              <Icon name={platformIcon} size={16} />
               {t.nav.download}
             </a>
           </div>
@@ -145,14 +147,14 @@ export default function Navbar() {
           <div className="nav-mobile-cta">
             <a
               className="btn btn-primary btn-block"
-              href={recommendedUrl}
+              href={targetUrl}
               target="_blank"
               rel="noreferrer"
               tabIndex={open ? 0 : -1}
               onClick={() => setOpen(false)}
             >
-              <Icon name="download" size={19} />
-              {t.nav.downloadApk}
+              <Icon name={platformIcon} size={19} />
+              {isWindows ? (lang === "en" ? "Download for Windows" : "Unduh untuk Windows") : t.nav.downloadApk}
             </a>
             <a
               className="btn btn-ghost btn-block"

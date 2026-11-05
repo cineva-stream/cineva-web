@@ -1,13 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { APK_DOWNLOAD_URL } from "./content";
+import { APK_DOWNLOAD_URL, EXE_DOWNLOAD_URL } from "./content";
 
-export type ArchitectureAbi = "arm64-v8a" | "armeabi-v7a" | "x86_64" | "universal";
+export type ArchitectureAbi = "arm64-v8a" | "armeabi-v7a" | "x86_64" | "universal" | "windows";
 
 export type ApkVariant = {
   abi: ArchitectureAbi;
   label: string;
+  name: string;
+  url: string;
+  size: string;
+  sizeBytes: number;
+};
+
+export type WindowsVariant = {
   name: string;
   url: string;
   size: string;
@@ -22,16 +29,27 @@ export type Stats = {
   apkUrl: string;
   apkSize: string;
   apks: ApkVariant[];
+  exeUrl: string;
+  windows: WindowsVariant | null;
+};
+
+const DEFAULT_WINDOWS: WindowsVariant = {
+  name: "Cineva_setup_v1.1.4.exe",
+  url: EXE_DOWNLOAD_URL,
+  size: "28.2 MB",
+  sizeBytes: 29620072,
 };
 
 const DEFAULT_STATS: Stats = {
   stars: null,
   downloads: null,
-  version: "v1.1.2",
-  apkName: "Cineva_v1.1.2.apk",
+  version: "v1.1.4",
+  apkName: "Cineva_v1.1.4-arm64-v8a.apk",
   apkUrl: APK_DOWNLOAD_URL,
-  apkSize: "35.5 MB",
+  apkSize: "35.8 MB",
   apks: [],
+  exeUrl: EXE_DOWNLOAD_URL,
+  windows: DEFAULT_WINDOWS,
 };
 
 let cache: Promise<Stats> | null = null;
@@ -55,6 +73,8 @@ function load(): Promise<Stats> {
       apkUrl: typeof dl?.apkUrl === "string" && dl.apkUrl ? dl.apkUrl : DEFAULT_STATS.apkUrl,
       apkSize: typeof dl?.apkSize === "string" && dl.apkSize ? dl.apkSize : DEFAULT_STATS.apkSize,
       apks: Array.isArray(dl?.apks) ? dl.apks : [],
+      exeUrl: dl?.windows?.url || DEFAULT_STATS.exeUrl,
+      windows: dl?.windows || DEFAULT_STATS.windows,
     }));
   }
   return cache;

@@ -6253,6 +6253,10 @@ html.has-reveal .player-copy,
 
 html.has-reveal .player-shot,
 
+html.has-reveal .multiplatform-copy,
+
+html.has-reveal .multiplatform-visual,
+
 html.has-reveal .install-copy,
 
 html.has-reveal .install-term,
@@ -6281,7 +6285,9 @@ html.has-reveal .cta-content {
 
 html.has-reveal [data-reveal="scale"],
 
-html.has-reveal .player-shot {
+html.has-reveal .player-shot,
+
+html.has-reveal .multiplatform-visual {
 
   transform: translate3d(0, 24px, 0) scale(0.96);
 
@@ -7621,3 +7627,270 @@ html.has-reveal .tile.is-visible:hover {
 
 }
 
+
+
+/* ==========================================================================
+   MINIMALIST DOWNLOAD BUTTON TEXT & FLYOUT LEAD ICON
+   ========================================================================== */
+.btn-stack-title {
+  font-family: var(--font-plus-jakarta-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: inherit;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.btn-stack-sub {
+  font-size: 11.5px;
+  font-weight: 500;
+  opacity: 0.72;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.flyout-item-lead {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--muted);
+  flex-shrink: 0;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.flyout-item:hover .flyout-item-lead {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+}
+
+.flyout-item.is-recommended .flyout-item-lead {
+  background: rgba(255, 149, 0, 0.15);
+  color: var(--amber);
+}
+
+/* ==========================================================================
+   MULTIPLATFORM SECTION (WINDOWS DESKTOP 2-COLUMN SIDE-BY-SIDE)
+   ========================================================================== */
+.sec-multiplatform {
+  position: relative;
+  padding-top: 100px;
+  padding-bottom: 110px;
+  overflow: hidden;
+}
+
+.multiplatform-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: 56px;
+}
+
+/* Sisi Kiri: Visual Gambar Windows */
+.multiplatform-visual {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Viewport Gambar Windows (Clean Tanpa Background) */
+.multiplatform-window-viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2560 / 1459;
+  border-radius: 12px;
+  overflow: hidden;
+  background: transparent;
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.multiplatform-visual:hover .multiplatform-window-viewport {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.75);
+}
+
+/* Slides Transisi Mulus (Crossfade) */
+.multiplatform-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.01);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.7s ease;
+  z-index: 1;
+}
+
+.multiplatform-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  z-index: 2;
+}
+
+.multiplatform-window-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Indikator Titik Minimalis */
+.multiplatform-indicators {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+  z-index: 2;
+}
+
+.multiplatform-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.multiplatform-dot:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.multiplatform-dot.is-active {
+  width: 24px;
+  background: var(--amber);
+  box-shadow: 0 0 10px rgba(255, 149, 0, 0.4);
+}
+
+/* Sisi Kanan: Konten Teks & Fitur */
+.multiplatform-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.multiplatform-title {
+  font-size: clamp(30px, 3.6vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+
+.multiplatform-lead {
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.6;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+/* Kartu Fitur Kompak */
+.multiplatform-points {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.multiplatform-point-card {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.multiplatform-point-card:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 149, 0, 0.3);
+}
+
+.multiplatform-point-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: rgba(255, 149, 0, 0.1);
+  color: var(--amber);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.multiplatform-point-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.multiplatform-point-text b {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.multiplatform-point-text span {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 960px) {
+  .multiplatform-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .multiplatform-visual {
+    order: 2;
+  }
+
+  .multiplatform-copy {
+    order: 1;
+    text-align: center;
+    align-items: center;
+  }
+
+  .multiplatform-points {
+    text-align: left;
+    width: 100%;
+    max-width: 580px;
+  }
+}
+
+@media (max-width: 600px) {
+  .multiplatform-points {
+    grid-template-columns: 1fr;
+  }
+
+  .sec-multiplatform {
+    padding-top: 70px;
+    padding-bottom: 80px;
+  }
+}
