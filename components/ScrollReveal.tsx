@@ -22,9 +22,6 @@ const REVEAL_SELECTOR = [
 
 export default function ScrollReveal() {
   useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
-
     const root = document.documentElement;
     const elements = Array.from(document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR));
 
@@ -43,17 +40,33 @@ export default function ScrollReveal() {
         });
       },
       {
-        threshold: 0.1,
-        rootMargin: "0px 0px -32px 0px",
+        threshold: 0.05,
+        rootMargin: "0px 0px -20px 0px",
       }
     );
 
-    // Observasi semua elemen dengan IntersectionObserver native tanpa memanggil getBoundingClientRect()
-    // untuk mencegah Forced Reflow (layout thrashing) saat inisialisasi halaman.
+    // Observasi semua elemen dengan IntersectionObserver
     elements.forEach((el) => observer.observe(el));
 
-    // Aktifkan class .has-reveal pada animation frame berikutnya agar elemen di viewport
-    // sudah terdaftar tanpa jeda kedip (flash).
+    // MutationObserver untuk menangkap elemen dinamis yang di-mount setelah inisialisasi awal
+    const mutObserver = new MutationObserver((mutations) => {
+      for (const m of mutations) {
+        m.addedNodes.forEach((node) => {
+          if (node instanceof HTMLElement) {
+            if (node.matches(REVEAL_SELECTOR)) {
+              observer.observe(node);
+            }
+            node.querySelectorAll<HTMLElement>(REVEAL_SELECTOR).forEach((child) => {
+              observer.observe(child);
+            });
+          }
+        });
+      }
+    });
+
+    mutObserver.observe(document.body, { childList: true, subtree: true });
+
+    // Aktifkan class .has-reveal pada animation frame berikutnya agar animasi scroll reveal berjalan mulus
     const rafId = requestAnimationFrame(() => {
       root.classList.add("has-reveal");
     });
@@ -61,6 +74,7 @@ export default function ScrollReveal() {
     return () => {
       cancelAnimationFrame(rafId);
       observer.disconnect();
+      mutObserver.disconnect();
       root.classList.remove("has-reveal");
     };
   }, []);

@@ -1,9 +1,10 @@
 "use client";
 
 import { Icon } from "./Icons";
-import DownloadPicker from "./DownloadPicker";
-import { RELEASES_URL } from "@/lib/content";
+import { RELEASES_URL, EXE_DOWNLOAD_URL } from "@/lib/content";
 import { useLanguage } from "@/lib/LanguageContext";
+import { useStats } from "@/lib/useStats";
+import { useDeviceArch } from "@/lib/useDeviceArch";
 
 const ctaPosters = [
   "/posters/squid_game.webp",
@@ -26,7 +27,25 @@ const shifted2 = [...basePosters.slice(5), ...basePosters.slice(0, 5)];
 const row4 = [...shifted2, ...shifted2];
 
 export default function CtaBanner() {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
+  const stats = useStats();
+  const deviceArch = useDeviceArch();
+
+  const isWindows = deviceArch.isWindows;
+  const platformName = isWindows ? "Windows" : "Android";
+  const platformIcon: "windows" | "android" = isWindows ? "windows" : "android";
+
+  const matchedApk = stats.apks?.find((a) => a.abi === deviceArch.recommendedAbi);
+  const targetUrl = isWindows
+    ? (stats.windows?.url || stats.exeUrl || EXE_DOWNLOAD_URL)
+    : (matchedApk?.url || stats.apkUrl);
+
+  const targetSize = isWindows
+    ? (stats.windows?.size || "28.2 MB")
+    : (matchedApk?.size || (deviceArch.recommendedAbi === "universal" ? "100.1 MB" : "35.8 MB"));
+
+  const topText = lang === "en" ? `Download for ${platformName}` : `Unduh untuk ${platformName}`;
+  const subText = `${stats.version} - ${targetSize}`;
 
   return (
     <section className="cta-banner-section" aria-label={t.cta.sectionAria}>
@@ -88,16 +107,27 @@ export default function CtaBanner() {
 
           {/* Action Buttons */}
           <div className="cta-actions">
-            <DownloadPicker variant="cta" />
-
             <a
-              href={RELEASES_URL}
-              className="cta-btn-secondary"
+              className="btn btn-light btn-xl cta-main-download-btn"
+              href={targetUrl}
               target="_blank"
               rel="noreferrer"
             >
-              <span>{t.cta.allReleases}</span>
-              <span className="cta-arrow">↗</span>
+              <span className="download-ico-badge" aria-hidden="true">
+                <Icon name={platformIcon} size={20} />
+              </span>
+              <span className="btn-stack">
+                <strong className="btn-stack-title">{topText}</strong>
+                <small className="btn-stack-sub">{subText}</small>
+              </span>
+            </a>
+
+            <a
+              href="#pasang"
+              className="cta-btn-secondary"
+            >
+              <Icon name="download" size={16} />
+              <span>{lang === "en" ? "Platforms & Guide" : "Pilihan Platform & Panduan"}</span>
             </a>
           </div>
         </div>

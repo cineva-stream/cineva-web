@@ -1590,6 +1590,8 @@ h2 {
 
   padding-bottom: 14px;
 
+  will-change: transform;
+
   backface-visibility: hidden;
 
   -webkit-backface-visibility: hidden;
@@ -1600,13 +1602,13 @@ h2 {
 
 .wall-col.down .wall-track {
 
-  animation: wallDown 90s linear infinite;
+  animation: wallDown 52s linear infinite;
 
 }
 
 .wall-col.up .wall-track {
 
-  animation: wallUp 90s linear infinite;
+  animation: wallUp 52s linear infinite;
 
 }
 
@@ -3925,7 +3927,7 @@ h2 {
 
   flex-direction: column;
 
-  gap: 22px;
+  gap: 16px;
 
   width: 100%;
 
@@ -3935,7 +3937,7 @@ h2 {
 
   margin-top: 10px;
 
-  padding-block: 8px;
+  padding-block: 10px;
 
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
 
@@ -3945,9 +3947,11 @@ h2 {
 
 
 
+/* Tetap berjalan mulus saat kursor hover */
+
 .platform-marq-wrapper:hover .platform-marq-track {
 
-  animation-play-state: paused;
+  animation-play-state: running;
 
 }
 
@@ -3960,6 +3964,10 @@ h2 {
   width: 100%;
 
   display: flex;
+
+  /* Ruang bernapas agar kartu platform yang melayang ke atas saat di-hover tidak terpotong */
+
+  padding-block: 8px;
 
 }
 
@@ -3983,7 +3991,9 @@ h2 {
 
   transform: translate3d(0, 0, 0);
 
-  animation: platformMarq 40s linear infinite;
+  animation: platformMarq 26s linear infinite;
+
+  padding-block: 4px;
 
 }
 
@@ -3991,7 +4001,7 @@ h2 {
 
 .platform-marq-row.rev .platform-marq-track {
 
-  animation: platformMarqRev 44s linear infinite;
+  animation: platformMarqRev 30s linear infinite;
 
 }
 
@@ -4965,13 +4975,15 @@ h2 {
 
   white-space: nowrap;
 
+  will-change: transform;
+
   backface-visibility: hidden;
 
   -webkit-backface-visibility: hidden;
 
   transform: translate3d(0, 0, 0);
 
-  animation: ctaLeft 44s linear infinite;
+  animation: ctaLeft 38s linear infinite;
 
 }
 
@@ -4979,13 +4991,13 @@ h2 {
 
   animation-name: ctaRight;
 
-  animation-duration: 50s;
+  animation-duration: 42s;
 
 }
 
 .cta-poster-row.slow {
 
-  animation-duration: 56s;
+  animation-duration: 46s;
 
 }
 
@@ -6340,46 +6352,6 @@ html.has-reveal .tile.is-visible:hover {
   html {
 
     scroll-behavior: auto;
-
-  }
-
-  *,
-
-  *::before,
-
-  *::after {
-
-    animation-duration: 0.01ms !important;
-
-    animation-iteration-count: 1 !important;
-
-    transition-duration: 0.01ms !important;
-
-  }
-
-  .wall-track,
-
-  .marq-track,
-
-  .cta-poster-row,
-
-  .mini-wall-row,
-
-  .ring-orbit,
-
-  .ring-fg,
-
-  .maint-core,
-
-  .landscape-device,
-
-  .player-device,
-
-  .hero-chip,
-
-  .mini-float-pill {
-
-    animation: none !important;
 
   }
 
@@ -7892,5 +7864,537 @@ html.has-reveal .tile.is-visible:hover {
   .sec-multiplatform {
     padding-top: 70px;
     padding-bottom: 80px;
+  }
+}
+
+/* ==========================================================================
+   UNIFIED MULTIPLATFORM INSTALL HUB (SINGLE-PAGE, NO DROPDOWNS/MODALS)
+   ========================================================================== */
+.sec-install {
+  position: relative;
+  padding-top: 100px;
+  padding-bottom: 110px;
+}
+
+.install-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 40px;
+}
+
+.install-title {
+  font-size: clamp(32px, 4.2vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+
+.install-lead {
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* Segmented Platform Switcher */
+.install-platform-switcher {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 999px;
+  margin: 0 auto 48px;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.platform-switch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 24px;
+  border-radius: 999px;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-family: var(--font-plus-jakarta-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.platform-switch-btn:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.platform-switch-btn.is-active {
+  background: #ffffff;
+  color: #0c0c0e;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.platform-btn-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  line-height: 1.2;
+}
+
+.platform-btn-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.platform-btn-sub {
+  font-size: 11px;
+  font-weight: 500;
+  opacity: 0.72;
+}
+
+/* 2-Column Grid Layout */
+.install-platform-view {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 40px;
+  align-items: start;
+  animation: tabFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes tabFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.install-column-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.install-col-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.install-col-version {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 12px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+/* Android 4 Variants Grid */
+.install-variants-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.install-variant-card {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  padding: 18px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.install-variant-card:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.install-variant-card.is-recommended {
+  border-color: rgba(255, 149, 0, 0.3);
+  background: rgba(255, 149, 0, 0.035);
+}
+
+.install-variant-card.is-recommended:hover {
+  border-color: rgba(255, 149, 0, 0.5);
+  background: rgba(255, 149, 0, 0.06);
+}
+
+.variant-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.variant-name-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.variant-name {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.variant-rec-tag {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--amber);
+  background: rgba(255, 149, 0, 0.12);
+  padding: 2px 7px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+
+.variant-size {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 12.5px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.variant-note {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.variant-dl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.18s ease;
+}
+
+.variant-dl-btn:hover {
+  background: #ffffff;
+  color: #0c0c0e;
+  border-color: #ffffff;
+}
+
+.install-variant-card.is-recommended .variant-dl-btn {
+  background: rgba(255, 149, 0, 0.14);
+  border-color: rgba(255, 149, 0, 0.28);
+  color: var(--text);
+}
+
+.install-variant-card.is-recommended .variant-dl-btn:hover {
+  background: var(--amber);
+  color: #0c0c0e;
+  border-color: var(--amber);
+}
+
+/* Windows Featured Hero Card */
+.install-windows-hero-card {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 26px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.windows-card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.windows-icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  flex-shrink: 0;
+}
+
+.windows-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+  letter-spacing: -0.01em;
+}
+
+.windows-file-name {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.windows-card-desc {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0;
+}
+
+.windows-specs-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  margin: 0;
+}
+
+.windows-spec-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.windows-spec-row dt {
+  font-size: 11.5px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.windows-spec-row dd {
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 600;
+  margin: 0;
+}
+
+.windows-main-dl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 54px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #0c0c0e;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  text-align: center;
+}
+
+.windows-main-dl-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  background: #f0f0f4;
+}
+
+.windows-dl-btn-text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  line-height: 1.25;
+}
+
+.windows-dl-btn-title {
+  white-space: nowrap;
+}
+
+.windows-dl-btn-size {
+  white-space: nowrap;
+  font-size: 13.5px;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+/* Step-by-Step Installation Guide */
+.install-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.install-step-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+
+.install-step-card:hover {
+  background: rgba(255, 255, 255, 0.035);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.step-num-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.step-item-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.step-item-desc {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Footer GitHub Releases Link */
+.install-footer-action {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.install-github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.18s ease;
+}
+
+.install-github-link:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: var(--text);
+}
+
+/* Direct Hero & CTA Buttons */
+.hero-main-download-btn,
+.cta-main-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 24px;
+  height: 64px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #0c0c0e;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  text-decoration: none;
+}
+
+.hero-main-download-btn:hover,
+.cta-main-download-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  background: #f4f4f7;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .install-platform-view {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+@media (max-width: 600px) {
+  .install-variants-grid {
+    grid-template-columns: 1fr;
+  }
+  .windows-specs-list {
+    grid-template-columns: 1fr;
+  }
+  .platform-switch-btn {
+    padding: 8px 16px;
+  }
+  .install-windows-hero-card {
+    padding: 22px 18px;
+  }
+  .windows-main-dl-btn {
+    font-size: 14px;
+    min-height: 50px;
+    padding: 12px 16px;
+    gap: 8px;
+  }
+  .windows-dl-btn-size {
+    font-size: 12.5px;
+  }
+}
+
+@media (max-width: 380px) {
+  .windows-main-dl-btn {
+    font-size: 13px;
+    padding: 10px 12px;
+    gap: 6px;
+  }
+  .windows-dl-btn-size {
+    font-size: 11.5px;
   }
 }

@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import { Icon } from "./Icons";
 import HeroPhone from "./HeroPhone";
-import DownloadPicker from "./DownloadPicker";
-import { posterWall } from "@/lib/content";
+import { posterWall, EXE_DOWNLOAD_URL } from "@/lib/content";
 import { useLanguage } from "@/lib/LanguageContext";
+import { useStats } from "@/lib/useStats";
+import { useDeviceArch } from "@/lib/useDeviceArch";
 
 // Susun 6 kolom poster dengan urutan berbeda agar dinding terlihat acak
 const cols = Array.from({ length: 6 }, (_, i) => {
@@ -14,8 +14,25 @@ const cols = Array.from({ length: 6 }, (_, i) => {
 });
 
 export default function Hero() {
-  const { t } = useLanguage();
-  const [isPickerOpen, setIsPickerOpen] = useState(false);
+  const { lang, t } = useLanguage();
+  const stats = useStats();
+  const deviceArch = useDeviceArch();
+
+  const isWindows = deviceArch.isWindows;
+  const platformName = isWindows ? "Windows" : "Android";
+  const platformIcon: "windows" | "android" = isWindows ? "windows" : "android";
+
+  const matchedApk = stats.apks?.find((a) => a.abi === deviceArch.recommendedAbi);
+  const targetUrl = isWindows
+    ? (stats.windows?.url || stats.exeUrl || EXE_DOWNLOAD_URL)
+    : (matchedApk?.url || stats.apkUrl);
+
+  const targetSize = isWindows
+    ? (stats.windows?.size || "28.2 MB")
+    : (matchedApk?.size || (deviceArch.recommendedAbi === "universal" ? "100.1 MB" : "35.8 MB"));
+
+  const topText = lang === "en" ? `Download for ${platformName}` : `Unduh untuk ${platformName}`;
+  const subText = `${stats.version} - ${targetSize}`;
 
   return (
     <section className="hero">
@@ -51,14 +68,28 @@ export default function Hero() {
           <p className="hero-sub">{t.hero.sub}</p>
 
           <div className="hero-actions">
-            <DownloadPicker variant="hero" onOpenChange={setIsPickerOpen} />
-            <a className="btn btn-glass btn-xl" href="#tur">
-              <Icon name="play" size={18} />
-              {t.hero.tourBtn}
+            <a
+              className="btn btn-light btn-xl hero-main-download-btn"
+              href={targetUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span className="download-ico-badge" aria-hidden="true">
+                <Icon name={platformIcon} size={20} />
+              </span>
+              <span className="btn-stack">
+                <strong className="btn-stack-title">{topText}</strong>
+                <small className="btn-stack-sub">{subText}</small>
+              </span>
+            </a>
+
+            <a className="btn btn-glass btn-xl" href="#pasang">
+              <Icon name="download" size={18} />
+              {lang === "en" ? "Platforms & Guide" : "Pilihan Platform & Panduan"}
             </a>
           </div>
 
-          <ul className={`hero-perks ${isPickerOpen ? "is-hidden" : ""}`}>
+          <ul className="hero-perks">
             {t.hero.perks.map((p) => (
               <li key={p}>{p}</li>
             ))}

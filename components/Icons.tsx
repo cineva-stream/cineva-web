@@ -88,6 +88,27 @@ const paths: Record<string, ReactNode> = {
 };
 
 export function Icon({ name, size = 22 }: { name: keyof typeof paths | string; size?: number }) {
+  if (name === "android") {
+    return (
+      <img
+        src="/android.webp"
+        alt="Android"
+        width={size}
+        height={size}
+        className="icon-img icon-android"
+        style={{
+          width: size,
+          height: size,
+          display: "inline-block",
+          verticalAlign: "middle",
+          objectFit: "contain",
+          flexShrink: 0,
+        }}
+        aria-hidden="true"
+      />
+    );
+  }
+
   return (
     <svg
       viewBox="0 0 24 24"

@@ -26,8 +26,76 @@ export function useDeviceArch(): DeviceArchInfo {
     if (typeof window === "undefined" || typeof navigator === "undefined") return;
 
     const ua = navigator.userAgent.toLowerCase();
+
+    // -------------------------------------------------------------------------
+    // ANTI-MANIPULASI DESKTOP MODE DI HANDPHONE (STEALTH DETECTION)
+    // Walaupun user mengaktifkan "Situs Desktop" / "Desktop Site" di browser HP,
+    // parameter hardware fisik di bawah ini tidak dapat dimanipulasi:
+    // -------------------------------------------------------------------------
+    let isPhysicallyMobilePhone = false;
+
+    // 1. Deteksi GPU Mobile via WebGL Unmasked Renderer
+    // Chipset HP (Snapdragon: Adreno, MediaTek/Exynos: Mali, PowerVR)
+    // tidak pernah ada di PC Windows native (yang memakai NVIDIA, Intel, AMD Radeon).
+    try {
+      const canvas = document.createElement("canvas");
+      const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+      if (gl && "getExtension" in gl) {
+        const debugInfo = (gl as WebGLRenderingContext).getExtension("WEBGL_debug_renderer_info");
+        if (debugInfo) {
+          const renderer = (gl as WebGLRenderingContext)
+            .getParameter(debugInfo.UNMASKED_RENDERER_WEBGL)
+            .toLowerCase();
+          if (
+            renderer.includes("adreno") ||
+            renderer.includes("mali") ||
+            renderer.includes("powervr") ||
+            renderer.includes("vivante")
+          ) {
+            isPhysicallyMobilePhone = true;
+          }
+        }
+      }
+    } catch {
+      // Abaikan jika WebGL dimatikan
+    }
+
+    // 2. Deteksi Layar Sentuh Primer (Coarse Pointer & Multi-Touch)
+    const hasCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+    const hasMultiTouch = navigator.maxTouchPoints > 1;
+
+    // 3. Deteksi Dimensi Fisik Layar (Lebar Ponsel umumnya <= 520px pada orientasi potret)
+    const minScreenDim = Math.min(window.screen.width, window.screen.height);
+    const isMobileScreenSize = minScreenDim <= 520;
+
+    // 4. Deteksi Fitur Khusus HP (Vibration API ada di HP, namun tidak ada di browser PC Windows)
+    const hasVibrateApi = "vibrate" in navigator;
+
+    if (
+      isPhysicallyMobilePhone ||
+      (hasCoarsePointer && hasMultiTouch && (isMobileScreenSize || hasVibrateApi))
+    ) {
+      isPhysicallyMobilePhone = true;
+    }
+
+    // Jika terdeteksi fisik HP, kunci secara silent sebagai Android
+    if (isPhysicallyMobilePhone) {
+      setArch({
+        recommendedAbi: "arm64-v8a",
+        platform: "android",
+        isAndroid: true,
+        isWindows: false,
+        isEmulatorOrPc: false,
+        label: "ARM64 (64-bit)",
+      });
+      return;
+    }
+
+    // -------------------------------------------------------------------------
+    // DETEKSI NORMAL UNTUK PERANGKAT ASLI (DESKTOP / PC / LAPTOP)
+    // -------------------------------------------------------------------------
     const isAndroid = ua.includes("android");
-    const isWindows = ua.includes("windows");
+    const isWindows = ua.includes("windows") || ua.includes("win32") || ua.includes("win64");
     const isMac = ua.includes("macintosh") || ua.includes("mac os");
     const isLinux = ua.includes("linux") && !isAndroid;
     const isEmulatorOrPc = isWindows || isMac || isLinux;
