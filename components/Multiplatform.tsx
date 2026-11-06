@@ -61,110 +61,116 @@ export default function Multiplatform() {
 
   return (
     <section id="multiplatform" className="sec sec-multiplatform" aria-label="Cineva Windows Desktop & Android TV">
-      <div className="wrap multiplatform-grid">
-        {/* Sisi Kiri: Gambar Multiplatform (Auto Crossfade Slideshow + Interactive Segmented Tabs) */}
-        <div
-          className="multiplatform-visual"
-          data-reveal="scale"
-          data-delay="2"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
-          {/* Segmented Device Selector Tabs */}
-          <div className="multiplatform-tabs" role="tablist" aria-label="Pilih Tampilan Layar">
-            {screens.map((screen, idx) => (
-              <button
-                key={screen.id}
-                type="button"
-                role="tab"
-                aria-selected={idx === activeIdx}
-                className={`multiplatform-tab-btn ${idx === activeIdx ? "is-active" : ""}`}
-                onClick={() => {
-                  setActiveIdx(idx);
-                  setIsPaused(true);
-                }}
-              >
-                <Icon name={screen.icon} size={15} />
-                <span>{screen.tabLabel}</span>
-              </button>
-            ))}
+      <div className="wrap">
+        {/* Section Header: Standard sec-head row konsisten dengan Bento & Showcase */}
+        <div className="sec-head row multiplatform-head" data-reveal="up">
+          <div>
+            <span className="multiplatform-badge">
+              <Icon name="tv" size={13} />
+              <span className="badge-plus">+</span>
+              <Icon name="windows" size={13} />
+              <span>{t.multiplatform.badge || "WINDOWS & ANDROID TV"}</span>
+            </span>
+            <h2>
+              {t.multiplatform.title1} <span className="outline">{t.multiplatform.title2}</span>
+            </h2>
           </div>
-
-          {/* Screenshot Container (Clean Tanpa Background dengan aspect-ratio seimbang) */}
-          <div className="multiplatform-window-viewport">
-            {screens.map((screen, idx) => (
-              <div
-                key={screen.id}
-                className={`multiplatform-slide ${idx === activeIdx ? "is-active" : ""}`}
-                aria-hidden={idx !== activeIdx}
-              >
-                <img
-                  src={screen.src}
-                  alt={screen.alt}
-                  width={screen.width}
-                  height={screen.height}
-                  className="multiplatform-window-img"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* Minimalist Slide Indicators */}
-          <div className="multiplatform-indicators" role="tablist" aria-label="Slide Indicator">
-            {screens.map((_, idx) => (
-              <button
-                key={idx}
-                type="button"
-                role="tab"
-                aria-selected={idx === activeIdx}
-                aria-label={`Slide ${idx + 1}`}
-                className={`multiplatform-dot ${idx === activeIdx ? "is-active" : ""}`}
-                onClick={() => {
-                  setActiveIdx(idx);
-                  setIsPaused(true);
-                }}
-              />
-            ))}
-          </div>
+          <p className="sec-lead">{t.multiplatform.lead}</p>
         </div>
 
-        {/* Sisi Kanan: Judul, Deskripsi & Fitur */}
-        <div className="multiplatform-copy" data-reveal="up">
-          <span className="hero-badge multiplatform-badge">
-            <Icon name="tv" size={13} />
-            <span className="badge-plus">+</span>
-            <Icon name="windows" size={13} />
-            <span>{t.multiplatform.badge || "WINDOWS & ANDROID TV"}</span>
-          </span>
-
-          <h2 className="multiplatform-title">
-            <span>{t.multiplatform.title1}</span>{" "}
-            <span className="outline">{t.multiplatform.title2}</span>
-          </h2>
-
-          <p className="sec-lead multiplatform-lead">
-            {t.multiplatform.lead}
-          </p>
-
-          {t.multiplatform.features && (
-            <ul className="multiplatform-points">
-              {t.multiplatform.features.map((feat, i) => (
-                <li key={i} className="multiplatform-point-card">
-                  <span className="multiplatform-point-icon">
-                    {i === 0 && <Icon name="tv" size={16} />}
-                    {i === 1 && <Icon name="player" size={16} />}
-                    {i === 2 && <Icon name="stream" size={16} />}
-                    {i === 3 && <Icon name="wrench" size={16} />}
-                  </span>
-                  <div className="multiplatform-point-text">
-                    <b>{feat.title}</b>
-                    <span>{feat.desc}</span>
-                  </div>
-                </li>
+        {/* Section Body: Visual Showcase & Feature Cards */}
+        <div className="multiplatform-grid">
+          {/* Sisi Kiri / Atas: Visual Multiplatform (Tabs + Glow + Viewport + Indicators) */}
+          <div
+            className="multiplatform-visual"
+            data-reveal="scale"
+            data-delay="2"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
+            {/* Segmented Device Selector Tabs */}
+            <div className="multiplatform-tabs" role="tablist" aria-label="Pilih Tampilan Layar">
+              {screens.map((screen, idx) => (
+                <button
+                  key={screen.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={idx === activeIdx}
+                  className={`multiplatform-tab-btn ${idx === activeIdx ? "is-active" : ""}`}
+                  onClick={() => {
+                    setActiveIdx(idx);
+                    setIsPaused(true);
+                  }}
+                >
+                  <Icon name={screen.icon} size={15} />
+                  <span>{screen.tabLabel}</span>
+                </button>
               ))}
-            </ul>
+            </div>
+
+            {/* Stage Mockup dengan Ambient Glow Orb */}
+            <div className="multiplatform-stage">
+              <div className="multiplatform-glow-orb" aria-hidden="true" />
+              <div className="multiplatform-window-viewport">
+                {screens.map((screen, idx) => (
+                  <div
+                    key={screen.id}
+                    className={`multiplatform-slide ${idx === activeIdx ? "is-active" : ""}`}
+                    aria-hidden={idx !== activeIdx}
+                  >
+                    <img
+                      src={screen.src}
+                      alt={screen.alt}
+                      width={screen.width}
+                      height={screen.height}
+                      className="multiplatform-window-img"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Minimalist Slide Indicators */}
+            <div className="multiplatform-indicators" role="tablist" aria-label="Slide Indicator">
+              {screens.map((_, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  role="tab"
+                  aria-selected={idx === activeIdx}
+                  aria-label={`Slide ${idx + 1}`}
+                  className={`multiplatform-dot ${idx === activeIdx ? "is-active" : ""}`}
+                  onClick={() => {
+                    setActiveIdx(idx);
+                    setIsPaused(true);
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Sisi Kanan / Bawah: Kartu Fitur */}
+          {t.multiplatform.features && (
+            <div className="multiplatform-copy" data-reveal="up">
+              <ul className="multiplatform-points">
+                {t.multiplatform.features.map((feat, i) => (
+                  <li key={i} className="multiplatform-point-card" style={{ transitionDelay: `${i * 60}ms` }}>
+                    <span className="multiplatform-point-icon">
+                      {i === 0 && <Icon name="tv" size={16} />}
+                      {i === 1 && <Icon name="player" size={16} />}
+                      {i === 2 && <Icon name="stream" size={16} />}
+                      {i === 3 && <Icon name="wrench" size={16} />}
+                    </span>
+                    <div className="multiplatform-point-text">
+                      <b>{feat.title}</b>
+                      <span>{feat.desc}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </div>
       </div>
