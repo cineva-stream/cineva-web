@@ -5,9 +5,10 @@ import { ArchitectureAbi } from "./useStats";
 
 export interface DeviceArchInfo {
   recommendedAbi: ArchitectureAbi;
-  platform: "android" | "windows";
+  platform: "android" | "windows" | "tv";
   isAndroid: boolean;
   isWindows: boolean;
+  isTv: boolean;
   isEmulatorOrPc: boolean;
   label: string;
 }
@@ -18,6 +19,7 @@ export function useDeviceArch(): DeviceArchInfo {
     platform: "android",
     isAndroid: true,
     isWindows: false,
+    isTv: false,
     isEmulatorOrPc: false,
     label: "ARM64 (64-bit)",
   });
@@ -26,6 +28,39 @@ export function useDeviceArch(): DeviceArchInfo {
     if (typeof window === "undefined" || typeof navigator === "undefined") return;
 
     const ua = navigator.userAgent.toLowerCase();
+
+    // -------------------------------------------------------------------------
+    // DETEKSI KHUSUS ANDROID TV & SMART TV (LEANBACK / GOOGLE TV / TV BOX)
+    // -------------------------------------------------------------------------
+    const isAndroidTv =
+      ua.includes("smart-tv") ||
+      ua.includes("smarttv") ||
+      ua.includes("googletv") ||
+      ua.includes("google-tv") ||
+      ua.includes("android tv") ||
+      ua.includes("android_tv") ||
+      ua.includes("leanback") ||
+      ua.includes("large screen") ||
+      ua.includes("largescreen") ||
+      ua.includes("crkey") ||
+      ua.includes("aftt") ||
+      ua.includes("aftm") ||
+      ua.includes("aftb") ||
+      ua.includes("afts") ||
+      (ua.includes("android") && (ua.includes(" tv") || ua.includes("; tv") || ua.includes("tv;") || ua.includes("box") || ua.includes("mitv")));
+
+    if (isAndroidTv) {
+      setArch({
+        recommendedAbi: "android-tv",
+        platform: "tv",
+        isAndroid: true,
+        isWindows: false,
+        isTv: true,
+        isEmulatorOrPc: false,
+        label: "Android TV & Smart TV",
+      });
+      return;
+    }
 
     // -------------------------------------------------------------------------
     // ANTI-MANIPULASI DESKTOP MODE DI HANDPHONE (STEALTH DETECTION)
@@ -85,6 +120,7 @@ export function useDeviceArch(): DeviceArchInfo {
         platform: "android",
         isAndroid: true,
         isWindows: false,
+    isTv: false,
         isEmulatorOrPc: false,
         label: "ARM64 (64-bit)",
       });
@@ -126,6 +162,7 @@ export function useDeviceArch(): DeviceArchInfo {
               platform: "windows",
               isAndroid: false,
               isWindows: true,
+        isTv: false,
               isEmulatorOrPc: true,
               label: "Windows (Setup .exe)",
             });
@@ -139,6 +176,7 @@ export function useDeviceArch(): DeviceArchInfo {
                 platform: "android",
                 isAndroid: true,
                 isWindows: false,
+    isTv: false,
                 isEmulatorOrPc: false,
                 label: "ARMv7 (32-bit)",
               });
@@ -150,6 +188,7 @@ export function useDeviceArch(): DeviceArchInfo {
                 platform: "android",
                 isAndroid: true,
                 isWindows: false,
+    isTv: false,
                 isEmulatorOrPc: true,
                 label: "x86_64 (Intel/AMD)",
               });
@@ -161,6 +200,7 @@ export function useDeviceArch(): DeviceArchInfo {
               platform: "android",
               isAndroid: true,
               isWindows: false,
+    isTv: false,
               isEmulatorOrPc: false,
               label: "ARM64 (64-bit)",
             });
@@ -173,6 +213,7 @@ export function useDeviceArch(): DeviceArchInfo {
               platform: isWindows ? "windows" : "android",
               isAndroid: false,
               isWindows,
+              isTv: false,
               isEmulatorOrPc: true,
               label: isWindows ? "Windows (Setup .exe)" : "x86_64 (Emulator PC)",
             });
@@ -189,6 +230,7 @@ export function useDeviceArch(): DeviceArchInfo {
         platform: "windows",
         isAndroid: false,
         isWindows: true,
+        isTv: false,
         isEmulatorOrPc: true,
         label: "Windows (Setup .exe)",
       });
@@ -199,6 +241,7 @@ export function useDeviceArch(): DeviceArchInfo {
           platform: "android",
           isAndroid: true,
           isWindows: false,
+    isTv: false,
           isEmulatorOrPc: true,
           label: "x86_64 (Emulator PC)",
         });
@@ -208,6 +251,7 @@ export function useDeviceArch(): DeviceArchInfo {
           platform: "android",
           isAndroid: true,
           isWindows: false,
+    isTv: false,
           isEmulatorOrPc: false,
           label: "ARMv7 (32-bit)",
         });
@@ -218,6 +262,7 @@ export function useDeviceArch(): DeviceArchInfo {
           platform: "android",
           isAndroid: true,
           isWindows: false,
+    isTv: false,
           isEmulatorOrPc: false,
           label: "ARM64 (64-bit)",
         });
@@ -229,6 +274,7 @@ export function useDeviceArch(): DeviceArchInfo {
         platform: "android",
         isAndroid: false,
         isWindows: false,
+    isTv: false,
         isEmulatorOrPc: true,
         label: "ARM64 (Android)",
       });

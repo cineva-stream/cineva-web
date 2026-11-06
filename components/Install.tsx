@@ -26,11 +26,14 @@ export default function Install() {
   const inst = t.install;
 
   // URLs & sizes untuk varian Android
+  const tvApk = stats.apks?.find((a) => a.abi === "android-tv");
   const arm64Apk = stats.apks?.find((a) => a.abi === "arm64-v8a");
   const armv7Apk = stats.apks?.find((a) => a.abi === "armeabi-v7a");
   const x86Apk = stats.apks?.find((a) => a.abi === "x86_64");
   const universalApk = stats.apks?.find((a) => a.abi === "universal");
 
+  const tvUrl = tvApk?.url || stats.apkUrl.replace(/-[a-z0-9_-]+\.apk$/, "-android-tv.apk").replace(".apk", "-android-tv.apk");
+  const tvSize = tvApk?.size || "15.8 MB";
   const arm64Url = arm64Apk?.url || stats.apkUrl.replace(".apk", "-arm64-v8a.apk");
   const arm64Size = arm64Apk?.size || "35.8 MB";
 
@@ -50,12 +53,24 @@ export default function Install() {
 
   const androidVariants = [
     {
+      id: "android-tv",
+      icon: "tv",
+      name: "Android TV & Smart TV",
+      note: inst.androidVariants?.tv?.note || (lang === "en" ? "Smart TV, TV Box, Mi Stick & Leanback (Lightweight)" : "Smart TV, TV Box, Mi Stick & Leanback (Super Ringan)"),
+      size: tvSize,
+      url: tvUrl,
+      isRecommended: deviceArch.isTv || deviceArch.recommendedAbi === "android-tv",
+      isFeatured: true,
+    },
+    {
       id: "arm64-v8a",
       name: "ARM64 (64-bit)",
       note: inst.androidVariants?.arm64?.note || "Ponsel & tablet Android modern",
       size: arm64Size,
       url: arm64Url,
-      isRecommended: true,
+      isRecommended: !deviceArch.isTv && (deviceArch.recommendedAbi === "arm64-v8a" || deviceArch.platform === "android"),
+      isFeatured: false,
+      icon: "android",
     },
     {
       id: "armeabi-v7a",
@@ -141,7 +156,7 @@ export default function Install() {
                   {androidVariants.map((v) => (
                     <div
                       key={v.id}
-                      className={`install-variant-card ${v.isRecommended ? "is-recommended" : ""}`}
+                      className={`install-variant-card ${v.isRecommended ? "is-recommended" : ""} ${v.isFeatured ? "is-featured" : ""}`}
                     >
                       <div className="variant-card-top">
                         <div className="variant-name-group">
@@ -164,7 +179,7 @@ export default function Install() {
                         className="variant-dl-btn"
                         aria-label={`Unduh ${v.name}`}
                       >
-                        <Icon name="android" size={16} />
+                        <Icon name={v.icon || "android"} size={16} />
                         <span>{lang === "en" ? `Download (${v.size})` : `Unduh (${v.size})`}</span>
                       </a>
                     </div>

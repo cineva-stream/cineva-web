@@ -32,8 +32,9 @@ export default function CtaBanner() {
   const deviceArch = useDeviceArch();
 
   const isWindows = deviceArch.isWindows;
-  const platformName = isWindows ? "Windows" : "Android";
-  const platformIcon: "windows" | "android" = isWindows ? "windows" : "android";
+  const isTv = deviceArch.isTv;
+  const platformName = isWindows ? "Windows" : isTv ? "Android TV" : "Android";
+  const platformIcon: "windows" | "android" | "tv" = isWindows ? "windows" : isTv ? "tv" : "android";
 
   const matchedApk = stats.apks?.find((a) => a.abi === deviceArch.recommendedAbi);
   const targetUrl = isWindows

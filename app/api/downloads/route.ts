@@ -2,16 +2,21 @@ import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-const DEFAULT_VERSION = "v1.1.4";
-const DEFAULT_APK_NAME = "Cineva_v1.1.4-arm64-v8a.apk";
+const DEFAULT_VERSION = "v1.1.5";
+const DEFAULT_APK_NAME = "Cineva_v1.1.5-arm64-v8a.apk";
 const DEFAULT_APK_URL =
-  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.4/Cineva_v1.1.4-arm64-v8a.apk";
+  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.5/Cineva_v1.1.5-arm64-v8a.apk";
 const DEFAULT_APK_SIZE = "35.8 MB";
 
-const DEFAULT_WINDOWS_NAME = "Cineva_setup_v1.1.4.exe";
+const DEFAULT_WINDOWS_NAME = "Cineva_setup_v1.1.5.exe";
 const DEFAULT_WINDOWS_URL =
-  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.4/Cineva_setup_v1.1.4.exe";
+  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.5/Cineva_setup_v1.1.5.exe";
 const DEFAULT_WINDOWS_SIZE = "28.2 MB";
+
+const DEFAULT_TV_NAME = "Cineva_v1.1.5-android-tv.apk";
+const DEFAULT_TV_URL =
+  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.5/Cineva_v1.1.5-android-tv.apk";
+const DEFAULT_TV_SIZE = "15.8 MB";
 
 interface GitHubAsset {
   name?: string;
@@ -27,7 +32,7 @@ interface GitHubRelease {
   assets?: GitHubAsset[];
 }
 
-export type ArchitectureAbi = "arm64-v8a" | "armeabi-v7a" | "x86_64" | "universal";
+export type ArchitectureAbi = "android-tv" | "arm64-v8a" | "armeabi-v7a" | "x86_64" | "universal" | "windows";
 
 export interface ApkVariant {
   abi: ArchitectureAbi;
@@ -120,11 +125,12 @@ export async function GET() {
         }
 
         // Find specific architecture variants
+        const tvAsset = apkAssets.find((a) => a.name?.toLowerCase().includes("android-tv") || a.name?.toLowerCase().includes("-tv.apk"));
         const arm64Asset = apkAssets.find(
           (a) => a.name?.toLowerCase().includes("arm64-v8a") || a.name?.toLowerCase().includes("arm64")
         );
         const armv7Asset = apkAssets.find(
-          (a) => a.name?.toLowerCase().includes("armeabi-v7a") || a.name?.toLowerCase().includes("armv7")
+          (a) => (a.name?.toLowerCase().includes("armeabi-v7a") || a.name?.toLowerCase().includes("armv7")) && !a.name?.toLowerCase().includes("android-tv")
         );
         const x86_64Asset = apkAssets.find((a) => a.name?.toLowerCase().includes("x86_64"));
         const universalAsset =
@@ -134,9 +140,30 @@ export async function GET() {
               !n.includes("arm64") &&
               !n.includes("armeabi") &&
               !n.includes("armv7") &&
-              !n.includes("x86_64")
+              !n.includes("x86_64") &&
+              !n.includes("android-tv")
             );
           }) || apkAssets[0];
+
+        if (tvAsset && tvAsset.browser_download_url) {
+          apks.push({
+            abi: "android-tv",
+            label: "Android TV & Smart TV",
+            name: tvAsset.name || `Cineva_${version}-android-tv.apk`,
+            url: tvAsset.browser_download_url,
+            size: formatSize(tvAsset.size, "15.8 MB"),
+            sizeBytes: tvAsset.size || 0,
+          });
+        } else if (armv7Asset && armv7Asset.browser_download_url) {
+          apks.push({
+            abi: "android-tv",
+            label: "Android TV & Smart TV",
+            name: `Cineva_${version}-android-tv.apk`,
+            url: armv7Asset.browser_download_url,
+            size: formatSize(armv7Asset.size, "15.8 MB"),
+            sizeBytes: armv7Asset.size || 0,
+          });
+        }
 
         if (arm64Asset && arm64Asset.browser_download_url) {
           apks.push({

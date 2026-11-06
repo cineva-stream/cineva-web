@@ -13,9 +13,10 @@ export default function Navbar() {
   const stats = useStats();
   const deviceArch = useDeviceArch();
   const isWindows = deviceArch.isWindows;
+  const isTv = deviceArch.isTv;
   const matchedApk = stats.apks?.find((a) => a.abi === deviceArch.recommendedAbi);
   const targetUrl = isWindows ? (stats.windows?.url || stats.exeUrl || EXE_DOWNLOAD_URL) : (matchedApk?.url || stats.apkUrl);
-  const platformIcon: "windows" | "android" = isWindows ? "windows" : "android";
+  const platformIcon: "windows" | "android" | "tv" = isWindows ? "windows" : isTv ? "tv" : "android";
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -154,7 +155,11 @@ export default function Navbar() {
               onClick={() => setOpen(false)}
             >
               <Icon name={platformIcon} size={19} />
-              {isWindows ? (lang === "en" ? "Download for Windows" : "Unduh untuk Windows") : t.nav.downloadApk}
+              {isWindows
+                ? (lang === "en" ? "Download for Windows" : "Unduh untuk Windows")
+                : isTv
+                ? (lang === "en" ? "Download for Android TV" : "Unduh untuk Android TV")
+                : t.nav.downloadApk}
             </a>
             <a
               className="btn btn-ghost btn-block"

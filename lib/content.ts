@@ -323,6 +323,7 @@ export const translations = {
       platformWindows: "Windows",
       platformWindowsSub: "PC & Laptop (64-bit)",
       androidVariants: {
+        tv: { title: "Android TV & Smart TV", note: "Smart TV, TV Box, Mi Stick & Leanback (Super Ringan)" },
         arm64: { title: "ARM64 (64-bit)", note: "Ponsel & tablet Android modern" },
         armv7: { title: "ARMv7 (32-bit)", note: "HP Android lawas / 32-bit" },
         x86: { title: "x86_64", note: "Emulator PC & Chromebook" },
@@ -683,6 +684,7 @@ export const translations = {
       platformWindows: "Windows",
       platformWindowsSub: "PC & Laptop (64-bit)",
       androidVariants: {
+        tv: { title: "Android TV & Smart TV", note: "Smart TV, TV Box, Mi Stick & Leanback (Super Ringan)" },
         arm64: { title: "ARM64 (64-bit)", note: "Modern Android phones & tablets" },
         armv7: { title: "ARMv7 (32-bit)", note: "Older 32-bit Android devices" },
         x86: { title: "x86_64", note: "PC Emulators & Chromebooks" },

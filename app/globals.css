@@ -8039,6 +8039,15 @@ html.has-reveal .tile.is-visible:hover {
   border-color: rgba(255, 149, 0, 0.5);
   background: rgba(255, 149, 0, 0.06);
 }
+.install-variant-card.is-featured {
+  grid-column: 1 / -1;
+  background: rgba(255, 184, 0, 0.04);
+  border-color: rgba(255, 184, 0, 0.22);
+}
+.install-variant-card.is-featured:hover {
+  background: rgba(255, 184, 0, 0.07);
+  border-color: rgba(255, 184, 0, 0.4);
+}
 
 .variant-card-top {
   display: flex;
