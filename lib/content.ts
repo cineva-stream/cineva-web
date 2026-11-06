@@ -212,11 +212,17 @@ export const translations = {
       },
     },
     multiplatform: {
-      badge: "WINDOWS DESKTOP",
+      badge: "WINDOWS & ANDROID TV",
       title1: "Hadir di layar lebar,",
-      title2: "PC & Laptop.",
-      lead: "Katalog, watchlist, dan pemutar sinematik yang sama, didesain ulang penuh untuk keleluasaan monitor layar lebar dan kontrol keyboard & mouse yang presisi.",
+      title2: "PC & Smart TV.",
+      lead: "Katalog, watchlist, dan pemutar sinematik yang sama, didesain ulang penuh untuk keleluasaan monitor layar lebar PC dan televisi pintar dengan navigasi remote control D-Pad serta kontrol keyboard & mouse yang presisi.",
       screens: [
+        {
+          src: "/screens/android_tv.webp",
+          alt: "Tampilan Cineva di Android TV & Smart TV",
+          label: "Android TV (10-Foot UI)",
+          desc: "Navigasi remote D-Pad, poster zoom 1.11x, dan efek ambient amber glow.",
+        },
         {
           src: "/screens/windows_home.webp",
           alt: "Tampilan Beranda Cineva di Windows Desktop",
@@ -231,6 +237,7 @@ export const translations = {
         },
       ],
       features: [
+        { title: "Android TV (10-Foot UI)", desc: "Navigasi remote D-Pad, poster zoom 1.11x, dan efek ambient amber glow." },
         { title: "Frameless Obsidian UI", desc: "Tampilan borderless minimalis dengan tombol kontrol native." },
         { title: "Smooth Mouse Scrolling", desc: "Guliran mouse super mulus berbasis interpolasi eksponensial." },
         { title: "Pintasan Keyboard Penuh", desc: "Spasi untuk jeda, panah untuk seek & volume boost 150%." },
@@ -573,11 +580,17 @@ export const translations = {
       },
     },
     multiplatform: {
-      badge: "WINDOWS DESKTOP",
+      badge: "WINDOWS & ANDROID TV",
       title1: "Made for the big screen,",
-      title2: "desktop too.",
-      lead: "The same library, watchlist, and cinematic player, redrawn for the widescreen clarity of desktop monitors, keyboard shortcuts, and mouse precision.",
+      title2: "Desktop & Smart TV.",
+      lead: "The same cinematic streaming experience, redrawn for the widescreen clarity of desktop monitors and big-screen Smart TVs with 10-foot D-Pad remote navigation and precise keyboard & mouse controls.",
       screens: [
+        {
+          src: "/screens/android_tv.webp",
+          alt: "Cineva on Android TV & Smart TV",
+          label: "Android TV (10-Foot UI)",
+          desc: "10-foot D-Pad remote navigation, 1.11x poster zoom, and ambient amber glow.",
+        },
         {
           src: "/screens/windows_home.webp",
           alt: "Cineva Home on Windows Desktop",
@@ -592,6 +605,7 @@ export const translations = {
         },
       ],
       features: [
+        { title: "Android TV (10-Foot UI)", desc: "10-foot D-Pad remote navigation, 1.11x poster zoom, and ambient amber glow." },
         { title: "Frameless Obsidian UI", desc: "Minimal borderless dark window with integrated title controls." },
         { title: "Smooth Mouse Scrolling", desc: "Buttery-smooth scrolling powered by exponential interpolation." },
         { title: "Keyboard Shortcuts", desc: "Space for play/pause, arrows for seeking and 150% volume boost." },

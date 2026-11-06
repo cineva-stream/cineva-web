@@ -5,19 +5,44 @@ import { Icon } from "./Icons";
 import { useLanguage } from "@/lib/LanguageContext";
 
 export default function Multiplatform() {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
   const [activeIdx, setActiveIdx] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const screens = [
     {
-      src: "/screens/windows_home.webp",
-      alt: "Cineva Home on Windows Desktop",
+      id: "android-tv",
+      platform: "Android TV",
+      tabLabel: "Android TV",
+      icon: "tv",
+      src: "/screens/android_tv.webp",
+      alt: lang === "en" ? "Cineva on Android TV & Smart TV" : "Tampilan Cineva di Android TV & Smart TV",
+      badge: "10-Foot UI",
+      width: 2560,
+      height: 1684,
     },
     {
+      id: "windows-home",
+      platform: "Windows",
+      tabLabel: "Windows Home",
+      icon: "windows",
+      src: "/screens/windows_home.webp",
+      alt: lang === "en" ? "Cineva Home on Windows Desktop" : "Tampilan Beranda Cineva di Windows Desktop",
+      badge: "Widescreen Billboard",
+      width: 2560,
+      height: 1459,
+    },
+    {
+      id: "windows-details",
+      platform: "Windows",
+      tabLabel: "Windows Detail",
+      icon: "windows",
       src: "/screens/windows_details.webp",
-      alt: "Cineva Details on Windows Desktop",
+      alt: lang === "en" ? "Cineva Details on Windows Desktop" : "Tampilan Detail Film Cineva di Windows Desktop",
+      badge: "Cinematic Canvas",
+      width: 2560,
+      height: 1459,
     },
   ];
 
@@ -26,18 +51,18 @@ export default function Multiplatform() {
     if (isPaused) return;
 
     timerRef.current = setInterval(() => {
-      setActiveIdx((prev) => (prev === 0 ? 1 : 0));
+      setActiveIdx((prev) => (prev + 1) % screens.length);
     }, 4500);
 
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [isPaused]);
+  }, [isPaused, screens.length]);
 
   return (
-    <section id="multiplatform" className="sec sec-multiplatform" aria-label="Cineva Windows Desktop">
+    <section id="multiplatform" className="sec sec-multiplatform" aria-label="Cineva Windows Desktop & Android TV">
       <div className="wrap multiplatform-grid">
-        {/* Sisi Kiri: Gambar Windows (Auto Crossfade Slideshow) */}
+        {/* Sisi Kiri: Gambar Multiplatform (Auto Crossfade Slideshow + Interactive Segmented Tabs) */}
         <div
           className="multiplatform-visual"
           data-reveal="scale"
@@ -45,19 +70,39 @@ export default function Multiplatform() {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* Windows Screenshot Container (Clean Tanpa Background) */}
+          {/* Segmented Device Selector Tabs */}
+          <div className="multiplatform-tabs" role="tablist" aria-label="Pilih Tampilan Layar">
+            {screens.map((screen, idx) => (
+              <button
+                key={screen.id}
+                type="button"
+                role="tab"
+                aria-selected={idx === activeIdx}
+                className={`multiplatform-tab-btn ${idx === activeIdx ? "is-active" : ""}`}
+                onClick={() => {
+                  setActiveIdx(idx);
+                  setIsPaused(true);
+                }}
+              >
+                <Icon name={screen.icon} size={15} />
+                <span>{screen.tabLabel}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Screenshot Container (Clean Tanpa Background dengan aspect-ratio seimbang) */}
           <div className="multiplatform-window-viewport">
             {screens.map((screen, idx) => (
               <div
-                key={screen.src}
+                key={screen.id}
                 className={`multiplatform-slide ${idx === activeIdx ? "is-active" : ""}`}
                 aria-hidden={idx !== activeIdx}
               >
                 <img
                   src={screen.src}
                   alt={screen.alt}
-                  width={2560}
-                  height={1459}
+                  width={screen.width}
+                  height={screen.height}
                   className="multiplatform-window-img"
                   loading="lazy"
                   decoding="async"
@@ -87,6 +132,13 @@ export default function Multiplatform() {
 
         {/* Sisi Kanan: Judul, Deskripsi & Fitur */}
         <div className="multiplatform-copy" data-reveal="up">
+          <span className="hero-badge multiplatform-badge">
+            <Icon name="tv" size={13} />
+            <span className="badge-plus">+</span>
+            <Icon name="windows" size={13} />
+            <span>{t.multiplatform.badge || "WINDOWS & ANDROID TV"}</span>
+          </span>
+
           <h2 className="multiplatform-title">
             <span>{t.multiplatform.title1}</span>{" "}
             <span className="outline">{t.multiplatform.title2}</span>
@@ -101,10 +153,10 @@ export default function Multiplatform() {
               {t.multiplatform.features.map((feat, i) => (
                 <li key={i} className="multiplatform-point-card">
                   <span className="multiplatform-point-icon">
-                    {i === 0 && <Icon name="player" size={16} />}
-                    {i === 1 && <Icon name="stream" size={16} />}
-                    {i === 2 && <Icon name="subtitle" size={16} />}
-                    {i === 3 && <Icon name="download" size={16} />}
+                    {i === 0 && <Icon name="tv" size={16} />}
+                    {i === 1 && <Icon name="player" size={16} />}
+                    {i === 2 && <Icon name="stream" size={16} />}
+                    {i === 3 && <Icon name="wrench" size={16} />}
                   </span>
                   <div className="multiplatform-point-text">
                     <b>{feat.title}</b>
