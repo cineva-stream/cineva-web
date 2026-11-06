@@ -158,10 +158,7 @@ export default function Multiplatform() {
                 {t.multiplatform.features.map((feat, i) => (
                   <li key={i} className="multiplatform-point-card" style={{ transitionDelay: `${i * 60}ms` }}>
                     <span className="multiplatform-point-icon">
-                      {i === 0 && <Icon name="tv" size={16} />}
-                      {i === 1 && <Icon name="player" size={16} />}
-                      {i === 2 && <Icon name="stream" size={16} />}
-                      {i === 3 && <Icon name="wrench" size={16} />}
+                      <Icon name={feat.icon || "wrench"} size={16} />
                     </span>
                     <div className="multiplatform-point-text">
                       <b>{feat.title}</b>

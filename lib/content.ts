@@ -237,11 +237,10 @@ export const translations = {
         },
       ],
       features: [
-        { title: "Android TV (10-Foot UI)", desc: "Navigasi remote D-Pad, poster zoom 1.11x, dan efek ambient amber glow." },
-        { title: "Frameless Obsidian UI", desc: "Tampilan borderless minimalis dengan tombol kontrol native." },
-        { title: "Smooth Mouse Scrolling", desc: "Guliran mouse super mulus berbasis interpolasi eksponensial." },
-        { title: "Pintasan Keyboard Penuh", desc: "Spasi untuk jeda, panah untuk seek & volume boost 150%." },
-        { title: "Single-File Installer", desc: "Setup instan berukuran ringan (28.2 MB) siap pasang." },
+        { title: "Android TV (10-Foot UI)", desc: "Navigasi remote D-Pad, poster zoom 1.11x, dan efek ambient amber glow.", icon: "tv" },
+        { title: "Frameless Obsidian UI", desc: "Tampilan borderless minimalis dengan tombol kontrol native.", icon: "windows" },
+        { title: "Pintasan Keyboard Penuh", desc: "Spasi untuk jeda, panah untuk seek & volume boost 150%.", icon: "keyboard" },
+        { title: "Single-File Installer", desc: "Setup instan berukuran ringan (28.2 MB) siap pasang.", icon: "download" },
       ],
     },
     showcase: {
@@ -605,11 +604,10 @@ export const translations = {
         },
       ],
       features: [
-        { title: "Android TV (10-Foot UI)", desc: "10-foot D-Pad remote navigation, 1.11x poster zoom, and ambient amber glow." },
-        { title: "Frameless Obsidian UI", desc: "Minimal borderless dark window with integrated title controls." },
-        { title: "Smooth Mouse Scrolling", desc: "Buttery-smooth scrolling powered by exponential interpolation." },
-        { title: "Keyboard Shortcuts", desc: "Space for play/pause, arrows for seeking and 150% volume boost." },
-        { title: "Single-File Installer", desc: "Lightweight standalone installer (28.2 MB) ready to run." },
+        { title: "Android TV (10-Foot UI)", desc: "10-foot D-Pad remote navigation, 1.11x poster zoom, and ambient amber glow.", icon: "tv" },
+        { title: "Frameless Obsidian UI", desc: "Minimal borderless dark window with integrated title controls.", icon: "windows" },
+        { title: "Keyboard Shortcuts", desc: "Space for play/pause, arrows for seeking and 150% volume boost.", icon: "keyboard" },
+        { title: "Single-File Installer", desc: "Lightweight standalone installer (28.2 MB) ready to run.", icon: "download" },
       ],
     },
     showcase: {
