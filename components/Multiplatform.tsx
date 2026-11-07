@@ -10,6 +10,14 @@ export default function Multiplatform() {
   const [isPaused, setIsPaused] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
+  const tabsContainerRef = useRef<HTMLDivElement | null>(null);
+  const tabBtnRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const [indicatorStyle, setIndicatorStyle] = useState({
+    left: 0,
+    width: 0,
+    ready: false,
+  });
+
   const screens = [
     {
       id: "android",
@@ -49,18 +57,48 @@ export default function Multiplatform() {
     },
   ];
 
-  // Smooth auto-slide transition every 4.5s (pauses on hover)
+  // Dynamically calculate smooth sliding indicator dimensions
+  const updateIndicator = () => {
+    const container = tabsContainerRef.current;
+    const activeBtn = tabBtnRefs.current[activeIdx];
+    if (!container || !activeBtn) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const btnRect = activeBtn.getBoundingClientRect();
+
+    setIndicatorStyle({
+      left: btnRect.left - containerRect.left,
+      width: btnRect.width,
+      ready: true,
+    });
+  };
+
+  useEffect(() => {
+    updateIndicator();
+    window.addEventListener("resize", updateIndicator);
+    if (typeof document !== "undefined" && document.fonts) {
+      document.fonts.ready.then(updateIndicator);
+    }
+    return () => window.removeEventListener("resize", updateIndicator);
+  }, [activeIdx]);
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(updateIndicator);
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
+  // Smooth auto-slide transition every 4.0s (pauses on hover)
   useEffect(() => {
     if (isPaused) return;
 
     timerRef.current = setInterval(() => {
       setActiveIdx((prev) => (prev + 1) % screens.length);
-    }, 4500);
+    }, 4000);
 
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [isPaused, screens.length]);
+  }, [isPaused, activeIdx, screens.length]);
 
   return (
     <section id="multiplatform" className="sec sec-multiplatform" aria-label="Cineva Android, Android TV & Windows Desktop">
@@ -93,18 +131,34 @@ export default function Multiplatform() {
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
-            {/* Segmented Device Selector Tabs */}
-            <div className="multiplatform-tabs" role="tablist" aria-label="Pilih Tampilan Layar">
+            {/* Segmented Device Selector Tabs with Smooth Sliding Indicator */}
+            <div
+              ref={tabsContainerRef}
+              className="multiplatform-tabs"
+              role="tablist"
+              aria-label="Pilih Tampilan Layar"
+            >
+              <span
+                className="multiplatform-tab-indicator"
+                style={{
+                  transform: `translate3d(${indicatorStyle.left}px, 0, 0)`,
+                  width: `${indicatorStyle.width}px`,
+                  opacity: indicatorStyle.ready ? 1 : 0,
+                }}
+                aria-hidden="true"
+              />
               {screens.map((screen, idx) => (
                 <button
                   key={screen.id}
+                  ref={(el) => {
+                    tabBtnRefs.current[idx] = el;
+                  }}
                   type="button"
                   role="tab"
                   aria-selected={idx === activeIdx}
                   className={`multiplatform-tab-btn ${idx === activeIdx ? "is-active" : ""}`}
                   onClick={() => {
                     setActiveIdx(idx);
-                    setIsPaused(true);
                   }}
                 >
                   <Icon name={screen.icon} size={15} />
@@ -113,27 +167,34 @@ export default function Multiplatform() {
               ))}
             </div>
 
-            {/* Stage Mockup dengan Ambient Glow Orb */}
+            {/* Stage Mockup dengan Ambient Glow Orb & Directional Sliding Track */}
             <div className="multiplatform-stage">
               <div className="multiplatform-glow-orb" aria-hidden="true" />
               <div className="multiplatform-window-viewport">
-                {screens.map((screen, idx) => (
-                  <div
-                    key={screen.id}
-                    className={`multiplatform-slide ${screen.isPortrait ? "is-portrait" : ""} ${idx === activeIdx ? "is-active" : ""}`}
-                    aria-hidden={idx !== activeIdx}
-                  >
-                    <img
-                      src={screen.src}
-                      alt={screen.alt}
-                      width={screen.width}
-                      height={screen.height}
-                      className="multiplatform-window-img"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-                ))}
+                <div
+                  className="multiplatform-window-track"
+                  style={{
+                    transform: `translate3d(-${activeIdx * 100}%, 0, 0)`,
+                  }}
+                >
+                  {screens.map((screen, idx) => (
+                    <div
+                      key={screen.id}
+                      className={`multiplatform-slide ${screen.isPortrait ? "is-portrait" : ""} ${idx === activeIdx ? "is-active" : ""}`}
+                      aria-hidden={idx !== activeIdx}
+                    >
+                      <img
+                        src={screen.src}
+                        alt={screen.alt}
+                        width={screen.width}
+                        height={screen.height}
+                        className="multiplatform-window-img"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -149,7 +210,6 @@ export default function Multiplatform() {
                   className={`multiplatform-dot ${idx === activeIdx ? "is-active" : ""}`}
                   onClick={() => {
                     setActiveIdx(idx);
-                    setIsPaused(true);
                   }}
                 />
               ))}
