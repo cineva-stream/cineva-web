@@ -12,6 +12,18 @@ export default function Multiplatform() {
 
   const screens = [
     {
+      id: "android",
+      platform: "Android",
+      tabLabel: "Android",
+      icon: "android",
+      src: "/screens/home.webp",
+      alt: lang === "en" ? "Cineva on Android Mobile" : "Tampilan Cineva di Smartphone Android",
+      badge: "Mobile UI",
+      isPortrait: true,
+      width: 1216,
+      height: 2560,
+    },
+    {
       id: "android-tv",
       platform: "Android TV",
       tabLabel: "Android TV",
@@ -19,28 +31,19 @@ export default function Multiplatform() {
       src: "/screens/android_tv.webp",
       alt: lang === "en" ? "Cineva on Android TV & Smart TV" : "Tampilan Cineva di Android TV & Smart TV",
       badge: "10-Foot UI",
+      isPortrait: false,
       width: 2560,
       height: 1684,
     },
     {
-      id: "windows-home",
+      id: "windows",
       platform: "Windows",
-      tabLabel: "Windows Home",
+      tabLabel: "Windows",
       icon: "windows",
       src: "/screens/windows_home.webp",
-      alt: lang === "en" ? "Cineva Home on Windows Desktop" : "Tampilan Beranda Cineva di Windows Desktop",
-      badge: "Widescreen Billboard",
-      width: 2560,
-      height: 1459,
-    },
-    {
-      id: "windows-details",
-      platform: "Windows",
-      tabLabel: "Windows Detail",
-      icon: "windows",
-      src: "/screens/windows_details.webp",
-      alt: lang === "en" ? "Cineva Details on Windows Desktop" : "Tampilan Detail Film Cineva di Windows Desktop",
-      badge: "Cinematic Canvas",
+      alt: lang === "en" ? "Cineva on Windows Desktop" : "Tampilan Cineva di Windows Desktop",
+      badge: "Desktop UI",
+      isPortrait: false,
       width: 2560,
       height: 1459,
     },
@@ -60,16 +63,18 @@ export default function Multiplatform() {
   }, [isPaused, screens.length]);
 
   return (
-    <section id="multiplatform" className="sec sec-multiplatform" aria-label="Cineva Windows Desktop & Android TV">
+    <section id="multiplatform" className="sec sec-multiplatform" aria-label="Cineva Android, Android TV & Windows Desktop">
       <div className="wrap">
         {/* Section Header: Standard sec-head row konsisten dengan Bento & Showcase */}
         <div className="sec-head row multiplatform-head" data-reveal="up">
           <div>
             <span className="multiplatform-badge">
+              <Icon name="android" size={13} />
+              <span className="badge-plus">+</span>
               <Icon name="tv" size={13} />
               <span className="badge-plus">+</span>
               <Icon name="windows" size={13} />
-              <span>{t.multiplatform.badge || "WINDOWS & ANDROID TV"}</span>
+              <span>{t.multiplatform.badge || "ANDROID, ANDROID TV & WINDOWS"}</span>
             </span>
             <h2>
               {t.multiplatform.title1} <span className="outline">{t.multiplatform.title2}</span>
@@ -115,7 +120,7 @@ export default function Multiplatform() {
                 {screens.map((screen, idx) => (
                   <div
                     key={screen.id}
-                    className={`multiplatform-slide ${idx === activeIdx ? "is-active" : ""}`}
+                    className={`multiplatform-slide ${screen.isPortrait ? "is-portrait" : ""} ${idx === activeIdx ? "is-active" : ""}`}
                     aria-hidden={idx !== activeIdx}
                   >
                     <img

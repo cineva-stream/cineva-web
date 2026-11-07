@@ -212,11 +212,17 @@ export const translations = {
       },
     },
     multiplatform: {
-      badge: "WINDOWS & ANDROID TV",
-      title1: "Hadir di layar lebar,",
-      title2: "PC & Smart TV.",
-      lead: "Katalog, watchlist, dan pemutar sinematik yang sama, didesain ulang penuh untuk keleluasaan monitor layar lebar PC dan televisi pintar dengan navigasi remote control D-Pad serta kontrol keyboard & mouse yang presisi.",
+      badge: "ANDROID, ANDROID TV & WINDOWS",
+      title1: "Satu pengalaman,",
+      title2: "di semua layar.",
+      lead: "Katalog film, watchlist, dan riwayat tontonan yang sama, dioptimalkan untuk sentuhan smartphone Android, navigasi remote D-Pad Android TV, serta keleluasaan layar lebar Windows Desktop.",
       screens: [
+        {
+          src: "/screens/home.webp",
+          alt: "Tampilan Cineva di Smartphone Android",
+          label: "Android Mobile",
+          desc: "Navigasi sentuh cepat, gestur pemutar intuitif, dan unduhan APK teroptimasi.",
+        },
         {
           src: "/screens/android_tv.webp",
           alt: "Tampilan Cineva di Android TV & Smart TV",
@@ -226,21 +232,15 @@ export const translations = {
         {
           src: "/screens/windows_home.webp",
           alt: "Tampilan Beranda Cineva di Windows Desktop",
-          label: "Beranda Layar Lebar",
-          desc: "Billboard carousel 490px dengan navigasi rail kiri yang elegan.",
-        },
-        {
-          src: "/screens/windows_details.webp",
-          alt: "Tampilan Detail Film Cineva di Windows Desktop",
-          label: "Detail Sinematik",
-          desc: "Canvas header 480px, poster mengambang, dan grid episode 2-kolom.",
+          label: "Windows Desktop",
+          desc: "Billboard carousel 490px dengan navigasi rail kiri dan kontrol keyboard presisi.",
         },
       ],
       features: [
+        { title: "Android Mobile Native", desc: "Navigasi sentuh gesit, gestur pemutar intuitif, dan hemat baterai.", icon: "android" },
         { title: "Android TV (10-Foot UI)", desc: "Navigasi remote D-Pad, poster zoom 1.11x, dan efek ambient amber glow.", icon: "tv" },
-        { title: "Frameless Obsidian UI", desc: "Tampilan borderless minimalis dengan tombol kontrol native.", icon: "windows" },
-        { title: "Pintasan Keyboard Penuh", desc: "Spasi untuk jeda, panah untuk seek & volume boost 150%.", icon: "keyboard" },
-        { title: "Single-File Installer", desc: "Setup instan berukuran ringan (28.2 MB) siap pasang.", icon: "download" },
+        { title: "Frameless Obsidian UI", desc: "Tampilan borderless minimalis dengan kontrol keyboard & mouse presisi.", icon: "windows" },
+        { title: "Single-File Installer", desc: "Setup instan berukuran ringan (28.2 MB) siap pasang di PC.", icon: "download" },
       ],
     },
     showcase: {
@@ -579,11 +579,17 @@ export const translations = {
       },
     },
     multiplatform: {
-      badge: "WINDOWS & ANDROID TV",
-      title1: "Made for the big screen,",
-      title2: "Desktop & Smart TV.",
-      lead: "The same cinematic streaming experience, redrawn for the widescreen clarity of desktop monitors and big-screen Smart TVs with 10-foot D-Pad remote navigation and precise keyboard & mouse controls.",
+      badge: "ANDROID, ANDROID TV & WINDOWS",
+      title1: "One experience,",
+      title2: "across every screen.",
+      lead: "The same streaming catalog, watchlist, and user history, tailored for Android mobile touch, 10-foot Android TV remote navigation, and the widescreen clarity of Windows Desktop.",
       screens: [
+        {
+          src: "/screens/home.webp",
+          alt: "Cineva on Android Mobile",
+          label: "Android Mobile",
+          desc: "Snappy touch navigation, intuitive playback gestures, and battery-friendly streaming.",
+        },
         {
           src: "/screens/android_tv.webp",
           alt: "Cineva on Android TV & Smart TV",
@@ -593,21 +599,15 @@ export const translations = {
         {
           src: "/screens/windows_home.webp",
           alt: "Cineva Home on Windows Desktop",
-          label: "Widescreen Home",
-          desc: "490px billboard carousel with an elegant left navigation rail.",
-        },
-        {
-          src: "/screens/windows_details.webp",
-          alt: "Cineva Details on Windows Desktop",
-          label: "Cinematic Details",
-          desc: "480px canvas header, floating poster, and 2-column episode grid.",
+          label: "Windows Desktop",
+          desc: "490px billboard carousel with an elegant left navigation rail and full keyboard shortcuts.",
         },
       ],
       features: [
+        { title: "Android Mobile Native", desc: "Fast touch gestures, responsive playback, and battery optimization.", icon: "android" },
         { title: "Android TV (10-Foot UI)", desc: "10-foot D-Pad remote navigation, 1.11x poster zoom, and ambient amber glow.", icon: "tv" },
-        { title: "Frameless Obsidian UI", desc: "Minimal borderless dark window with integrated title controls.", icon: "windows" },
-        { title: "Keyboard Shortcuts", desc: "Space for play/pause, arrows for seeking and 150% volume boost.", icon: "keyboard" },
-        { title: "Single-File Installer", desc: "Lightweight standalone installer (28.2 MB) ready to run.", icon: "download" },
+        { title: "Frameless Obsidian UI", desc: "Minimal borderless dark window with precise keyboard & mouse controls.", icon: "windows" },
+        { title: "Single-File Installer", desc: "Lightweight standalone installer (28.2 MB) ready to run on PC.", icon: "download" },
       ],
     },
     showcase: {
