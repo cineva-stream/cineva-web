@@ -350,9 +350,25 @@ export const translations = {
       windowsSteps: [
         { step: 1, title: "Unduh Installer", desc: "Klik tombol unduh Cineva_setup.exe di sebelah kiri." },
         { step: 2, title: "Jalankan Setup", desc: "Buka berkas .exe yang telah selesai diunduh dari browser Anda." },
-        { step: 3, title: "Konfirmasi Windows SmartScreen", desc: "Jika muncul jendela biru 'Windows protected your PC', klik teks 'More info' lalu pilih tombol 'Run anyway'." },
+        { step: 3, title: "Konfirmasi Windows SmartScreen", desc: "Jika muncul peringatan 'Windows protected your PC': Klik \"More info\" (Info selengkapnya) → lalu klik \"Run anyway\" (Tetap jalankan)." },
         { step: 4, title: "Selesai & Buka Cineva", desc: "Pemasangan selesai! Shortcut Cineva otomatis dibuat di Desktop dan Start Menu siap dinikmati." },
       ],
+      smartScreenGuide: {
+        title: "Panduan Windows SmartScreen",
+        desc: "Jika muncul jendela 'Windows protected your PC' (Windows melindungi PC Anda), ikuti 2 langkah mudah berikut:",
+        steps: [
+          {
+            step: 1,
+            title: 'Klik "More info"',
+            desc: 'Klik teks tautan "More info" (Info selengkapnya) pada dialog Windows SmartScreen.',
+          },
+          {
+            step: 2,
+            title: 'Pilih "Run anyway"',
+            desc: 'Klik tombol "Run anyway" (Tetap jalankan) yang muncul di bagian bawah untuk melanjutkan instalasi.',
+          },
+        ],
+      },
       specLabels: {
         version: "Versi",
         size: "Ukuran",
@@ -369,6 +385,10 @@ export const translations = {
         {
           q: "Apakah Cineva benar-benar gratis?",
           a: "Ya. Cineva gratis, open source di bawah lisensi GPL-3.0, tanpa iklan, dan tanpa langganan.",
+        },
+        {
+          q: "Bagaimana jika muncul peringatan Windows SmartScreen saat instalasi?",
+          a: "Hal ini wajar untuk piranti lunak open source yang baru dirilis. Cukup ikuti 2 langkah mudah: Klik 'More info' (Info selengkapnya) → lalu klik 'Run anyway' (Tetap jalankan) untuk melanjutkan instalasi dengan aman.",
         },
         {
           q: "Perangkat apa yang didukung?",
@@ -717,9 +737,25 @@ export const translations = {
       windowsSteps: [
         { step: 1, title: "Download Installer", desc: "Click the Cineva_setup.exe download button on the left." },
         { step: 2, title: "Run Setup", desc: "Open the downloaded .exe installer file from your browser." },
-        { step: 3, title: "Confirm Windows SmartScreen", desc: "If the blue 'Windows protected your PC' window appears, click 'More info' then click 'Run anyway'." },
+        { step: 3, title: "Confirm Windows SmartScreen", desc: "If 'Windows protected your PC' appears: Click \"More info\" (Info selengkapnya) → then click \"Run anyway\" (Tetap jalankan)." },
         { step: 4, title: "Ready to Watch", desc: "Setup complete! A Cineva desktop shortcut is created, ready to launch with mouse & keyboard controls." },
       ],
+      smartScreenGuide: {
+        title: "Windows SmartScreen Notice",
+        desc: "If the 'Windows protected your PC' dialog appears, follow these 2 simple steps:",
+        steps: [
+          {
+            step: 1,
+            title: 'Click "More info"',
+            desc: 'Click the "More info" (Info selengkapnya) text link inside the Windows SmartScreen dialog.',
+          },
+          {
+            step: 2,
+            title: 'Select "Run anyway"',
+            desc: 'Click the "Run anyway" (Tetap jalankan) button that appears at the bottom to continue installation.',
+          },
+        ],
+      },
       specLabels: {
         version: "Version",
         size: "Size",
@@ -736,6 +772,10 @@ export const translations = {
         {
           q: "Is Cineva really free?",
           a: "Yes. Cineva is 100% free, open source under the GPL-3.0 license, with zero ads and no subscriptions.",
+        },
+        {
+          q: "What if Windows SmartScreen shows a warning during installation?",
+          a: "This is completely normal for newly released open-source software. Simply follow these 2 easy steps: Click 'More info' (Info selengkapnya) → then click 'Run anyway' (Tetap jalankan) to safely proceed with setup.",
         },
         {
           q: "Which devices are supported?",

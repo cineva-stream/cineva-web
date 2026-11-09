@@ -53,6 +53,12 @@ The site provides an immersive overview of Cineva capabilities, interactive inst
 - **Multi-Method Installation Guides**
   Interactive guide detailing multiple Android installation pathways, including direct APK installation, ADB sideloading commands, and compiling from source code.
 
+- **Windows SmartScreen Guide**
+  Clear, minimalist instructions for Windows desktop users when encountering the *"Windows protected your PC"* alert:
+  1. Click **"More info"** (*Info selengkapnya*)  
+     ↓  
+  2. Then click **"Run anyway"** (*Tetap jalankan*)
+
 - **Synchronized Legal Documentation**
   Full-screen editorial markdown layouts for Terms of Service (/syarat-penggunaan), Privacy Policy (/kebijakan-privasi), and DMCA Disclaimer (/disclaimer), maintained in alignment with the Android application.
 

@@ -242,12 +242,12 @@ export default function Install() {
                       <dd>Windows 10 / 11 (64-bit)</dd>
                     </div>
                     <div className="windows-spec-row">
-                      <dt>{inst.specLabels?.size || "Ukuran Berkas"}</dt>
-                      <dd>{windowsSize}</dd>
-                    </div>
-                    <div className="windows-spec-row">
                       <dt>{inst.specLabels?.cpu || "Arsitektur"}</dt>
                       <dd>x86_64 (Intel & AMD)</dd>
+                    </div>
+                    <div className="windows-spec-row">
+                      <dt>{inst.specLabels?.size || "Ukuran Berkas"}</dt>
+                      <dd>{windowsSize}</dd>
                     </div>
                     <div className="windows-spec-row">
                       <dt>{lang === "en" ? "License" : "Lisensi"}</dt>
@@ -288,6 +288,39 @@ export default function Install() {
                       </div>
                     </div>
                   ))}
+                </div>
+
+                <div className="install-smartscreen-section">
+                  <div className="install-smartscreen-header">
+                    {/* @ts-ignore */}
+                    <h4 className="install-smartscreen-title">{inst.smartScreenGuide?.title || (lang === "en" ? "Windows SmartScreen Notice" : "Panduan Windows SmartScreen")}</h4>
+                    {/* @ts-ignore */}
+                    <p className="install-smartscreen-desc">{inst.smartScreenGuide?.desc || (lang === "en" ? "If the 'Windows protected your PC' dialog appears, follow these 2 simple steps:" : "Jika muncul peringatan 'Windows protected your PC' (Windows melindungi PC Anda), ikuti 2 langkah mudah berikut:")}</p>
+                  </div>
+
+                  <div className="install-steps-list">
+                    {/* @ts-ignore */}
+                    {(inst.smartScreenGuide?.steps || [
+                      {
+                        step: 1,
+                        title: lang === "en" ? 'Click "More info"' : 'Klik "More info"',
+                        desc: lang === "en" ? 'Click the "More info" (Info selengkapnya) text link inside the dialog.' : 'Klik teks tautan "More info" (Info selengkapnya) pada dialog Windows SmartScreen.',
+                      },
+                      {
+                        step: 2,
+                        title: lang === "en" ? 'Select "Run anyway"' : 'Pilih "Run anyway"',
+                        desc: lang === "en" ? 'Click the "Run anyway" (Tetap jalankan) button at the bottom.' : 'Klik tombol "Run anyway" (Tetap jalankan) yang muncul di bagian bawah.',
+                      },
+                    ]).map((s: any) => (
+                      <div key={s.step} className="install-step-card">
+                        <div className="step-num-badge">{s.step}</div>
+                        <div className="step-text-group">
+                          <h4 className="step-item-title">{s.title}</h4>
+                          <p className="step-item-desc">{s.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
