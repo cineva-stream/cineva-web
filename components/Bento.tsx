@@ -106,7 +106,7 @@ export default function Bento() {
             </div>
           </article>
 
-          {/* Unduhan - Under Maintenance */}
+          {/* Unduhan - Sudah Bisa Dicoba */}
           <article className="tile t-maint" aria-label={t.bento.maint.ariaLabel} data-reveal="up" data-delay="1">
             <div className="tile-art maint-art">
               <div className="maint-visual">
@@ -117,7 +117,7 @@ export default function Bento() {
                     <circle cx="60" cy="60" r="42" className="ring-fg" />
                   </svg>
                   <span className="maint-core">
-                    <strong className="maint-percent">98%</strong>
+                    <strong className="maint-percent">100%</strong>
                   </span>
                 </div>
                 <div className="maint-status-pill">
@@ -129,10 +129,10 @@ export default function Bento() {
             <div className="tile-copy">
               <div className="tile-head">
                 <span className="tile-ico maint-ico">
-                  <Icon name="warning" size={18} />
+                  <Icon name="download" size={18} />
                 </span>
                 <span className="maint-badge">
-                  <Icon name="warning" size={13} />
+                  <Icon name="check" size={13} />
                   {t.maintenance.badge}
                 </span>
               </div>

@@ -152,15 +152,15 @@ export const translations = {
         { title: "Konten sesuai selera", sub: "Indonesia, Anime, Hollywood, Korea", src: "/posters/stranger_things.webp" },
         { title: "Pencarian dan filter genre", sub: "Riwayat dan tren langsung muncul", src: "/posters/peaky_blinders.webp" },
         { title: "Profil lokal, tanpa akun", sub: "Tanpa email dan nomor telepon", src: "/posters/chernobyl.webp" },
-        { title: "Unduhan offline", sub: "Sedang diperbaiki", src: "/posters/game_of_thrones.webp", badge: "Under Maintenance", maintenance: true },
+        { title: "Unduhan offline", sub: "Tonton film & serial tanpa internet", src: "/posters/game_of_thrones.webp", badge: "Bisa Dicoba" },
       ] as Reason[],
     },
     maintenance: {
-      badge: "Under Maintenance",
-      title: "Unduhan offline sedang diperbaiki.",
-      body: "Antrean unduhan akan kembali setelah perbaikan selesai. Sementara itu, streaming online berjalan normal.",
+      badge: "Bisa Dicoba",
+      title: "Fitur Unduhan kini sudah bisa digunakan.",
+      body: "Simpan film dan episode serial favorit langsung ke perangkatmu untuk ditonton secara offline kapan saja. Catatan: Kami tidak dapat memastikan untuk seluruh film maupun serial TV dapat diunduh.",
       notice:
-        "Fitur Unduhan di dalam aplikasi masih dalam pengembangan (Under Maintenance). Untuk saat ini, nikmati lewat streaming online.",
+        "Fitur Unduhan di dalam aplikasi kini sudah bisa dicoba. Catatan: Kami tidak dapat memastikan untuk seluruh film maupun TV series dapat diunduh.",
     },
     bento: {
       title1: "Seluruh tontonanmu,",
@@ -181,8 +181,8 @@ export const translations = {
         desc: "Subtitle multi-bahasa, kecepatan 0.5x - 2.0x, dan Next Episode otomatis tanpa jeda.",
       },
       maint: {
-        ariaLabel: "Unduhan: Under Maintenance",
-        statusOnline: "Streaming online berjalan normal",
+        ariaLabel: "Unduhan: Sudah Bisa Dicoba",
+        statusOnline: "Streaming & unduhan offline siap digunakan",
       },
       watch: {
         savedTag: "Tersimpan",
@@ -407,8 +407,8 @@ export const translations = {
           a: "Tidak perlu. Profil dan Watchlist tersimpan di ponselmu, tanpa email atau nomor telepon.",
         },
         {
-          q: "Kenapa fitur Unduhan berstatus Under Maintenance?",
-          a: "Unduhan offline sedang diperbaiki dan masih dalam pengembangan. Streaming online tetap berjalan normal. Pantau halaman Releases untuk kabar terbarunya.",
+          q: "Apakah seluruh film dan serial TV dapat diunduh?",
+          a: "Fitur unduhan offline kini sudah bisa digunakan untuk menyimpan video langsung ke perangkatmu. Namun, kami tidak dapat memastikan untuk seluruh film maupun serial TV dapat diunduh dikarenakan ketersediaan sumber dan server pihak ketiga di internet.",
         },
         {
           q: "Bagaimana cara berkontribusi?",
@@ -539,15 +539,15 @@ export const translations = {
         { title: "Curated for your taste", sub: "Indonesian, Anime, Hollywood, K-Drama", src: "/posters/stranger_things.webp" },
         { title: "Instant search & filters", sub: "Live search history and daily trends", src: "/posters/peaky_blinders.webp" },
         { title: "Local profile, no account", sub: "No email or phone number required", src: "/posters/chernobyl.webp" },
-        { title: "Offline downloads", sub: "Currently being improved", src: "/posters/game_of_thrones.webp", badge: "Under Maintenance", maintenance: true },
+        { title: "Offline downloads", sub: "Watch movies & series without internet", src: "/posters/game_of_thrones.webp", badge: "Available" },
       ] as Reason[],
     },
     maintenance: {
-      badge: "Under Maintenance",
-      title: "Offline downloads are being upgraded.",
-      body: "The download queue will return once improvements are complete. Meanwhile, online streaming runs smoothly.",
+      badge: "Available to Try",
+      title: "Offline downloads are now available.",
+      body: "Save your favorite movies and series episodes directly to your device to watch offline anytime. Note: We cannot guarantee that all movies or TV series can be downloaded.",
       notice:
-        "The in-app Offline Download feature is currently Under Maintenance. For now, enjoy seamless online streaming.",
+        "The in-app Offline Download feature is now ready to try. Note: We cannot guarantee that all movies or TV series can be downloaded.",
     },
     bento: {
       title1: "All your shows,",
@@ -568,8 +568,8 @@ export const translations = {
         desc: "Multi-language subtitles, 0.5x - 2.0x playback speed, and seamless Auto Next Episode.",
       },
       maint: {
-        ariaLabel: "Downloads: Under Maintenance",
-        statusOnline: "Online streaming works normally",
+        ariaLabel: "Downloads: Available to Try",
+        statusOnline: "Online streaming & offline downloads ready",
       },
       watch: {
         savedTag: "Saved",
@@ -794,8 +794,8 @@ export const translations = {
           a: "Not at all. Your Profile and Watchlist are saved locally on your phone, requiring no email or phone number.",
         },
         {
-          q: "Why is the Offline Download feature Under Maintenance?",
-          a: "Offline downloading is currently being refactored and improved. Online streaming works normally. Check the Releases page for upcoming updates.",
+          q: "Can all movies and TV series be downloaded?",
+          a: "The offline download feature is now available to try. However, we cannot guarantee that all movies or TV series can be downloaded due to the dynamic availability of third-party streams and sources.",
         },
         {
           q: "How can I contribute?",
