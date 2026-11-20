@@ -4,13 +4,13 @@ import { privacyPolicy } from "@/lib/legal";
 
 export const metadata: Metadata = {
   title: "Kebijakan Privasi",
-  description: "Prinsip perlindungan data pribadi dan filosofi privasi nol-pelacakan (Zero Data Collection) aplikasi Cineva.",
+  description: "Prinsip Local-first, data minimal: akun tidak wajib, data disimpan di perangkat secara bawaan, dan layanan cloud hanya untuk fitur opsional Cineva.",
   alternates: {
     canonical: "/kebijakan-privasi",
   },
   openGraph: {
     title: "Kebijakan Privasi | Cineva",
-    description: "Prinsip perlindungan data pribadi dan filosofi privasi nol-pelacakan (Zero Data Collection) aplikasi Cineva.",
+    description: "Prinsip Local-first, data minimal: akun tidak wajib, data disimpan di perangkat secara bawaan, dan layanan cloud hanya untuk fitur opsional Cineva.",
     url: "/kebijakan-privasi",
   },
 };

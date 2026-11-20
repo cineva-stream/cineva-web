@@ -7,9 +7,13 @@ export interface LegalSection {
   bulletPoints?: string[];
 }
 
+/** Nomor versi dokumen legal. Harus sama dengan LegalContentRepository.currentVersion di aplikasi Cineva. */
+export const LEGAL_VERSION = 2;
+
 export interface LegalDocument {
   title: string;
   subtitle: string;
+  lastUpdated: string;
   calloutSummary: string;
   sections: LegalSection[];
   concludingNotice: string;
@@ -18,21 +22,22 @@ export interface LegalDocument {
 export const privacyPolicy: LegalDocument = {
   title: "Kebijakan Privasi",
   subtitle: "Prinsip Perlindungan Data Pribadi & Privasi Pengguna Global",
+  lastUpdated: "20 November 2026",
   calloutSummary:
-    "Cineva dirancang dengan arsitektur privasi nol-pelacakan (Zero Data Collection). Kami tidak mengumpulkan, tidak menjual, dan tidak mentransmisikan data identitas pribadi Anda ke server mana pun.",
+    "Cineva menganut prinsip Local-first, data minimal: data Anda disimpan di perangkat secara bawaan dan akun tidak wajib. Fitur opsional seperti Masuk dengan Google, Lanjutkan Menonton, Nonton Bareng, Kirim Masukan, serta analitik performa memproses data tertentu melalui layanan pihak ketiga yang dijelaskan di dokumen ini. Kami tidak menjual data pribadi Anda.",
   sections: [
     {
       number: "1",
-      title: "Filosofi Privasi Tanpa Akun & Tanpa Registrasi",
+      title: "Filosofi Local-First: Akun Tidak Wajib & Data Minimal",
       body:
-        "Cineva beroperasi tanpa memerlukan pendaftaran akun, alamat surel, nomor telepon, maupun informasi identitas pribadi (PII). Seluruh fitur aplikasi dapat diakses langsung tanpa autentikasi ke server terpusat milik Cineva. Kami meyakini bahwa akses terhadap piranti lunak pemutar media harus menjunjung tinggi privasi mutlak pengguna di seluruh dunia.",
+        "Cineva dapat digunakan tanpa mendaftar akun, tanpa alamat surel, dan tanpa nomor telepon. Secara bawaan, data Anda hanya tersimpan di perangkat. Beberapa fitur opsional (dijelaskan pada pasal 3 sampai 5) memerlukan pemrosesan data melalui layanan pihak ketiga. Kami hanya memproses data yang diperlukan untuk menjalankan fitur dan menjaga kualitas aplikasi, dan kami tidak menjual data pribadi Anda.",
       bulletPoints: [],
     },
     {
       number: "2",
       title: "Penyimpanan Data Lokal di Perangkat Pengguna",
       body:
-        "Seluruh preferensi konfigurasi dan data interaksi pengguna disimpan secara eksklusif pada penyimpanan lokal perangkat Anda menggunakan basis data tertanam terenkripsi (Hive). Data yang tersimpan meliputi:",
+        "Preferensi konfigurasi dan data interaksi pengguna disimpan pada penyimpanan lokal perangkat Anda menggunakan basis data tertanam (Hive). Data yang tersimpan meliputi:",
       bulletPoints: [
         "Daftar film dan serial yang Anda simpan ke dalam Watchlist.",
         "Riwayat tontonan dan posisi pemutaran terakhir (resume position).",
@@ -43,6 +48,44 @@ export const privacyPolicy: LegalDocument = {
     },
     {
       number: "3",
+      title: "Layanan Cloud Opsional: Masuk dengan Google & Lanjutkan Menonton",
+      body:
+        "Jika Anda memilih Masuk dengan Google, Cineva menggunakan Google Sign-In dan Firebase (Google LLC) untuk mengautentikasi Anda dan menyinkronkan data antar perangkat. Fitur ini sepenuhnya opsional; Anda tetap dapat memakai Cineva tanpa akun.",
+      bulletPoints: [
+        "Data akun dari Google: alamat surel, nama tampilan, dan foto profil. Data ini digunakan untuk mengisi profil dan mengidentifikasi akun sinkronisasi Anda.",
+        "Data cadangan sinkronisasi: profil, Watchlist, dan riwayat tontonan disimpan di Firebase Realtime Database pada jalur khusus akun Anda dan disinkronkan otomatis di latar belakang.",
+        "Lanjutkan Menonton lintas perangkat: judul yang sedang ditonton, posisi pemutaran, serta jenis dan nama perangkat disimpan sebagai sesi aktif agar dapat dilanjutkan di perangkat lain. Sesi dihapus ketika tontonan selesai.",
+        "Anda dapat memutuskan akun Google kapan saja melalui Pengaturan; data lokal di perangkat tidak dihapus. Untuk menghapus data cloud Anda, hubungi kami di cineva.dev@gmail.com.",
+      ],
+    },
+    {
+      number: "4",
+      title: "Nonton Bareng (Watch Party): Fitur Beta",
+      body:
+        "Saat Anda membuat atau bergabung ke ruangan Nonton Bareng, data berikut dibagikan kepada seluruh peserta ruangan dan diproses melalui infrastruktur pihak ketiga:",
+      bulletPoints: [
+        "Nama panggilan, ID anggota (ID akun Firebase jika Anda masuk, atau ID tamu acak), status Host, dan waktu terakhir aktif.",
+        "Pesan obrolan, reaksi emoji, serta pesan sistem (misalnya anggota bergabung atau keluar).",
+        "Informasi tontonan: judul, jenis media, ID TMDB/IMDb, musim dan episode, poster, serta status pemutaran (play, pause, dan posisi) agar tetap sinkron.",
+        "Kode ruangan (contoh CNV-8492) dan PIN 4 digit opsional. PIN hanya membatasi akses ruangan secara sederhana dan bukan mekanisme keamanan tingkat tinggi; siapa pun yang memegang kode dan PIN dapat bergabung dan melihat isi ruangan.",
+        "Data ruangan disimpan di Firebase Realtime Database. Jika koneksi Firebase gagal, Cineva otomatis memakai layanan relay publik pihak ketiga (ntfy.sh) sebagai jalur cadangan, sehingga data ruangan dapat melewati dan tersimpan sementara pada layanan tersebut sesuai kebijakan penyedianya.",
+        "Data ruangan dirancang untuk dihapus ketika ruangan tidak aktif atau telah berakhir. Mekanisme penghapusan otomatis ini masih disempurnakan selama masa beta, sehingga jangka waktu penyimpanan dapat berubah. Jangan membagikan informasi sensitif di dalam obrolan.",
+      ],
+    },
+    {
+      number: "5",
+      title: "Analitik Performa, Kirim Masukan & Pemeriksaan Pembaruan",
+      body:
+        "Cineva memproses data teknis tertentu untuk menjaga kualitas dan performa aplikasi di berbagai perangkat:",
+      bulletPoints: [
+        "Google Analytics for Firebase: Cineva mengumpulkan data penggunaan dan performa yang bersifat teknis, seperti pembukaan aplikasi dan tampilan layar, beserta informasi perangkat dan aplikasi (misalnya model perangkat, versi sistem operasi, versi aplikasi, perkiraan wilayah, dan pengenal instalasi aplikasi) untuk memantau stabilitas dan performa. Data ini diproses oleh Google. Pengumpulan analitik aktif secara bawaan dan belum tersedia opsi untuk menonaktifkannya di dalam aplikasi pada versi ini.",
+        "Kirim Masukan: jika Anda mengirim masukan, isi pesan, nama (opsional), kategori, informasi perangkat dan sistem operasi, serta versi aplikasi dikirim melalui Google Apps Script kepada pengembang, dicatat di Google Sheets, dan diteruskan ke Telegram. Jangan menyertakan data sensitif dalam masukan.",
+        "Pemeriksaan pembaruan: aplikasi meminta informasi rilis terbaru ke GitHub, sehingga alamat IP Anda terlihat oleh GitHub sesuai kebijakan privasi GitHub.",
+        "Situs web resmi Cineva menggunakan Vercel Web Analytics dan Speed Insights untuk statistik kunjungan dan performa halaman secara agregat.",
+      ],
+    },
+    {
+      number: "6",
       title: "Karakteristik Jaringan P2P & Alamat Protokol Internet (IP)",
       body:
         "Sebagai pemutar media yang mendukung protokol terdistribusi (Peer-to-Peer / BitTorrent):",
@@ -53,41 +96,46 @@ export const privacyPolicy: LegalDocument = {
       ],
     },
     {
-      number: "4",
+      number: "7",
       title: "Interaksi dengan Layanan & API Pihak Ketiga",
       body:
-        "Untuk menampilkan poster sinematik, sinopsis resmi, dan subtitle, Cineva berkomunikasi langsung dari perangkat Anda ke antarmuka pemrograman aplikasi (API) publik pihak ketiga:",
+        "Untuk menampilkan poster sinematik, sinopsis resmi, subtitle, serta menjalankan fitur opsional, Cineva berkomunikasi langsung dari perangkat Anda ke layanan pihak ketiga:",
       bulletPoints: [
         "The Movie Database (TMDB): Digunakan untuk mengambil metadata poster, judul, tahun rilis, dan ringkasan alur cerita.",
         "OpenSubtitles: Digunakan untuk mengunduh berkas teks subtitle multibahasa secara publik.",
         "Indeks Pelacak Publik (Torrentio / Addon Scraper): Digunakan untuk mencocokkan ketersediaan data media terdistribusi.",
+        "Google (Firebase Authentication, Realtime Database, Analytics, Apps Script, dan Sheets): untuk Masuk dengan Google, sinkronisasi, Lanjutkan Menonton, Nonton Bareng, analitik, dan Kirim Masukan.",
+        "ntfy.sh: relay publik cadangan untuk Nonton Bareng ketika Firebase tidak dapat dijangkau.",
+        "Telegram: penerima notifikasi masukan pengguna oleh pengembang.",
+        "GitHub: sumber informasi rilis untuk pemeriksaan pembaruan.",
         "Interaksi dengan layanan pihak ketiga ini tunduk pada kebijakan privasi dan ketentuan layanan dari masing-masing penyedia layanan tersebut.",
       ],
     },
     {
-      number: "5",
-      title: "Kepatuhan Regulasi Privasi Internasional",
+      number: "8",
+      title: "Hak & Kontrol Pengguna serta Kepatuhan Regulasi",
       body:
-        "Meskipun Cineva tidak mengumpulkan data pribadi di server mana pun, arsitektur aplikasi ini selaras dengan prinsip-prinsip perlindungan data global, termasuk General Data Protection Regulation (GDPR) Uni Eropa, California Consumer Privacy Act (CCPA), dan standar privasi internasional lainnya yang menjamin hak pengguna untuk menghapus seluruh data lokal kapan saja melalui menu Pengaturan.",
+        "Anda dapat menghapus seluruh data lokal kapan saja melalui menu Pengaturan, memutuskan akun Google, dan keluar dari ruangan Nonton Bareng kapan pun. Untuk permintaan akses atau penghapusan data yang tersimpan di layanan cloud (akun, cadangan sinkronisasi, ruangan Nonton Bareng, atau masukan), hubungi kami di cineva.dev@gmail.com. Kami berupaya menyelaraskan praktik data dengan prinsip perlindungan data global seperti General Data Protection Regulation (GDPR) dan California Consumer Privacy Act (CCPA), termasuk prinsip minimalisasi data.",
       bulletPoints: [],
     },
     {
-      number: "6",
+      number: "9",
       title: "Pembaruan Dokumen Kebijakan",
       body:
-        "Kebijakan Privasi ini dapat diperbarui sewaktu-waktu seiring dengan evolusi fitur teknis aplikasi. Pembaruan akan selalu tercermin secara transparan pada dokumen ini.",
+        "Kebijakan Privasi ini dapat diperbarui sewaktu-waktu seiring dengan evolusi fitur aplikasi. Tanggal pembaruan terakhir tercantum di bagian atas dokumen, dan versi terbaru selalu tersedia di dalam aplikasi serta di situs resmi Cineva.",
       bulletPoints: [],
     },
   ],
   concludingNotice:
-    "Jika Anda memiliki pertanyaan terkait privasi aplikasi atau arsitektur penyimpanan data lokal, Anda dapat meninjau kode sumber terbuka Cineva atau menghubungi pengembang.",
+    "Jika Anda memiliki pertanyaan terkait privasi, Anda dapat meninjau kode sumber terbuka Cineva atau menghubungi pengembang di cineva.dev@gmail.com.",
 };
 
 export const termsOfUse: LegalDocument = {
   title: "Syarat Penggunaan",
   subtitle: "Perjanjian Hukum Penggunaan Piranti Lunak Cineva Secara Global",
+  lastUpdated: "20 November 2026",
   calloutSummary:
-    'PENTING: Aplikasi Cineva disediakan "sebagaimana adanya" tanpa jaminan apa pun. Seluruh film dan serial TV bukan milik Cineva. Cineva BUKAN layanan komersial dan BUKAN pengganti platform streaming berbayar resmi.',
+    "PENTING: Aplikasi Cineva disediakan \"sebagaimana adanya\" tanpa jaminan apa pun. Seluruh film dan serial TV bukan milik Cineva. Cineva BUKAN layanan komersial dan BUKAN pengganti platform streaming berbayar resmi.",
   sections: [
     {
       number: "1",
@@ -98,15 +146,16 @@ export const termsOfUse: LegalDocument = {
     },
     {
       number: "2",
-      title: 'Lisensi Sumber Terbuka (GPL-3.0) & Penyediaan "Sebagaimana Adanya" (As-Is Provision)',
+      title: "Lisensi Sumber Terbuka (GPL-3.0) & Penyediaan \"Sebagaimana Adanya\" (As-Is Provision)",
       body:
-        'Piranti lunak Cineva didistribusikan sebagai perangkat lunak bebas dan sumber terbuka di bawah lisensi GNU General Public License v3.0 (GPL-3.0). Aplikasi Cineva disediakan secara mutlak atas dasar "SEBAGAIMANA ADANYA" ("AS IS") dan "SEBAGAIMANA TERSEDIA" ("AS AVAILABLE"), tanpa jaminan dalam bentuk apa pun, baik tersurat maupun tersirat, termasuk namun tidak terbatas pada jaminan tersirat atas kelayakan untuk diperdagangkan (merchantability), kesesuaian untuk tujuan tertentu (fitness for a particular purpose), ketiadaan pelanggaran hak pihak ketiga, serta kebebasan dari cacat, galat, atau gangguan operasional.',
+        "Piranti lunak Cineva didistribusikan sebagai perangkat lunak bebas dan sumber terbuka di bawah lisensi GNU General Public License v3.0 (GPL-3.0). Aplikasi Cineva disediakan secara mutlak atas dasar \"SEBAGAIMANA ADANYA\" (\"AS IS\") dan \"SEBAGAIMANA TERSEDIA\" (\"AS AVAILABLE\"), tanpa jaminan dalam bentuk apa pun, baik tersurat maupun tersirat, termasuk namun tidak terbatas pada jaminan tersirat atas kelayakan untuk diperdagangkan (merchantability), kesesuaian untuk tujuan tertentu (fitness for a particular purpose), ketiadaan pelanggaran hak pihak ketiga, serta kebebasan dari cacat, galat, atau gangguan operasional.",
       bulletPoints: [],
     },
     {
       number: "3",
       title: "Kepemilikan Pihak Ketiga & Penafian Konten Media",
-      body: "Pengguna mengakui dan menyepakati secara tegas bahwa:",
+      body:
+        "Pengguna mengakui dan menyepakati secara tegas bahwa:",
       bulletPoints: [
         "Seluruh konten Film, Serial TV, Trailer, Audio, Gambar Poster, dan Subtitle BUKAN merupakan milik aplikasi Cineva maupun pengembangnya.",
         "Cineva tidak memproduksi, tidak menerbitkan, tidak mengunggah, tidak menghosting, dan tidak mengendalikan file media apa pun.",
@@ -142,6 +191,20 @@ export const termsOfUse: LegalDocument = {
         "Pengguna memikul tanggung jawab hukum tunggal dan mutlak atas cara penggunaan aplikasi ini. Anda bertanggung jawab penuh untuk memastikan bahwa penggunaan protokol P2P dan akses terhadap konten publik selaras dengan peraturan perundang-undangan dan undang-undang hak cipta yang berlaku di negara tempat Anda berdomisili. Pengembang dibebaskan secara penuh dari setiap tuntutan atau sengketa hukum yang melibatkan pengguna.",
       bulletPoints: [],
     },
+    {
+      number: "7",
+      title: "Fitur Komunitas: Nonton Bareng, Akun & Masukan",
+      body:
+        "Jika Anda menggunakan fitur yang melibatkan pengguna lain atau layanan daring, Anda menyetujui ketentuan tambahan berikut:",
+      bulletPoints: [
+        "Host bertanggung jawab atas ruangan yang dibuat dan judul yang diputar; setiap peserta bertanggung jawab atas pesan, nama panggilan, dan reaksi yang dikirimnya.",
+        "Dilarang menggunakan obrolan untuk pelecehan, ujaran kebencian, spam, penipuan, penyebaran data pribadi orang lain, atau konten yang melanggar hukum.",
+        "Kode ruangan dan PIN adalah tanggung jawab Anda. Cineva tidak menjamin kerahasiaan ruangan dari pihak yang mengetahui kode atau PIN tersebut.",
+        "Nonton Bareng berstatus beta. Sinkronisasi, ketersediaan ruangan, dan layanan pendukungnya tidak dijamin serta dapat berubah atau dihentikan sewaktu-waktu.",
+        "Cineva berhak membatasi atau menghapus ruangan maupun akses yang menyalahgunakan layanan.",
+        "Pemrosesan data pada fitur-fitur ini diatur dalam Kebijakan Privasi.",
+      ],
+    },
   ],
   concludingNotice:
     "Penggunaan berkelanjutan atas aplikasi Cineva merupakan bentuk kesepakatan abadi Anda terhadap seluruh klausul hukum dalam Syarat dan Ketentuan ini.",
@@ -150,6 +213,7 @@ export const termsOfUse: LegalDocument = {
 export const disclaimerDoc: LegalDocument = {
   title: "Disclaimer",
   subtitle: "Pernyataan Penafian Hak Cipta, DMCA, & Batasan Tanggung Jawab",
+  lastUpdated: "20 November 2026",
   calloutSummary:
     "Cineva adalah antarmuka pemutar media terdesentralisasi. Cineva tidak meng-host file video apa pun di server kami sendiri. Seluruh materi hak cipta adalah milik pemilik resminya masing-masing.",
   sections: [
@@ -192,6 +256,17 @@ export const disclaimerDoc: LegalDocument = {
         "Sejauh diizinkan oleh hukum yang berlaku, pengembang, kontributor, dan pihak terkait Cineva tidak bertanggung jawab atas kerugian langsung, tidak langsung, insidental, khusus, atau konsekuensial dalam bentuk apa pun (termasuk kehilangan data, penggunaan bandwidth, atau tuntutan pihak ketiga) yang timbul dari pengunduhan, pemasangan, atau pengoperasian aplikasi ini oleh pengguna.",
       bulletPoints: [],
     },
+    {
+      number: "6",
+      title: "Nonton Bareng & Konten Buatan Pengguna",
+      body:
+        "Nonton Bareng hanya menyinkronkan status pemutaran (play, pause, dan posisi) serta obrolan antar peserta. Cineva tidak meng-host, tidak menyiarkan ulang, dan tidak mendistribusikan video melalui fitur ini.",
+      bulletPoints: [
+        "Setiap peserta memutar sumber medianya sendiri melalui aplikasi di perangkatnya; ketersediaan dan kualitas dapat berbeda antar peserta.",
+        "Cineva tidak memantau dan tidak bertanggung jawab atas isi pesan, nama panggilan, atau reaksi yang dibuat pengguna.",
+        "Laporan penyalahgunaan atau pelanggaran hak cipta dapat dikirim ke cineva.dev@gmail.com.",
+      ],
+    },
   ],
   concludingNotice:
     "Dengan menggunakan Cineva, Anda menegaskan pemahaman Anda bahwa Cineva adalah alat pemutar piranti lunak mandiri dan membebaskan pengembang dari segala tanggung jawab atas konten yang Anda akses.",
@@ -199,184 +274,255 @@ export const disclaimerDoc: LegalDocument = {
 
 export const privacyPolicyEn: LegalDocument = {
   title: "Privacy Policy",
-  subtitle: "Global Personal Data Protection & User Privacy Principles",
+  subtitle: "Global User Privacy & Personal Data Protection Framework",
+  lastUpdated: "November 20, 2026",
   calloutSummary:
-    "Cineva is engineered with a Zero Data Collection privacy architecture. We do not collect, sell, or transmit your personal identity data to any server.",
+    "Cineva follows a Local-first, minimal-data principle: your data stays on your device by default and an account is not required. Optional features such as Sign in with Google, Continue Watching, Watch Party, Send Feedback, and performance analytics process specific data through third-party services described in this document. We do not sell your personal data.",
   sections: [
     {
       number: "1",
-      title: "Account-Free & Zero-Registration Privacy Philosophy",
+      title: "Local-First Philosophy: Account Optional & Minimal Data",
       body:
-        "Cineva operates without requiring account registration, email addresses, phone numbers, or any Personally Identifiable Information (PII). Every feature of the application is accessible directly without authenticating to any centralized Cineva server. We believe access to media player software should uphold absolute user privacy worldwide.",
+        "Cineva can be used without registering an account, email address, or phone number. By default, your data stays on your device. Some optional features (described in sections 3 to 5) require data processing through third-party services. We only process data needed to run those features and to maintain app quality, and we do not sell your personal data.",
       bulletPoints: [],
     },
     {
       number: "2",
-      title: "Local Data Storage on the User's Device",
+      title: "Local Device Storage",
       body:
-        "All configuration preferences and user interaction data are stored exclusively on your device's internal storage using an encrypted embedded database (Hive). Locally stored data includes:",
+        "User configurations, preferences, and activity data are stored in your device's local storage using an embedded database (Hive). This includes:",
       bulletPoints: [
-        "Movies and TV series saved to your Watchlist.",
-        "Viewing history and last playback position (resume position).",
-        "Local search keyword history.",
-        "Display preferences: app language, subtitle size and background, and playback quality preferences.",
-        "Movie and subtitle files downloaded via the Download Manager.",
+        "Titles saved to your personal Watchlist.",
+        "Watch history records and playback progress resume markers.",
+        "Recent local search queries.",
+        "App visual preferences: interface language, subtitle styling, and streaming quality choices.",
+        "Locally saved media files and subtitles managed through the Download Manager.",
       ],
     },
     {
       number: "3",
-      title: "P2P Network Characteristics & Internet Protocol (IP) Addresses",
+      title: "Optional Cloud Services: Sign in with Google & Continue Watching",
       body:
-        "As a media player supporting distributed protocols (Peer-to-Peer / BitTorrent):",
+        "If you choose to Sign in with Google, Cineva uses Google Sign-In and Firebase (Google LLC) to authenticate you and sync data across your devices. This feature is entirely optional; you can use Cineva without an account.",
       bulletPoints: [
-        "When streaming or downloading content over P2P protocols, your device's public IP address is inherently visible to other peers participating in the distribution swarm. This is a fundamental characteristic of P2P architecture worldwide, not data collection by Cineva.",
-        "Cineva keeps zero logs—we never record, monitor, or archive your IP address.",
-        "Users seeking enhanced network transmission privacy are encouraged to use a reputable encrypted third-party Virtual Private Network (VPN).",
+        "Google account data: email address, display name, and profile photo. This is used to fill in your profile and identify your sync account.",
+        "Sync backup data: your profile, Watchlist, and watch history are stored in Firebase Realtime Database under a path specific to your account and synced automatically in the background.",
+        "Cross-device Continue Watching: the title you are watching, playback position, and device type and name are stored as an active session so you can resume on another device. The session is cleared when playback completes.",
+        "You can disconnect your Google account at any time in Settings; local data on your device is not deleted. To delete your cloud data, contact us at cineva.dev@gmail.com.",
       ],
     },
     {
       number: "4",
-      title: "Interaction with Third-Party Services & Public APIs",
+      title: "Watch Party: Beta Feature",
       body:
-        "To display cinematic posters, official synopses, and subtitles, Cineva communicates directly from your device with public third-party Application Programming Interfaces (APIs):",
+        "When you create or join a Watch Party room, the following data is shared with all room participants and processed through third-party infrastructure:",
       bulletPoints: [
-        "The Movie Database (TMDB): Used to fetch poster metadata, titles, release years, and plot summaries.",
-        "OpenSubtitles: Used to fetch publicly available multi-language subtitle files.",
-        "Public Tracker Indexes (Torrentio / Addon Scrapers): Used to match distributed media availability.",
-        "Interactions with these third-party services are governed by their respective privacy policies and terms of service.",
+        "Display name, member ID (your Firebase account ID if signed in, or a random guest ID), Host status, and last-active time.",
+        "Chat messages, emoji reactions, and system messages (for example, a member joining or leaving).",
+        "Viewing information: title, media type, TMDB/IMDb ID, season and episode, poster, and playback state (play, pause, and position) to keep everyone in sync.",
+        "The room code (for example CNV-8492) and an optional 4-digit PIN. The PIN only provides simple access restriction and is not a high-grade security mechanism; anyone holding the code and PIN can join and see the room contents.",
+        "Room data is stored in Firebase Realtime Database. If the Firebase connection fails, Cineva automatically uses a third-party public relay service (ntfy.sh) as a fallback channel, so room data may pass through and be temporarily stored on that service under its provider's policies.",
+        "Room data is designed to be deleted once a room becomes inactive or has ended. This automatic deletion is still being refined during the beta, so retention periods may change. Do not share sensitive information in chat.",
       ],
     },
     {
       number: "5",
-      title: "International Privacy Regulation Alignment",
+      title: "Performance Analytics, Feedback & Update Checks",
       body:
-        "Although Cineva collects no personal data on any server, its architecture aligns with global data protection principles—including the EU General Data Protection Regulation (GDPR) and California Consumer Privacy Act (CCPA)—guaranteeing users full control to erase all local data at any time via the Settings menu.",
-      bulletPoints: [],
+        "Cineva processes certain technical data to maintain app quality and performance across devices:",
+      bulletPoints: [
+        "Google Analytics for Firebase: Cineva collects technical usage and performance data, such as app opens and screen views, along with device and app information (for example device model, operating system version, app version, approximate region, and an app-instance identifier) to monitor stability and performance. This data is processed by Google. Analytics collection is enabled by default and an in-app option to disable it is not available in this version.",
+        "Send Feedback: if you submit feedback, your message, name (optional), category, device and operating system information, and app version are sent through Google Apps Script to the developer, logged in Google Sheets, and forwarded to Telegram. Do not include sensitive data in feedback.",
+        "Update checks: the app requests the latest release information from GitHub, so your IP address is visible to GitHub under GitHub's privacy policy.",
+        "The official Cineva website uses Vercel Web Analytics and Speed Insights for aggregated visit and page performance statistics.",
+      ],
     },
     {
       number: "6",
-      title: "Policy Document Updates",
+      title: "P2P Networking Nature & Internet Protocol (IP) Visibility",
       body:
-        "This Privacy Policy may be updated periodically as the technical features of the application evolve. Updates will always be transparently reflected in this document.",
+        "As a modern media player leveraging decentralized Peer-to-Peer (BitTorrent) protocols:",
+      bulletPoints: [
+        "When streaming or downloading via P2P networks, your device's public IP address is inherently visible to fellow swarm peers to facilitate packet exchanges. This is an architectural characteristic of distributed networking globally, not data collection by Cineva.",
+        "Cineva operates a zero-logs policy and maintains no telemetry, tracking databases, or connection archives.",
+        "Users seeking heightened network privacy are encouraged to employ a trusted third-party Virtual Private Network (VPN).",
+      ],
+    },
+    {
+      number: "7",
+      title: "Third-Party Services & Public APIs",
+      body:
+        "To render cinema posters, metadata, and subtitles, and to run optional features, Cineva communicates directly from your device with third-party services:",
+      bulletPoints: [
+        "The Movie Database (TMDB): Queried for movie/show posters, ratings, plot synopses, and genre taxonomy.",
+        "OpenSubtitles: Queried to locate and download community-provided subtitle text tracks.",
+        "Public Tracker Scrapers (Torrentio community endpoints): Queried to resolve public swarm availability.",
+        "Google (Firebase Authentication, Realtime Database, Analytics, Apps Script, and Sheets): for Sign in with Google, sync, Continue Watching, Watch Party, analytics, and Send Feedback.",
+        "ntfy.sh: a public fallback relay for Watch Party when Firebase is unreachable.",
+        "Telegram: receives user feedback notifications for the developer.",
+        "GitHub: source of release information for update checks.",
+        "Such external communications remain subject to the respective privacy policies of those independent providers.",
+      ],
+    },
+    {
+      number: "8",
+      title: "User Rights, Controls & Regulatory Alignment",
+      body:
+        "You can delete all local data at any time via Settings, disconnect your Google account, and leave a Watch Party room whenever you like. For access or deletion requests for data stored in cloud services (account, sync backup, Watch Party rooms, or feedback), contact us at cineva.dev@gmail.com. We strive to align our data practices with global data protection principles such as the EU General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA), including data minimization.",
+      bulletPoints: [],
+    },
+    {
+      number: "9",
+      title: "Amendments & Policy Updates",
+      body:
+        "This Privacy Policy may be revised from time to time as the app evolves. The last-updated date is shown at the top of this document, and the latest version is always available in the app and on the official Cineva website.",
       bulletPoints: [],
     },
   ],
   concludingNotice:
-    "If you have any questions regarding application privacy or local data storage architecture, you may review Cineva's open-source code or contact the developers.",
+    "If you have any questions about privacy, you may review Cineva's open-source code or contact the developer at cineva.dev@gmail.com.",
 };
 
 export const termsOfUseEn: LegalDocument = {
   title: "Terms of Use",
-  subtitle: "Global Software License & Usage Agreement for Cineva",
+  subtitle: "Global Legal Agreement for Cineva Software Usage",
+  lastUpdated: "November 20, 2026",
   calloutSummary:
-    'IMPORTANT: The Cineva application is provided "as is" without warranty of any kind. All movies and TV series do not belong to Cineva. Cineva is NOT a commercial service and is NOT a replacement for official paid streaming platforms.',
+    "CRITICAL: Cineva is provided strictly \"as-is\" without warranties of any kind. All movies and TV series belong exclusively to their respective owners. Cineva is strictly non-commercial and is NOT a substitute for licensed commercial streaming services.",
   sections: [
     {
       number: "1",
-      title: "Acceptance of Terms of Use",
+      title: "Acceptance of Legal Terms",
       body:
-        "By downloading, installing, copying, or using the Cineva software on any device worldwide, you acknowledge that you have read, understood, and agreed to be bound by all of these Terms of Use. If you do not agree to any provision hereof, you must immediately cease use and remove the application from your device.",
+        "By downloading, installing, accessing, or utilizing the Cineva application on any device across global jurisdictions, you enter into a legally binding agreement governed by these Terms and Conditions. If you do not irrevocably agree to every term contained herein, you must immediately cease usage and uninstall the application.",
       bulletPoints: [],
     },
     {
       number: "2",
-      title: 'Open-Source License (GPL-3.0) & "As-Is" Provision',
+      title: "Open Source Licensing (GPL-3.0) & \"As-Is\" Provision",
       body:
-        'Cineva software is distributed as free and open-source software under the GNU General Public License v3.0 (GPL-3.0). The Cineva application is provided strictly on an "AS IS" and "AS AVAILABLE" basis, without warranties of any kind, whether express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, non-infringement of third-party rights, or freedom from defects, errors, or operational interruptions.',
+        "Cineva software is distributed as free and open-source software under the GNU General Public License v3.0 (GPL-3.0). Cineva is provided strictly on an \"AS IS\" and \"AS AVAILABLE\" basis, devoid of any warranties whatsoever, express, statutory, or implied. To the maximum extent permitted under applicable worldwide law, the developers disclaim all warranties including, without limitation, merchantability, fitness for a particular purpose, non-infringement, reliability, uptime, uninterrupted functionality, or error-free execution.",
       bulletPoints: [],
     },
     {
       number: "3",
-      title: "Third-Party Ownership & Media Content Disclaimer",
-      body: "Users expressly acknowledge and agree that:",
+      title: "Third-Party Content Ownership & Intellectual Property",
+      body:
+        "The user expressly acknowledges, agrees, and covenants that:",
       bulletPoints: [
-        "All Movies, TV Series, Trailers, Audio, Poster Images, and Subtitles DO NOT belong to the Cineva application or its developers.",
-        "Cineva does not produce, publish, upload, host, or control any media files whatsoever.",
-        "Copyrights, trademarks, patents, and intellectual property rights over all movies and TV series remain the sole and exclusive property of their respective copyright holders, production studios, and official distributors.",
+        "All Movies, TV Shows, Series, Trailers, Audio tracks, Posters, and Subtitles accessed are NOT the property of Cineva or its creators.",
+        "Cineva does not author, produce, host, manage, upload, or control any multimedia files.",
+        "All copyrights, trademarks, industrial designs, and intellectual property rights belong exclusively to their respective studio houses, copyright proprietors, and authorized distributors.",
       ],
     },
     {
       number: "4",
-      title: "Not a Replacement for Official Streaming Services & Non-Commercial Nature",
+      title: "Non-Commercial Utility & Not a Commercial Streaming Substitute",
       body:
-        "Cineva is developed purely as non-commercial open-source personal utility software:",
+        "Cineva is developed exclusively as a decentralized software research utility without commercial monetization:",
       bulletPoints: [
-        "The application is 100% NON-COMMERCIAL, free of subscription fees, and generates zero revenue from the sale of copyrighted content.",
-        "Cineva is in NO WAY a replacement for official paid streaming services (such as Netflix, Disney+, Amazon Prime Video, HBO Max, theaters, or other licensed distribution channels).",
-        "We actively encourage all users to support filmmakers, actors, and producers by subscribing to and purchasing content on official licensed platforms.",
+        "The application is 100% NON-COMMERCIAL, free of subscription fees, paywalls, and commercial exploitation.",
+        "Cineva is explicitly NOT a substitute or alternative for licensed commercial streaming providers (such as Netflix, Disney+, Amazon Prime Video, HBO Max, physical theatrical releases, or authorized digital retailers).",
+        "We proactively urge users to support artists, filmmakers, and distributors by purchasing genuine subscriptions and theatrical tickets through licensed platforms.",
       ],
     },
     {
       number: "5",
-      title: "Disclaimer of Content Availability & Playback Capability",
+      title: "Disclaimer of Media Availability & Playback Capability",
       body:
-        "We expressly state that NOT ALL movies or TV series are guaranteed to be available, complete, or playable:",
+        "We categorically declare that NOT ALL movies or TV series are guaranteed to be discoverable, accessible, or playable:",
       bulletPoints: [
-        "Cineva operates by dynamically parsing public P2P indexes and internet metadata.",
-        "Streaming success, download speed, and video resolution depend entirely on active public seeders/peers and third-party internet sources.",
-        "Cineva developers do not guarantee continuous availability of specific titles, smooth playback, or video quality.",
+        "Cineva functions purely by dynamically parsing third-party decentralized public indexers and DHT networks.",
+        "Streaming velocity, file completion, and playback integrity rely wholly upon the voluntary availability of external third-party seeders and peers across the public internet.",
+        "The developers offer zero representation or warranty regarding the availability, longevity, audio-visual fidelity, or completeness of any title.",
       ],
     },
     {
       number: "6",
-      title: "User Legal Responsibility Across Jurisdictions",
+      title: "User Sovereignty & Worldwide Regulatory Compliance",
       body:
-        "Users bear sole and absolute legal responsibility for how they use this application. You are fully responsible for ensuring that your use of P2P protocols and access to public content complies with applicable laws and copyright regulations in your country of residence. The developers are fully indemnified from any claims or legal disputes involving users.",
+        "The user assumes sole, individual, and exclusive liability for their utilization of this software. You are individually responsible for verifying that your use of P2P network protocols adheres fully with the copyright legislation and local regulations of your respective geographic jurisdiction. The software authors and maintainers are completely indemnified and held harmless from any claims, damages, or disputes arising from user conduct.",
       bulletPoints: [],
+    },
+    {
+      number: "7",
+      title: "Community Features: Watch Party, Accounts & Feedback",
+      body:
+        "If you use features that involve other users or online services, you agree to the following additional terms:",
+      bulletPoints: [
+        "The Host is responsible for the room they create and the title being played; each participant is responsible for the messages, display names, and reactions they send.",
+        "Chat must not be used for harassment, hate speech, spam, fraud, disclosure of other people's personal data, or unlawful content.",
+        "Room codes and PINs are your responsibility. Cineva does not guarantee room confidentiality from anyone who knows the code or PIN.",
+        "Watch Party is in beta. Synchronization, room availability, and supporting services are not guaranteed and may change or be discontinued at any time.",
+        "Cineva may restrict or remove rooms and access that abuse the service.",
+        "Data processing for these features is governed by the Privacy Policy.",
+      ],
     },
   ],
   concludingNotice:
-    "Your continued use of the Cineva application constitutes your ongoing agreement to all legal clauses set forth in these Terms of Use.",
+    "Continued engagement with Cineva constitutes your definitive and enduring assent to all clauses embodied within these Terms and Conditions.",
 };
 
 export const disclaimerDocEn: LegalDocument = {
   title: "Disclaimer",
-  subtitle: "Copyright Disclaimer, DMCA Compliance, & Limitation of Liability",
+  subtitle: "Official Copyright Notice, DMCA Framework, & Liability Limitations",
+  lastUpdated: "November 20, 2026",
   calloutSummary:
-    "Cineva is a decentralized media player interface. Cineva does not host any video files on its own servers. All copyrighted materials belong to their respective official owners.",
+    "Cineva is a decentralized media player interface. Cineva does not host any video media on our own servers. All copyrighted works remain the exclusive property of their rightful owners.",
   sections: [
     {
       number: "1",
-      title: "Content Hosting & Storage Disclaimer",
+      title: "Non-Hosting & Media Storage Disclaimer",
       body:
-        "Cineva DOES NOT host, store, archive, or transmit any copyrighted video content from internal Cineva servers. The application functions purely as a client-side media player interface that parses publicly available information across the internet and global distributed networks.",
+        "Cineva DOES NOT host, store, archive, stream, or transmit any copyrighted multimedia files from any servers under the control of Cineva. The software operates strictly as a client-side media playback interface that renders publicly available indexes, DHT metadata, and external APIs dispersed across the open decentralized internet.",
       bulletPoints: [],
     },
     {
       number: "2",
-      title: "Copyright Compliance, WIPO, & DMCA Notices",
+      title: "Copyright Respect, WIPO Treaties, & DMCA Notices",
       body:
-        "Cineva developers respect global intellectual property rights in accordance with the Digital Millennium Copyright Act (DMCA), the Berne Convention, and World Intellectual Property Organization (WIPO) treaties:",
+        "The authors of Cineva maintain strict respect for intellectual property rights under the Digital Millennium Copyright Act (DMCA), the Berne Convention, and international World Intellectual Property Organization (WIPO) guidelines:",
       bulletPoints: [
-        "If you are a copyright owner or authorized agent and find your material indexed by public trackers, please understand that Cineva has no control over third-party servers or seeders where such files reside.",
-        "Takedown requests or distribution halts must be directed to the respective third-party web hosts or public tracker swarms distributing those files.",
-        "Cineva maintains no file repository that can be removed from our servers.",
+        "If you are a copyright holder or designated agent seeking copyright enforcement, please note that Cineva holds no custody over the decentralized nodes, third-party hosting providers, or public swarms.",
+        "Takedown notices and copyright inquiries must be directed to the third-party web hosts or public tracking servers originating the data transfer.",
+        "Cineva maintains no centralized database or content repository capable of unilateral removal.",
       ],
     },
     {
       number: "3",
-      title: "No Warranty of Movie & TV Series Availability",
+      title: "Zero Guarantee on Catalog Availability or Playback",
       body:
-        "This application provides no guarantee that any specific movie title, season, or episode will always be available or play smoothly. The absence of active seeders on public networks will prevent content from loading or cause buffering, which is outside the technical control of Cineva software.",
+        "The application provides zero assurance that any specific film, television season, or episode will be continuously discoverable or playable. The absence of healthy seeders on public networks will result in media unavailability or buffering. This phenomenon is an inherent trait of distributed networks outside Cineva's control.",
       bulletPoints: [],
     },
     {
       number: "4",
-      title: "Non-Commercialization & Support for Original Creators",
+      title: "Non-Commercial Declaration & Support for Original Media",
       body:
-        "Cineva reiterates that this application is not a commercial platform and is not designed to replace licensed entertainment services. We encourage every user to enjoy their favorite movies and TV series through official movie theaters and legal subscription streaming platforms to support the global film industry.",
+        "Cineva reiterates that it is not a commercial enterprise and is never intended to replace authorized subscription services. We champion the creative arts and strongly advocate that users frequent licensed cinemas and subscribe to authorized streaming networks to sustain the global creative community.",
       bulletPoints: [],
     },
     {
       number: "5",
-      title: "Limitation of Liability",
+      title: "Comprehensive Limitation of Liability",
       body:
-        "To the maximum extent permitted by applicable law, Cineva developers, contributors, and affiliates shall not be liable for any direct, indirect, incidental, special, or consequential damages of any kind (including data loss, bandwidth usage, or third-party claims) arising from the download, installation, or operation of this application by the user.",
+        "Under no circumstances shall the developers, contributors, or associates of Cineva be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, data consumption, network costs, loss of use, or legal controversies) arising out of the use or inability to use this software utility.",
       bulletPoints: [],
+    },
+    {
+      number: "6",
+      title: "Watch Party & User-Generated Content",
+      body:
+        "Watch Party only synchronizes playback state (play, pause, and position) and chat between participants. Cineva does not host, rebroadcast, or distribute video through this feature.",
+      bulletPoints: [
+        "Each participant plays their own media source through the app on their device; availability and quality may differ between participants.",
+        "Cineva does not monitor and is not responsible for the content of messages, display names, or reactions created by users.",
+        "Reports of abuse or copyright infringement can be sent to cineva.dev@gmail.com.",
+      ],
     },
   ],
   concludingNotice:
-    "By using Cineva, you affirm your understanding that Cineva is a standalone software player utility and release the developers from any liability regarding the content you access.",
+    "By engaging with Cineva, you affirmatively validate your understanding of Cineva's role as an independent media player and release its creators from all liability concerning content you elect to inspect.",
 };
 
 export const legalUi = {
@@ -384,6 +530,7 @@ export const legalUi = {
     backHome: "Kembali ke Beranda",
     backHomeAria: "Kembali ke Beranda Cineva",
     tabsAria: "Pilihan Dokumen Hukum",
+    lastUpdatedLabel: "Terakhir diperbarui",
     kicker: "Dokumen Hukum Resmi · Cineva",
     tabs: [
       { slug: "syarat-penggunaan" as const, label: "Syarat Penggunaan" },
@@ -400,6 +547,7 @@ export const legalUi = {
     backHome: "Back to Home",
     backHomeAria: "Back to Cineva Home",
     tabsAria: "Legal Documents Navigation",
+    lastUpdatedLabel: "Last updated",
     kicker: "Official Legal Document · Cineva",
     tabs: [
       { slug: "syarat-penggunaan" as const, label: "Terms of Use" },

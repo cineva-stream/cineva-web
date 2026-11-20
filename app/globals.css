@@ -8637,3 +8637,294 @@ html.has-reveal .tile.is-visible:hover {
   color: var(--muted);
   margin: 0;
 }
+
+
+/* ==========================================================================
+   WATCH PARTY (NONTON BARENG) SECTION
+   Visual bertab memakai kelas .multiplatform-* (lihat bagian MULTIPLATFORM).
+   ========================================================================== */
+.sec-party {
+  position: relative;
+  overflow: hidden;
+}
+
+.party-head {
+  margin-bottom: 40px;
+}
+
+.party-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 6px 5px 12px;
+  border-radius: 999px;
+  background: rgba(255, 149, 0, 0.1);
+  border: 1px solid rgba(255, 149, 0, 0.24);
+  color: var(--amber);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  width: fit-content;
+}
+
+.party-badge-beta {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--amber);
+  color: #120b00;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+}
+
+.party-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.78fr);
+  align-items: center;
+  gap: 48px;
+}
+
+/* Daftar langkah (sinkron dengan tab aktif) */
+.party-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.party-step {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 20px;
+  text-align: left;
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.party-step:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 149, 0, 0.32);
+}
+
+.party-step.is-active {
+  background: linear-gradient(135deg, rgba(255, 149, 0, 0.12), rgba(255, 149, 0, 0.04));
+  border-color: rgba(255, 149, 0, 0.5);
+  box-shadow: 0 10px 30px -14px var(--amber-glow);
+}
+
+.party-step:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+.party-step-num {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line-strong);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.party-step.is-active .party-step-num {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: #120b00;
+}
+
+.party-step-text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.party-step-text b {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.party-step-text span {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+/* Kartu fitur (memakai .multiplatform-point-card) */
+.party-features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  list-style: none;
+  margin: 48px 0 0;
+  padding: 0;
+}
+
+/* Catatan BETA, selaras dengan kartu di aplikasi */
+.party-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 20px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: rgba(255, 179, 0, 0.08);
+  border: 1px solid rgba(255, 179, 0, 0.22);
+}
+
+.party-note-icon {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 179, 0, 0.16);
+  color: #ffb300;
+}
+
+.party-note-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.party-note-head b {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.party-note p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+@media (max-width: 960px) {
+  .party-head {
+    margin-bottom: 32px;
+  }
+
+  .party-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .sec-party .multiplatform-visual,
+  .party-steps {
+    width: 100%;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .party-features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 36px;
+  }
+}
+
+@media (max-width: 640px) {
+  .party-head {
+    margin-bottom: 24px;
+  }
+
+  .party-grid {
+    gap: 24px;
+  }
+
+  .party-step {
+    padding: 14px 16px;
+    gap: 12px;
+    border-radius: 16px;
+  }
+
+  .party-step-num {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    font-size: 11px;
+  }
+
+  .party-step-text b {
+    font-size: 15.5px;
+  }
+
+  .party-step-text span {
+    font-size: 13px;
+  }
+
+  .party-features {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 28px;
+  }
+
+  .party-note {
+    padding: 14px;
+    gap: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .party-step,
+  .party-step-num {
+    transition: none;
+  }
+}
+
+
+/* Tanggal pembaruan dokumen legal */
+.legal-updated {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: -14px 0 24px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  opacity: 0.85;
+}
+
+.legal-updated span {
+  color: var(--amber);
+  font-weight: 700;
+}

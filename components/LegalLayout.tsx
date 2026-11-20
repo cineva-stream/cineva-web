@@ -59,6 +59,9 @@ export default function LegalLayout({ doc, currentSlug }: LegalLayoutProps) {
               <span className="legal-kicker">{ui.kicker}</span>
               <h1 className="legal-title">{activeDoc.title}</h1>
               <p className="legal-subtitle">{activeDoc.subtitle}</p>
+              <p className="legal-updated">
+                <span>{ui.lastUpdatedLabel}:</span> <time>{activeDoc.lastUpdated}</time>
+              </p>
 
               {/* Callout Ringkasan / Peringatan */}
               <div className="legal-callout" role="note">

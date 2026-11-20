@@ -6,6 +6,7 @@ import Bento from "@/components/Bento";
 import Showcase from "@/components/Showcase";
 import PlayerSection from "@/components/PlayerSection";
 import Multiplatform from "@/components/Multiplatform";
+import WatchParty from "@/components/WatchParty";
 import Marquee from "@/components/Marquee";
 import Install from "@/components/Install";
 import Faq from "@/components/Faq";
@@ -36,6 +37,7 @@ export default function Page() {
         <Bento />
         <Showcase />
         <PlayerSection />
+        <WatchParty />
         <Multiplatform />
         <Marquee />
         <Install />

@@ -50,6 +50,9 @@ The site provides an immersive overview of Cineva capabilities, interactive inst
 - **Interactive Scrollytelling Tour**
   Synchronized section-by-section feature walkthrough (Home, Search, Watchlist, Subtitle Customizer, and Profile) with sticky mobile mockup transitions.
 
+- **Watch Party (Nonton Bareng) Showcase**
+  Bilingual section with a tabbed visual (Create Room, Quick Join, Live Chat), a synchronized step list, feature cards, and a BETA notice that mirrors the in-app disclaimer.
+
 - **Multi-Method Installation Guides**
   Interactive guide detailing multiple Android installation pathways, including direct APK installation, ADB sideloading commands, and compiling from source code.
 
@@ -103,7 +106,8 @@ cineva-web/
 │   ├── LegalLayout.tsx      # Editorial layout for legal documentation
 │   ├── Navbar.tsx           # Floating glassmorphism navigation bar
 │   ├── Section.tsx          # Consistent section layout container
-│   └── Showcase.tsx         # Interactive scrollytelling feature showcase
+│   ├── Showcase.tsx         # Interactive scrollytelling feature showcase
+│   └── WatchParty.tsx       # Watch Party (Nonton Bareng) tabbed showcase with BETA notice
 ├── lib/
 │   ├── content.ts           # Site text content, feature lists, and metadata
 │   └── legal.ts             # Canonical legal terms, privacy, and disclaimer text

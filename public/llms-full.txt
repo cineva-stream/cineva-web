@@ -54,16 +54,27 @@ Cineva (dikenal juga sebagai Cineva Stream) adalah aplikasi pemutar media dan st
 * **Navigasi Serial**: Tombol otomatis "Next Episode" saat episode serial TV mendekati akhir.
 * **Fallback Web Player**: Mengaktifkan pemutar web cadangan secara otomatis apabila ketersediaan seeders P2P kurang mencukupi.
 
+### E. Nonton Bareng / Watch Party (Beta)
+* Pengguna dapat membuat ruangan dari halaman film atau serial dan mendapatkan kode ruangan berformat `CNV-XXXX` untuk dibagikan ke teman.
+* Teman bergabung dengan menekan banner "Gabung Nobar" di Beranda lalu memasukkan kode; Cineva otomatis membuka judul yang sama dengan Host.
+* **Sinkronisasi Real-Time**: Play, pause, dan seek tersinkron di seluruh peserta dengan kompensasi latensi jaringan.
+* **Live Chat & Emoji**: Panel obrolan di sisi pemutar, jumlah penonton, serta reaksi emoji cepat yang melayang di atas video.
+* **Keamanan & Kontrol**: Ruangan dapat dikunci dengan PIN 4 digit; Host dapat mengizinkan atau membatasi kontrol video oleh tamu.
+* **Mode Tamu**: Cukup memasukkan nama panggilan tanpa registrasi akun. Tersedia di Android, Android TV, dan Windows.
+* Status: **Beta**. Kendala atau bug dapat dilaporkan melalui menu "Kirim Masukan" di halaman Pengaturan aplikasi.
+
 ### E. Sistem Subtitle Multibahasa Cerdas (Smart Subtitles)
 * Integrasi otomatis dengan OpenSubtitles REST API.
 * Sinkronisasi offset waktu subtitle (delay/forward) langsung dari antarmuka pemutar.
 * Kustomisasi visual subtitle: ukuran teks, warna font, warna garis tepi (stroke), dan latar belakang transparan/gelap.
 * **Penerjemahan Otomatis**: Jika subtitle bahasa Indonesia belum tersedia di database publik, sistem akan otomatis menerjemahkan subtitle bahasa sumber ke bahasa utama pengguna secara real-time.
 
-### F. Privasi Nol-Pelacakan & Profil Lokal (Zero Data Collection)
-* Tidak ada formulir pendaftaran, verifikasi email, login Google, atau nomor ponsel.
+### F. Privasi Local-First & Data Minimal
+* Tidak wajib mendaftar: tanpa formulir pendaftaran, verifikasi email, atau nomor ponsel.
 * Pengguna dapat memilih dan mengganti avatar sinematik lokal favorit untuk personalisasi profil.
-* Semua data riwayat dan watchlist tersimpan secara lokal tanpa transmisi data pengguna ke server eksternal Cineva.
+* Secara bawaan, riwayat dan watchlist tersimpan lokal di perangkat. Masuk dengan Google bersifat opsional untuk sinkronisasi dan Lanjutkan Menonton lintas perangkat (Firebase).
+* Nonton Bareng, Kirim Masukan, analitik performa (Google Analytics for Firebase), dan pemeriksaan pembaruan (GitHub) memproses data tertentu melalui layanan pihak ketiga. Rinciannya ada di Kebijakan Privasi.
+* Kontak untuk permintaan data dan laporan: cineva.dev@gmail.com.
 
 ---
 
@@ -150,28 +161,56 @@ URL Resmi: https://cineva.primadev.id/syarat-penggunaan
 
 ### B. Kebijakan Privasi (Privacy Policy)
 URL Resmi: https://cineva.primadev.id/kebijakan-privasi
+Terakhir diperbarui: 20 November 2026
 
-1. **Filosofi Privasi Tanpa Akun & Tanpa Registrasi**:
-   Cineva beroperasi tanpa memerlukan pendaftaran akun, alamat surel, nomor telepon, maupun informasi identitas pribadi (PII). Seluruh fitur aplikasi dapat diakses langsung tanpa autentikasi ke server terpusat milik Cineva. Kami meyakini bahwa akses terhadap piranti lunak pemutar media harus menjunjung tinggi privasi mutlak pengguna di seluruh dunia.
+1. **Filosofi Local-First: Akun Tidak Wajib & Data Minimal**:
+   Cineva dapat digunakan tanpa mendaftar akun, tanpa alamat surel, dan tanpa nomor telepon. Secara bawaan, data Anda hanya tersimpan di perangkat. Beberapa fitur opsional (dijelaskan pada pasal 3 sampai 5) memerlukan pemrosesan data melalui layanan pihak ketiga. Kami hanya memproses data yang diperlukan untuk menjalankan fitur dan menjaga kualitas aplikasi, dan kami tidak menjual data pribadi Anda.
 2. **Penyimpanan Data Lokal di Perangkat Pengguna**:
-   Seluruh preferensi konfigurasi dan data interaksi pengguna disimpan secara eksklusif pada penyimpanan lokal perangkat Anda menggunakan basis data tertanam terenkripsi (Hive). Data yang tersimpan meliputi:
+   Preferensi konfigurasi dan data interaksi pengguna disimpan pada penyimpanan lokal perangkat Anda menggunakan basis data tertanam (Hive). Data yang tersimpan meliputi:
    - Daftar film dan serial yang Anda simpan ke dalam Watchlist.
    - Riwayat tontonan dan posisi pemutaran terakhir (resume position).
    - Riwayat kata kunci pencarian lokal.
    - Preferensi tampilan: bahasa aplikasi, ukuran dan latar subtitle, serta preferensi kualitas pemutaran.
    - File film dan subtitle yang Anda unduh melalui Manajer Unduhan.
-3. **Karakteristik Jaringan P2P & Alamat Protokol Internet (IP)**:
-   - Saat pengguna melakukan streaming atau mengunduh konten melalui protokol P2P, alamat IP publik perangkat secara inheren dapat terlihat oleh peers (peserta jaringan) lain dalam kelompok distribusi (swarm). Ini merupakan karakteristik dasar arsitektur P2P di seluruh dunia, bukan tindakan pengumpulan data oleh Cineva.
-   - Cineva sama sekali tidak mencatat (no logs), tidak merekam, dan tidak mengarsipkan alamat IP pengguna.
-   - Pengguna yang memerlukan privasi transmisi jaringan ekstra disarankan untuk menggunakan Virtual Private Network (VPN) terpercaya.
-4. **Interaksi dengan Layanan & API Pihak Ketiga**:
-   - The Movie Database (TMDB): Mengambil metadata judul, poster, dan sinopsis resmi.
-   - OpenSubtitles: Mengunduh berkas subtitle multibahasa.
-   - Indeks Pelacak Publik (Torrentio / Addon Scraper): Mencocokkan ketersediaan data media terdistribusi.
-5. **Kepatuhan Regulasi Privasi Internasional**:
-   Arsitektur Cineva selaras dengan standar perlindungan data global seperti GDPR (General Data Protection Regulation) dan CCPA (California Consumer Privacy Act) karena prinsip Zero Data Collection di mana tidak ada data pribadi yang disimpan di cloud pengembang.
-6. **Hak Penghapusan Data Pengguna**:
-   Pengguna memiliki kendali penuh 100% untuk menghapus seluruh riwayat dan watchlist lokal kapan saja melalui menu Pengaturan pada aplikasi atau dengan membersihkan data aplikasi (Clear Data) di pengaturan Android.
+3. **Layanan Cloud Opsional: Masuk dengan Google & Lanjutkan Menonton**:
+   Jika Anda memilih Masuk dengan Google, Cineva menggunakan Google Sign-In dan Firebase (Google LLC) untuk mengautentikasi Anda dan menyinkronkan data antar perangkat. Fitur ini sepenuhnya opsional; Anda tetap dapat memakai Cineva tanpa akun.
+   - Data akun dari Google: alamat surel, nama tampilan, dan foto profil. Data ini digunakan untuk mengisi profil dan mengidentifikasi akun sinkronisasi Anda.
+   - Data cadangan sinkronisasi: profil, Watchlist, dan riwayat tontonan disimpan di Firebase Realtime Database pada jalur khusus akun Anda dan disinkronkan otomatis di latar belakang.
+   - Lanjutkan Menonton lintas perangkat: judul yang sedang ditonton, posisi pemutaran, serta jenis dan nama perangkat disimpan sebagai sesi aktif agar dapat dilanjutkan di perangkat lain. Sesi dihapus ketika tontonan selesai.
+   - Anda dapat memutuskan akun Google kapan saja melalui Pengaturan; data lokal di perangkat tidak dihapus. Untuk menghapus data cloud Anda, hubungi kami di cineva.dev@gmail.com.
+4. **Nonton Bareng (Watch Party): Fitur Beta**:
+   Saat Anda membuat atau bergabung ke ruangan Nonton Bareng, data berikut dibagikan kepada seluruh peserta ruangan dan diproses melalui infrastruktur pihak ketiga:
+   - Nama panggilan, ID anggota (ID akun Firebase jika Anda masuk, atau ID tamu acak), status Host, dan waktu terakhir aktif.
+   - Pesan obrolan, reaksi emoji, serta pesan sistem (misalnya anggota bergabung atau keluar).
+   - Informasi tontonan: judul, jenis media, ID TMDB/IMDb, musim dan episode, poster, serta status pemutaran (play, pause, dan posisi) agar tetap sinkron.
+   - Kode ruangan (contoh CNV-8492) dan PIN 4 digit opsional. PIN hanya membatasi akses ruangan secara sederhana dan bukan mekanisme keamanan tingkat tinggi; siapa pun yang memegang kode dan PIN dapat bergabung dan melihat isi ruangan.
+   - Data ruangan disimpan di Firebase Realtime Database. Jika koneksi Firebase gagal, Cineva otomatis memakai layanan relay publik pihak ketiga (ntfy.sh) sebagai jalur cadangan, sehingga data ruangan dapat melewati dan tersimpan sementara pada layanan tersebut sesuai kebijakan penyedianya.
+   - Data ruangan dirancang untuk dihapus ketika ruangan tidak aktif atau telah berakhir. Mekanisme penghapusan otomatis ini masih disempurnakan selama masa beta, sehingga jangka waktu penyimpanan dapat berubah. Jangan membagikan informasi sensitif di dalam obrolan.
+5. **Analitik Performa, Kirim Masukan & Pemeriksaan Pembaruan**:
+   Cineva memproses data teknis tertentu untuk menjaga kualitas dan performa aplikasi di berbagai perangkat:
+   - Google Analytics for Firebase: Cineva mengumpulkan data penggunaan dan performa yang bersifat teknis, seperti pembukaan aplikasi dan tampilan layar, beserta informasi perangkat dan aplikasi (misalnya model perangkat, versi sistem operasi, versi aplikasi, perkiraan wilayah, dan pengenal instalasi aplikasi) untuk memantau stabilitas dan performa. Data ini diproses oleh Google. Pengumpulan analitik aktif secara bawaan dan belum tersedia opsi untuk menonaktifkannya di dalam aplikasi pada versi ini.
+   - Kirim Masukan: jika Anda mengirim masukan, isi pesan, nama (opsional), kategori, informasi perangkat dan sistem operasi, serta versi aplikasi dikirim melalui Google Apps Script kepada pengembang, dicatat di Google Sheets, dan diteruskan ke Telegram. Jangan menyertakan data sensitif dalam masukan.
+   - Pemeriksaan pembaruan: aplikasi meminta informasi rilis terbaru ke GitHub, sehingga alamat IP Anda terlihat oleh GitHub sesuai kebijakan privasi GitHub.
+   - Situs web resmi Cineva menggunakan Vercel Web Analytics dan Speed Insights untuk statistik kunjungan dan performa halaman secara agregat.
+6. **Karakteristik Jaringan P2P & Alamat Protokol Internet (IP)**:
+   Sebagai pemutar media yang mendukung protokol terdistribusi (Peer-to-Peer / BitTorrent):
+   - Saat Anda melakukan streaming atau mengunduh konten melalui protokol P2P, alamat IP publik perangkat Anda secara inheren dapat terlihat oleh peers (peserta jaringan) lain dalam kelompok distribusi (swarm). Ini merupakan karakteristik dasar arsitektur P2P di seluruh dunia, bukan tindakan pengumpulan data oleh Cineva.
+   - Cineva sama sekali tidak mencatat (no logs), tidak merekam, dan tidak mengarsipkan alamat IP Anda.
+   - Bagi pengguna yang membutuhkan privasi transmisi jaringan tingkat lanjut, Anda disarankan untuk menggunakan Virtual Private Network (VPN) terenkripsi dari pihak ketiga.
+7. **Interaksi dengan Layanan & API Pihak Ketiga**:
+   Untuk menampilkan poster sinematik, sinopsis resmi, subtitle, serta menjalankan fitur opsional, Cineva berkomunikasi langsung dari perangkat Anda ke layanan pihak ketiga:
+   - The Movie Database (TMDB): Digunakan untuk mengambil metadata poster, judul, tahun rilis, dan ringkasan alur cerita.
+   - OpenSubtitles: Digunakan untuk mengunduh berkas teks subtitle multibahasa secara publik.
+   - Indeks Pelacak Publik (Torrentio / Addon Scraper): Digunakan untuk mencocokkan ketersediaan data media terdistribusi.
+   - Google (Firebase Authentication, Realtime Database, Analytics, Apps Script, dan Sheets): untuk Masuk dengan Google, sinkronisasi, Lanjutkan Menonton, Nonton Bareng, analitik, dan Kirim Masukan.
+   - ntfy.sh: relay publik cadangan untuk Nonton Bareng ketika Firebase tidak dapat dijangkau.
+   - Telegram: penerima notifikasi masukan pengguna oleh pengembang.
+   - GitHub: sumber informasi rilis untuk pemeriksaan pembaruan.
+   - Interaksi dengan layanan pihak ketiga ini tunduk pada kebijakan privasi dan ketentuan layanan dari masing-masing penyedia layanan tersebut.
+8. **Hak & Kontrol Pengguna serta Kepatuhan Regulasi**:
+   Anda dapat menghapus seluruh data lokal kapan saja melalui menu Pengaturan, memutuskan akun Google, dan keluar dari ruangan Nonton Bareng kapan pun. Untuk permintaan akses atau penghapusan data yang tersimpan di layanan cloud (akun, cadangan sinkronisasi, ruangan Nonton Bareng, atau masukan), hubungi kami di cineva.dev@gmail.com. Kami berupaya menyelaraskan praktik data dengan prinsip perlindungan data global seperti General Data Protection Regulation (GDPR) dan California Consumer Privacy Act (CCPA), termasuk prinsip minimalisasi data.
+9. **Pembaruan Dokumen Kebijakan**:
+   Kebijakan Privasi ini dapat diperbarui sewaktu-waktu seiring dengan evolusi fitur aplikasi. Tanggal pembaruan terakhir tercantum di bagian atas dokumen, dan versi terbaru selalu tersedia di dalam aplikasi serta di situs resmi Cineva.
 
 ### C. Disclaimer & DMCA Compliance
 URL Resmi: https://cineva.primadev.id/disclaimer
@@ -196,7 +235,10 @@ J: Cineva adalah aplikasi Android gratis dan sumber terbuka berbasis Flutter yan
 J: Tidak. Cineva 100% gratis, bersifat non-komersial, dan sama sekali tidak memiliki iklan (Nol Iklan).
 
 **T: Apakah Cineva mengumpulkan data pribadi saya?**
-J: Tidak. Cineva menganut prinsip Zero Data Collection. Tidak ada akun, tidak ada nomor telepon, dan tidak ada email. Semua data tontonan dan watchlist disimpan lokal di ponsel pengguna (Hive DB).
+J: Cineva menganut prinsip Local-first, data minimal. Akun tidak wajib dan data tontonan serta watchlist disimpan lokal di ponsel secara bawaan. Fitur opsional (Masuk dengan Google, Lanjutkan Menonton, Nonton Bareng, Kirim Masukan) dan analitik performa memproses data tertentu lewat layanan pihak ketiga seperti Google/Firebase. Cineva tidak menjual data pribadi. Detail lengkap ada di Kebijakan Privasi; hubungi cineva.dev@gmail.com untuk permintaan penghapusan data.
+
+**T: Apakah Cineva mendukung nonton bareng?**
+J: Ya, melalui fitur Nonton Bareng (Watch Party) yang masih berstatus Beta. Host membuat ruangan dan membagikan kode `CNV-XXXX`; peserta bergabung lewat banner "Gabung Nobar" di Beranda. Video tersinkron real-time dan tersedia Live Chat. Cukup nama panggilan, tanpa akun.
 
 **T: Di mana saya bisa mengunduh Cineva APK resmi?**
 J: File APK resmi dapat diunduh di tautan rilis GitHub resmi: https://github.com/cineva-stream/Cineva/releases atau melalui situs web https://cineva.primadev.id.
