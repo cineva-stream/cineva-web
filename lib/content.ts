@@ -8,9 +8,9 @@ export const RELEASES_URL = "https://github.com/cineva-stream/Cineva/releases";
 export const ISSUES_URL = "https://github.com/cineva-stream/Cineva/issues";
 export const LICENSE_URL = "https://github.com/cineva-stream/Cineva/blob/main/LICENSE";
 export const APK_DOWNLOAD_URL =
-  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.4/Cineva_v1.1.4-arm64-v8a.apk";
+  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.9/Cineva_v1.1.9-arm64-v8a.apk";
 export const EXE_DOWNLOAD_URL =
-  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.4/Cineva_setup_v1.1.4.exe";
+  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.9/Cineva_setup_v1.1.9.exe";
 
 export const posterWall = [
   "/posters/squid_game.webp",
@@ -989,11 +989,11 @@ export const multiplatform = translations.id.multiplatform;
 export const categories = translations.id.marquee.categories;
 export const install = translations.id.install;
 export const specs = [
-  { k: "Versi", v: "v1.1.4" },
+  { k: "Versi", v: "v1.1.9" },
   { k: "Ukuran", v: "28.2 MB (Windows) / 35.8 MB (Android)" },
   { k: "Target OS", v: "Windows 10/11 (64-bit), Android 5.0+" },
   { k: "CPU", v: "arm64-v8a, armeabi-v7a, x86_64, Universal" },
-  { k: "Package", v: "com.primadev.cineva" },
+  { k: "Package", v: "com.cinevagroup.cinevastream" },
 ];
 export const faq = {
   title1: translations.id.faq.title1,

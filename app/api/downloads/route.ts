@@ -2,20 +2,20 @@ import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-const DEFAULT_VERSION = "v1.1.5";
-const DEFAULT_APK_NAME = "Cineva_v1.1.5-arm64-v8a.apk";
+const DEFAULT_VERSION = "v1.1.9";
+const DEFAULT_APK_NAME = "Cineva_v1.1.9-arm64-v8a.apk";
 const DEFAULT_APK_URL =
-  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.5/Cineva_v1.1.5-arm64-v8a.apk";
+  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.9/Cineva_v1.1.9-arm64-v8a.apk";
 const DEFAULT_APK_SIZE = "35.8 MB";
 
-const DEFAULT_WINDOWS_NAME = "Cineva_setup_v1.1.5.exe";
+const DEFAULT_WINDOWS_NAME = "Cineva_setup_v1.1.9.exe";
 const DEFAULT_WINDOWS_URL =
-  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.5/Cineva_setup_v1.1.5.exe";
+  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.9/Cineva_setup_v1.1.9.exe";
 const DEFAULT_WINDOWS_SIZE = "28.2 MB";
 
-const DEFAULT_TV_NAME = "Cineva_v1.1.5-android-tv.apk";
+const DEFAULT_TV_NAME = "Cineva_v1.1.9-android-tv.apk";
 const DEFAULT_TV_URL =
-  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.5/Cineva_v1.1.5-android-tv.apk";
+  "https://github.com/cineva-stream/Cineva/releases/download/v1.1.9/Cineva_v1.1.9-android-tv.apk";
 const DEFAULT_TV_SIZE = "15.8 MB";
 
 interface GitHubAsset {

@@ -16,7 +16,7 @@ Cineva (dikenal juga sebagai Cineva Stream) adalah aplikasi pemutar media dan st
 * **Pengembang**: Wisnu (GitHub: @cineva-stream) / Primadev
 * **Target Sistem Operasi**: Android 5.0 (API level 21) hingga versi Android terbaru
 * **Arsitektur CPU yang Didukung**: arm64-v8a, armeabi-v7a, x86_64
-* **Nama Paket Aplikasi (Package Name)**: `com.primadev.cineva`
+* **Nama Paket Aplikasi (Package Name)**: `com.cinevagroup.cinevastream`
 * **Ukuran Berkas APK**: ~96.9 MB (v1.0.8)
 * **Lisensi**: Open Source di bawah Lisensi GPL-3.0
 * **Status Iklan**: Nol Iklan (Bebas dari Google AdMob, Unity Ads, pop-up, banner, atau iklan tersembunyi apa pun)

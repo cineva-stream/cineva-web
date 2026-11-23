@@ -34,7 +34,7 @@ export type Stats = {
 };
 
 const DEFAULT_WINDOWS: WindowsVariant = {
-  name: "Cineva_setup_v1.1.5.exe",
+  name: "Cineva_setup_v1.1.9.exe",
   url: EXE_DOWNLOAD_URL,
   size: "28.2 MB",
   sizeBytes: 29620072,
@@ -43,8 +43,8 @@ const DEFAULT_WINDOWS: WindowsVariant = {
 const DEFAULT_STATS: Stats = {
   stars: null,
   downloads: null,
-  version: "v1.1.5",
-  apkName: "Cineva_v1.1.5-arm64-v8a.apk",
+  version: "v1.1.9",
+  apkName: "Cineva_v1.1.9-arm64-v8a.apk",
   apkUrl: APK_DOWNLOAD_URL,
   apkSize: "35.8 MB",
   apks: [],
